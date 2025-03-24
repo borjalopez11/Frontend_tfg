@@ -1,0 +1,105 @@
+.containera {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/assets/istockphoto-1173747036-612x612.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.registro {
+  background-color: rgba(35, 35, 36, 0.88);
+  padding: 40px 50px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+/* Estilo para las columnas */
+.form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.form-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+.conditions {
+  text-align: left;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea todo a la izquierda */
+}
+
+.conditions label {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espacio entre el checkbox y el texto */
+}
+
+
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.submit-btn:hover {
+  background-color: #d62839;
+}
+
+/* Asegurar que en pantallas pequeñas se apilen */
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-column {
+    width: 100%;
+  }
+}

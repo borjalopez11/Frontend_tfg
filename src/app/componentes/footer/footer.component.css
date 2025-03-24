@@ -1,0 +1,27 @@
+.container-fluid {
+  background-color: #1e1e1e;
+  padding: 0 20px;
+}
+
+a {
+  color: white;
+}
+
+.rojo {
+  color: #D32F2F;
+}
+
+/* Ajustes adicionales para pantallas pequeñas */
+@media (max-width: 768px) {
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  h1, h2, h5 {
+    font-size: 1.5rem;
+  }
+
+  .container-fluid {
+    padding: 0 10px;
+  }
+}
