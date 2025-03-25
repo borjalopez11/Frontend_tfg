@@ -1,0 +1,26 @@
+.cartContainer {
+    background-color: black;
+    color: white;
+    padding: 20 20 0 0;
+    margin: auto;
+    
+  .categorias{
+    background-color: #171717;
+    }
+  .nav-link {
+    color: white !important;
+  }
+  
+  .card {
+    margin: 15px 0;
+  }
+  
+  .card-body {
+    background: white;
+    color: black;
+  }
+  
+  h1, h2 {
+    font-weight: bold;
+  }
+}

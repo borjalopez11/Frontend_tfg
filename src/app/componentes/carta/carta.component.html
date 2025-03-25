@@ -1,0 +1,59 @@
+<div class="cartContainer text-center">
+    <h1 class="my-4">NUESTRA CARTA</h1>
+  
+    <!-- Categorías -->
+    <nav class="categorias">
+      <ul class="nav justify-content-center">
+        <li class="nav-item"><a class="nav-link" href="#">ENTRANTES</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">PRINCIPALES</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">POSTRES</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">BEBIDAS</a></li>
+      </ul>
+    </nav>
+  
+    <!-- Sección de Entrantes -->
+    <h2 class="mt-4">ENTRANTES</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let producto of productos">
+        <div class="card border-danger">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <!--<p class="card-text">{{ producto.precio | currency:'EUR' }}</p> -->
+            <p class="text-warning">⭐ {{ producto.puntuacion }}</p>
+            <button class="btn btn-danger">Ver más +</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Sección de Entrantes -->
+      <h2 class="mt-4">PRINCIPALES</h2>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let producto of productos">
+          <div class="card border-danger">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ producto.nombre }}</h5>
+              <!--<p class="card-text">{{ producto.precio | currency:'EUR' }}</p> -->
+              <p class="text-warning">⭐ {{ producto.puntuacion }}</p>
+              <button class="btn btn-danger">Ver más +</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- Sección de Entrantes -->
+    <h2 class="mt-4">POSTRES</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let producto of productos">
+        <div class="card border-danger">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <!--<p class="card-text">{{ producto.precio | currency:'EUR' }}</p> -->
+            <p class="text-warning">⭐ {{ producto.puntuacion }}</p>
+            <button class="btn btn-danger">Ver más +</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
