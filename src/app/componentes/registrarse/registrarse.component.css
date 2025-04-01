@@ -15,7 +15,8 @@
 }
 
 .registro {
-  background-color: rgba(35, 35, 36, 0.88);
+  backdrop-filter: blur(26px);
+  background-color: inherit;
   padding: 40px 50px;
   margin-top: 40px;
   border-radius: 30px;
