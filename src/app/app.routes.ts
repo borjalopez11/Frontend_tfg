@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import {LandingPageComponent} from "./componentes/INICIO/landing-page/landing-page.component";
-import {RegistrarseComponent} from "./componentes/registrarse/registrarse.component";
-import {IndentificarseComponent} from "./componentes/indentificarse/indentificarse.component";
 import {FormularioComponent} from "./componentes/CONTACTO/formulario/formulario.component";
+import {RegistroSesionComponent} from "./componentes/registro-sesion/registro-sesion.component";
+import {InicioSesionComponent} from "./componentes/inicio-sesion/inicio-sesion.component";
 
 export const routes: Routes = [
   {
@@ -16,11 +16,11 @@ export const routes: Routes = [
   },
   {
     path: 'registrarse',
-    component: RegistrarseComponent
+    component: RegistroSesionComponent
   },
   {
     path: 'identificarse',
-    component: IndentificarseComponent
+    component: InicioSesionComponent
   },
   {
     path: 'contacto',

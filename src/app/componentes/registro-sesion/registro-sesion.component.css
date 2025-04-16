@@ -1,6 +1,6 @@
 .containera {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px); /* Espacio para el footer */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 60px 20px; /* margen interno que da respiración */
+  box-sizing: border-box;
 }
+
 
 .container {
   display: flex;
