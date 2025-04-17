@@ -19,8 +19,9 @@ export const routes: Routes = [
     component: RegistroSesionComponent
   },
   {
-    path: 'identificarse',
-    component: InicioSesionComponent
+    path: 'login',
+    loadComponent: () => import('./componentes/inicio-sesion/inicio-sesion.component')
+      .then(m => m.InicioSesionComponent)
   },
   {
     path: 'contacto',
