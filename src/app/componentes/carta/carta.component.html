@@ -1,18 +1,20 @@
+<h1 class="titulo-carta text-center">NUESTRA CARTA</h1>
+
+<nav class="categorias">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#entrantes" (click)="$event.preventDefault(); scrollTo('entrantes')">ENTRANTES</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#principales" (click)="$event.preventDefault(); scrollTo('principales')">PRINCIPALES</a>
+    </li>
+    <li class="nav-item"><a class="nav-link" href="#postres">POSTRES</a></li>
+    <li class="nav-item"><a class="nav-link" href="#bebidas">BEBIDAS</a></li>
+  </ul>
+</nav>
+
 <div class="cartContainer text-center">
-  <h1 class="my-4">NUESTRA CARTA</h1>
-
-  <!-- Categorías -->
-  <nav class="categorias">
-    <ul class="nav justify-content-center">
-      <li class="nav-item"><a class="nav-link" href="#">ENTRANTES</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">PRINCIPALES</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">POSTRES</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">BEBIDAS</a></li>
-    </ul>
-  </nav>
-
-  <!-- Entrantes -->
-  <h2 class="mt-4">ENTRANTES</h2>
+  <h2 class="mt-4" id="entrantes">ENTRANTES</h2>
   <div class="row">
     <div class="col-md-4" *ngFor="let producto of entrantes">
       <div class="food-card">
@@ -33,18 +35,22 @@
     </div>
   </div>
 
-
-  <!-- Principales -->
-  <h2 class="mt-4">PRINCIPALES</h2>
+  <h2 class="mt-4" id="principales">PRINCIPALES</h2>
   <div class="row">
     <div class="col-md-4" *ngFor="let producto of principales">
-      <div class="card border-danger h-100">
-        <img [src]="producto.imagen" class="card-img-top img-fluid p-3" alt="imagen producto" />
-        <div class="card-body text-center">
-          <h5 class="card-title">{{ producto.nombre }}</h5>
-          <p class="card-text">{{ producto.precio | currency:'EUR' }}</p>
-          <p class="text-warning">⭐ {{ producto.puntuacion }}</p>
-          <button class="btn btn-danger">Ver más +</button>
+      <div class="food-card">
+        <div class="food-card-image">
+          <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+        </div>
+        <div class="food-card-body">
+          <div class="food-card-title">
+            <span>{{ producto.nombre }}</span>
+            <span>{{ producto.precio | currency:'EUR' }}</span>
+          </div>
+          <div class="food-card-footer">
+            <span class="rating">⭐ {{ producto.puntuacion }}</span>
+            <button class="btn-ver-mas">Ver más +</button>
+          </div>
         </div>
       </div>
     </div>

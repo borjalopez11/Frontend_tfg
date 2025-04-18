@@ -10,8 +10,44 @@ import { Component } from '@angular/core';
 })
 export class CartaComponent {
 
+  scrollTo(id: string): void {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+
 
   productos = [
+    {
+      nombre: 'Alitas',
+      precio: 4.80,
+      puntuacion: 4.9,
+      imagen: 'assets/img/nuggets.png',
+      categoria: 'entrantes'
+    },
+    {
+      nombre: 'Alitas',
+      precio: 4.80,
+      puntuacion: 4.9,
+      imagen: 'assets/img/nuggets.png',
+      categoria: 'entrantes'
+    },
+    {
+      nombre: 'Alitas',
+      precio: 4.80,
+      puntuacion: 4.9,
+      imagen: 'assets/img/nuggets.png',
+      categoria: 'entrantes'
+    },
+    {
+      nombre: 'Alitas',
+      precio: 4.80,
+      puntuacion: 4.9,
+      imagen: 'assets/img/nuggets.png',
+      categoria: 'entrantes'
+    },
     {
       nombre: 'Alitas',
       precio: 4.80,
