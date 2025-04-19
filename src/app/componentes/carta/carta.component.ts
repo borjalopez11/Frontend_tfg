@@ -31,42 +31,42 @@ export class CartaComponent {
       nombre: 'Alitas',
       precio: 4.80,
       puntuacion: 4.9,
-      imagen: 'assets/img/nuggets.png',
+      imagen: 'https://media.istockphoto.com/id/453780395/es/foto/chow-mein-de-pollo.jpg?s=612x612&w=0&k=20&c=SZhR_09oLtHG35Sq8571h6xMze8lJD2tOhlg7O-JZpo=',
       categoria: 'entrantes'
     },
     {
       nombre: 'Alitas',
       precio: 4.80,
       puntuacion: 4.9,
-      imagen: 'assets/img/nuggets.png',
+      imagen: 'https://media.istockphoto.com/id/1407895827/es/foto/sopa-de-ramen-con-vista-superior-de-pato-fideos-y-huevo-en-una-mesa-de-piedra-oscura.jpg?s=612x612&w=0&k=20&c=C08AsfWLXqFB2_yzvtapP4G7CH5fRrm-Zi-T2tL6cx4=',
       categoria: 'entrantes'
     },
     {
       nombre: 'Alitas',
       precio: 4.80,
       puntuacion: 4.9,
-      imagen: 'assets/img/nuggets.png',
+      imagen: 'https://media.istockphoto.com/id/1459147088/es/foto/receta-de-curry-de-camarones-camarones-cocinados-en-una-rica-salsa-de-curry-salsa-salada-con.jpg?s=612x612&w=0&k=20&c=Dh0e7pvF5KlT5rLvgQYLqI2171wcQMFjgGjkLcNw_0M=',
       categoria: 'entrantes'
     },
     {
       nombre: 'Alitas',
       precio: 4.80,
       puntuacion: 4.9,
-      imagen: 'assets/img/nuggets.png',
+      imagen: 'https://media.istockphoto.com/id/838234118/es/foto/comida-asi%C3%A1tica-en-un-recipiente-aislado-en-fondo-blanco.jpg?s=612x612&w=0&k=20&c=AOMa-SDq90a289689cMHStOC-boGAxtnvF1h2RngJnE=',
       categoria: 'entrantes'
     },
     {
       nombre: 'Alitas',
       precio: 4.80,
       puntuacion: 4.9,
-      imagen: 'assets/img/nuggets.png',
+      imagen: 'https://media.istockphoto.com/id/1069146316/es/foto/bollos-al-vapor-chino-aislado-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=8h17weKtpiw-VWB2Au8Ct53Url7J63XAzDLNiVWVV24=',
       categoria: 'entrantes'
     },
     {
-      nombre: 'Alitas',
+      nombre: 'patatas',
       precio: 4.80,
       puntuacion: 4.9,
-      imagen: 'assets/img/nuggets.png',
+      imagen: 'https://media.istockphoto.com/id/177096343/es/foto/rollos-de-sushi-y.jpg?s=612x612&w=0&k=20&c=o3zoytIMrNrRvtSm3j1VdYEEbuWns05d6az60He0Bww=',
       categoria: 'principales'
     },
     // más productos...

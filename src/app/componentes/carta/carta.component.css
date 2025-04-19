@@ -63,12 +63,12 @@ html {
 
 .food-card-image img {
   max-width: 100%;
-  height: auto;
+  height: 200px;
   object-fit: contain;
   border-radius: 10px;
   margin: auto;
   display: block;
-  max-height: 130px;
+  max-height: 200px;
 }
 
 .food-card-body {
