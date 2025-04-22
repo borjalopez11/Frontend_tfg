@@ -19,7 +19,7 @@ export const routes: Routes = [
     component: CartaComponent
   },
   {
-    path: 'registrarse',
+    path: 'signIn',
     component: RegistroSesionComponent
   },
   {

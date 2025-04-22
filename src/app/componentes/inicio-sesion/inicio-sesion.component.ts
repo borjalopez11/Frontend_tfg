@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import {AuthService} from "../../servicios/auth.service";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-inicio-sesion',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './inicio-sesion.component.html',
   styleUrl: './inicio-sesion.component.css'
