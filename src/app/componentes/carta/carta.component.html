@@ -24,13 +24,38 @@
         <div class="food-card-body">
           <div class="food-card-title">
             <span>{{ producto.nombre }}</span>
-            <span>{{ producto.precio | currency:'EUR' }}</span>
+            <span>{{ producto.precio + ' EUR' }}</span>
           </div>
           <div class="food-card-footer">
             <span class="rating">⭐ {{ producto.puntuacion }}</span>
-            <button class="btn-ver-mas">Ver más +</button>
+            <button class="btn-ver-mas" (click)="openPopup(producto)">Ver más +</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Modal -->
+  <div class="popup" *ngIf="selectedProduct">
+    <div class="popup-content">
+      <button class="popup-close" (click)="closePopup()">X</button>
+      <div class="popup-body">
+        <div class="popup-image-container">
+          <img [src]="selectedProduct.imagen" alt="{{ selectedProduct.nombre }}" class="popup-image"/>
+          <div class="popup-info">
+            <span class="product-type">{{ selectedProduct.categoria }}</span> <!-- Tipo del producto en gris -->
+            <h2>{{ selectedProduct.nombre }}</h2> <!-- Nombre del producto -->
+            <p class="description">{{ selectedProduct.descripcion }}</p> <!-- Descripción -->
+            <hr class="separator"> <!-- Línea separadora -->
+            <div class="allergens">
+              <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span> <!-- Alérgenos -->
+            </div>
+            <div class="rating">
+              <span>⭐ {{ selectedProduct.puntuacion }}</span> <!-- Valoración -->
+            </div>
+          </div>
+        </div>
+        <button class="add-to-cart">Añadir al carrito · {{ selectedProduct.precio + ' EUR' }}</button>
       </div>
     </div>
   </div>
@@ -45,11 +70,11 @@
         <div class="food-card-body">
           <div class="food-card-title">
             <span>{{ producto.nombre }}</span>
-            <span>{{ producto.precio | currency:'EUR' }}</span>
+            <span>{{ producto.precio + ' EUR' }}</span>
           </div>
           <div class="food-card-footer">
             <span class="rating">⭐ {{ producto.puntuacion }}</span>
-            <button class="btn-ver-mas">Ver más +</button>
+            <button class="btn-ver-mas" (click)="openPopup(producto)">Ver más +</button>
           </div>
         </div>
       </div>

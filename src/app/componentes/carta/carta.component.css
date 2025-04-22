@@ -14,7 +14,6 @@ html {
   padding: 0 20px;
 }
 
-
 .categorias {
   background-color: #1c1c1c;
   padding: 10px 0;
@@ -37,10 +36,6 @@ html {
   padding: 50px 10px;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.col-md-4 {
-  margin-bottom: 20px;
 }
 
 .food-card {
@@ -114,4 +109,108 @@ html {
 
 .btn-ver-mas:hover {
   background-color: #c82635;
+}
+
+/* Estilos para el pop-up */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-image-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-image {
+  width: 40%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.popup-info {
+  flex-grow: 1;
+}
+
+.product-type {
+  color: gray;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.description {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.separator {
+  margin: 20px 0;
+  border-top: 1px solid #ccc;
+}
+
+.allergens {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.allergens span {
+  display: block;
+}
+
+.allergens span::after {
+  content: " | ";
+}
+
+.add-to-cart {
+  align-self: flex-end;
+  margin-top: 20px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #d62839;
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .popup-content {
+    width: 90%;
+  }
+
+  .popup-image {
+    width: 100%;
+    max-height: 250px;
+  }
 }
