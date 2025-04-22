@@ -12,7 +12,6 @@
   box-sizing: border-box;
 }
 
-
 .container {
   display: flex;
   justify-content: center;
@@ -43,24 +42,31 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 20px;
+  gap: 10px; /* Reducir el espacio entre las columnas */
 }
 
 .form-column {
-  width: 50%;
+  width: 48%; /* Reducir el ancho de cada columna */
   display: flex;
   flex-direction: column;
 }
 
+/* Reducir márgenes y padding en los inputs */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"] {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 8px; /* Reducir padding */
+  margin: 5px 0 15px 0; /* Espacio reducido entre <p> e <input>, y mayor espacio entre inputs */
   border: none;
   border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Estilo para los <p> (etiquetas) */
+.form-column p {
+  margin-bottom: 5px; /* Reducir el espacio entre el <p> y el <input> */
 }
 
 .conditions {
@@ -77,8 +83,6 @@ input[type="password"] {
   align-items: center;
   gap: 5px; /* Espacio entre el checkbox y el texto */
 }
-
-
 
 .submit-btn {
   width: 100%;
@@ -100,7 +104,7 @@ input[type="password"] {
 @media (max-width: 768px) {
   .form {
     flex-direction: column;
-    gap: 0;
+    gap: 10px; /* Espacio entre los campos al apilar */
   }
 
   .form-column {
