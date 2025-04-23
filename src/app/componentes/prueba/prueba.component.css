@@ -1,17 +1,18 @@
 /* Fondo oscuro del pop-up */
 .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    color: black;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: black;
+  overflow: hidden; /* Evita el scroll en el fondo */
+}
 
   .header{
     text-align: center;
@@ -22,13 +23,16 @@
     background-color: white;
     border-radius: 35px;
     border: 3px solid #d62839;
-    max-height: 90vh; /* 👈 límite de alto para que no se salga de la pantalla */
-    overflow-y: auto;  /* 👈 permite hacer scroll si el contenido se pasa */
+    max-height: 90vh; /* Limita la altura */
+    max-width: 900px;
+    overflow-y: auto; /* Permite scroll vertical si el contenido excede el alto */
+    display: flex;
+    flex-direction: row;
   }
   
   .col-md-7 {
-    max-height: 80vh;
-    overflow-y: auto;
+    max-height: 80vh; /* Limita la altura de la columna de descripción */
+    overflow-y: auto; /* Si el contenido de la columna excede el alto, se permite hacer scroll */
   }
   
   
@@ -95,9 +99,12 @@
     margin-bottom: 20px;
     font-size: 1.1em;
     line-height: 1.5;
-    white-space: normal; /* ✅ Asegura que el texto haga salto de línea */
-    word-break: break-word; /* ✅ Rompe palabras largas */
-    overflow-wrap: break-word; /* ✅ Apoyo adicional */
+    white-space: normal; /* Permite que el texto haga salto de línea */
+    word-break: break-word; /* Rompe palabras largas */
+    overflow-wrap: break-word; /* Rompe las palabras para que no se desborden */
+    max-width: 100%; /* Asegura que el ancho no se extienda más allá del contenedor */
+    height: auto; /* Deja que la altura crezca si es necesario */
+    overflow: auto; /* Activa el scroll si el texto se alarga más de lo permitido */
   }
   
   
@@ -135,6 +142,7 @@
     color: white;
     border: none;
     padding: 10px 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1em;
@@ -159,11 +167,10 @@
   }
   
   /* Responsivo para pantallas pequeñas */
-  @media (max-width: 768px) {
+  @media (max-width: 960px) {
     .popup-content {
       width: 90%; /* Asegura que el pop-up ocupe el 90% del ancho en pantallas pequeñas */
-    }
-  
+    }  
     .popup-image {
       width: 100%;
       height: 200px; /* Ajusta la altura de la imagen en pantallas pequeñas */

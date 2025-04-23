@@ -16,7 +16,7 @@ export class PruebaComponent {
       puntuacion: 4.9,
       imagen: 'assets/img/nuggets.png',
       categoria: 'entrantes',
-      descripcion: ' asdf as  sfas  af af sd asfasf d sdfasd  dfasdfjientes ',
+      descripcion: ' asdf as  sfas  af aadf asdfasdafdf asdf asf afaf asdf dfa df affadfa adfasdadfa f adf  asdfa asdf asdfasf afd asdf dfsasf asf asf asdf as sd asfasf d sdfasd  dfasdfjientes ',
       alergenos: ['Gluten', 'Sulfito', 'Lácteos']
     }
   ];
