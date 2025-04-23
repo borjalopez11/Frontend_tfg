@@ -1,17 +1,22 @@
+/* Contenedor principal */
 .containera {
   width: 100%;
-  min-height: calc(100vh - 100px); /* Espacio para el footer */
+  height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/assets/istockphoto-1173747036-612x612.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 60px 20px; /* margen interno que da respiración */
+  background-image: url("/assets/img/chef.png");
+  background-size: cover; /* La imagen cubre todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Asegura que no se repita la imagen */
+  background-attachment: fixed; /* La imagen no se mueve al hacer scroll */
+  padding: 0; /* Sin padding para evitar espacios adicionales */
   box-sizing: border-box;
 }
 
+
+
+/* Estilo para el contenedor de registro */
 .container {
   display: flex;
   justify-content: center;
@@ -21,6 +26,7 @@
   padding: 20px;
 }
 
+/* Formulario de registro */
 .registro {
   backdrop-filter: blur(86px);
   background-color: inherit;
