@@ -1,8 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
-import {LandingPageComponent} from "./componentes/inicio/landing-page/landing-page.component";
-import {FormularioComponent} from "./componentes/contacto/formulario/formulario.component";
 import {RegistroSesionComponent} from "./componentes/registro-sesion/registro-sesion.component";
 import {CartaComponent} from "./componentes/carta/carta.component";
+import { PruebaComponent } from './componentes/prueba/prueba.component';
+import { LandingPageComponent } from './componentes/INICIO/landing-page/landing-page.component';
+import { FormularioComponent } from './componentes/CONTACTO/formulario/formulario.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
   {
     path: 'contacto',
     component: FormularioComponent
+  },
+  {
+    path: 'prueba',
+    component: PruebaComponent
   },
   {
     path: '**',
