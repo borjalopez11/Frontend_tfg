@@ -1,6 +1,14 @@
 html {
   scroll-behavior: smooth;
 }
+.cart-title-container{
+  background-image: url("/assets/img/backCarta.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 100%;
+}
 
 .titulo-carta {
   font-size: 2.8rem;
