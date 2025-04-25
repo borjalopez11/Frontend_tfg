@@ -1,0 +1,57 @@
+/* Estilo para el contenedor de los términos y condiciones */
+.terms-conditions {
+    background-color: #000;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+  
+  .terms-conditions h2,
+  .terms-conditions h4 {
+    font-weight: bold;
+    color: #e63946; /* Rojo para los títulos */
+  }
+  
+  .terms-conditions p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #fff;
+  }
+  
+  .terms-conditions .row {
+    border-radius: 15px;
+    padding: 20px;
+    color: black;
+  }
+  
+  .terms-conditions .row h4 {
+    margin-top: 20px;
+  }
+  
+  .terms-conditions .row p {
+    margin-bottom: 15px;
+  }
+  
+  .terms-conditions .row strong {
+    color: #ffffff; /* Rojo para los textos importantes */
+  }
+  
+  /* Estilos para la responsividad */
+  @media (max-width: 768px) {
+    .terms-conditions {
+      padding: 1rem;
+    }
+    
+    .terms-conditions h2 {
+      font-size: 1.5em;
+    }
+  
+    .terms-conditions p {
+      font-size: 1em;
+    }
+    
+    .terms-conditions .row {
+      padding: 10px;
+    }
+  }
+  
