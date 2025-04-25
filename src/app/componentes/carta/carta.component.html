@@ -1,4 +1,7 @@
-<h1 class="titulo-carta text-center">NUESTRA CARTA</h1>
+<div class="cart-title-container">
+  <h1 class="titulo-carta text-center">NUESTRA CARTA</h1>
+</div>
+
 
 <nav class="categorias">
   <ul class="nav justify-content-center">
@@ -44,11 +47,11 @@
           <img [src]="selectedProduct.imagen" alt="{{ selectedProduct.nombre }}" class="popup-image"/>
           <div class="popup-info">
             <span class="product-type">{{ selectedProduct.categoria }}</span>
-            <h2>{{ selectedProduct.nombre }}</h2> 
-            <p class="description">{{ selectedProduct.descripcion }}</p> 
-            <hr class="separator"> 
+            <h2>{{ selectedProduct.nombre }}</h2>
+            <p class="description">{{ selectedProduct.descripcion }}</p>
+            <hr class="separator">
             <div class="allergens">
-              <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span> 
+              <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span>
             </div>
             <div class="rating">
               <span>⭐ {{ selectedProduct.puntuacion }}</span>
@@ -100,4 +103,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
