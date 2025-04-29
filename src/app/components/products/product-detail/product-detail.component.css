@@ -13,11 +13,11 @@
     color: black;
     overflow: hidden; /* Evita el scroll en el fondo */
   }
-  
+
     .header{
       text-align: center;
       margin-top: 10px;
-  
+
     }
     .row {
       background-color: white;
@@ -29,13 +29,13 @@
       display: flex;
       flex-direction: row;
     }
-    
+
     .col-md-7 {
       max-height: 80vh; /* Limita la altura de la columna de descripción */
       overflow-y: auto; /* Si el contenido de la columna excede el alto, se permite hacer scroll */
     }
-    
-    
+
+
     /* Estilo del contenido del pop-up */
     .popup-content {
       background-color: white;
@@ -48,7 +48,7 @@
       flex-direction: row; /* Flexbox para disposición de imagen y contenido */
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
     }
-    
+
     /* Cuerpo del pop-up */
     .popup-body {
       display: flex;
@@ -57,12 +57,12 @@
       align-items: center; /* Alinea los elementos de manera vertical */
       width: 100%; /* Asegura que el contenido ocupe todo el ancho */
     }
-  
-    
+
+
     .col-md-5{
       display: flex;
       justify-content: center; /* Centra horizontalmente */
-      align-items: center; 
+      align-items: center;
     }
     /* Imagen del producto */
     .popup-image {
@@ -71,21 +71,21 @@
       border-radius: var(--border-radius-primary);
       object-fit: cover;
       margin-bottom: 18px;
-  
+
     }
-    
+
     /* Contenido del producto */
     .popup-info {
       flex-grow: 1;
     }
-    
+
     /* Tipo de producto (ej. Entrantes) */
     .product-type {
       color: gray;
       font-size: 1.1em;
       text-transform: uppercase; /* Asegura que el tipo de producto esté en mayúsculas */
     }
-    
+
     /* Nombre del producto */
     h2 {
       font-size: 3em; /* Aumenta el tamaño del nombre del producto */
@@ -93,7 +93,7 @@
       margin-bottom: 20px;
       text-transform: uppercase;
     }
-    
+
     /* Descripción del producto */
     .description {
       margin-bottom: 20px;
@@ -106,35 +106,35 @@
       height: auto; /* Deja que la altura crezca si es necesario */
       overflow: auto; /* Activa el scroll si el texto se alarga más de lo permitido */
     }
-    
-    
-    
+
+
+
     /* Línea separadora */
     .separator {
       margin: 20px 0;
       border-top: 1px solid #ccc;
     }
-    
+
     /* Alérgenos */
     .allergens {
       font-size: 1.1em;
       margin-bottom: 20px;
     }
-    
+
     .allergens span {
       display: block;
     }
-    
+
     .allergens span::after {
       content: " | "; /* Separa los alérgenos con una barra */
     }
-    
+
     /* Valoración del producto */
     .rating {
       font-size: 1.2em;
       color: gold;
     }
-    
+
     /* Estilo para el botón de añadir al carrito */
     .add-to-cart {
       margin-top: 20px;
@@ -147,7 +147,7 @@
       cursor: pointer;
       font-size: 1.1em;
     }
-    
+
     /* Efecto hover para el botón */
     .add-to-cart:hover {
       background-color: #d62839;
@@ -156,7 +156,7 @@
       display: flex;
       justify-content: flex-end;
     }
-    
+
     /* Estilo para el botón de cerrar pop-up */
     .popup-close-btn {
       background-color: transparent;
@@ -165,19 +165,18 @@
       cursor: pointer;
       color: #e63946;
     }
-    
+
     /* Responsivo para pantallas pequeñas */
     @media (max-width: 960px) {
       .popup-content {
         width: 90%; /* Asegura que el pop-up ocupe el 90% del ancho en pantallas pequeñas */
-      }  
+      }
       .popup-image {
         width: 100%;
         height: 200px; /* Ajusta la altura de la imagen en pantallas pequeñas */
       }
-    
+
       h2 {
         font-size: 1.5em; /* Ajusta el tamaño del nombre del producto */
       }
     }
-    

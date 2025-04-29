@@ -65,24 +65,31 @@
 
     <div class="popup" *ngIf="selectedProduct">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <img [src]="selectedProduct.imagen" alt="{{ selectedProduct.nombre }}" class="popup-image"/>
         </div>
-        <div class="col-md-6">
-          <span class="product-type">{{ selectedProduct.categoria }}</span> <!-- Tipo del producto en gris -->
-          <h2>{{ selectedProduct.nombre }}</h2> <!-- Nombre del producto -->
-          <p class="description">{{ selectedProduct.descripcion }}</p> <!-- Descripción -->
-          <hr class="separator"> <!-- Línea separadora -->
+        <div class="col-md-7">
+          <div class="header">
+            <span class="product-type">{{ selectedProduct.categoria }}</span>
+            <h2>{{ selectedProduct.nombre }}</h2>
+            <p class="description">{{ selectedProduct.descripcion }}</p>
+          </div>
+
+          <hr class="separator">
           <div class="allergens">
-            <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span> <!-- Alérgenos -->
+            <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span>
           </div>
           <div class="rating">
-            <span>⭐ {{ selectedProduct.puntuacion }}</span> <!-- Valoración -->
+            <span>⭐ {{ selectedProduct.puntuacion }}</span>
           </div>
-          <button class="add-to-cart">Añadir al carrito · {{ selectedProduct.precio + ' EUR' }}</button>
+          <div class="containerButton">
+            <button class="add-to-cart">Añadir al carrito · {{ selectedProduct.precio + ' EUR' }}</button>
+          </div>
         </div>
       </div>
+    </div>
 
+    <div>
     <h2 class="mt-4" id="principales">PRINCIPALES</h2>
     <div class="row">
       <div class="col-md-4" *ngFor="let producto of principales">
