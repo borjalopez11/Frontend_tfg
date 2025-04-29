@@ -1,0 +1,57 @@
+
+.image-container {
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+@media (min-width: 992px) {
+  .image {
+    float: right;
+    margin: 0;
+  }
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  font-size: 24px;
+  text-align: center;
+}
+
+button {
+  height: 50px;
+  color: white;
+  border: 2px solid white;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .vertical-text {
+    display: none;
+  }
+
+  .col-md-5, .col-md-6 {
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .row {
+    margin: 0;
+  }
+}

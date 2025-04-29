@@ -1,0 +1,14 @@
+<div class="card-carousel">
+  <h1 class="textoDestacados ">PRODUCTOS DESTACADOS</h1>
+
+  <div
+    *ngFor="let card of cards; let i = index"
+    class="my-card"
+    [class.active]="i === currentIndex"
+    [class.prev]="i === prevIndex"
+    [class.next]="i === nextIndex"
+    [ngStyle]="{ 'background-image': 'url(' + card.imagen + ')' }"
+    (click)="onCardClick(i)"
+  >
+  </div>
+</div>
