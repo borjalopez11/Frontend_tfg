@@ -1,0 +1,71 @@
+<div class="user-container">
+  <div class="user-header">
+    <img class="user-avatar" src="\assets\img\userImage.jpg" alt="User Avatar">
+    <h1>Buenas User8812424,</h1>
+  </div>
+
+  <div class="user-info">
+    <h2>Datos personales</h2>
+    <div class="info-item">
+      <span class="info-label">Nombre:</span>
+      <div class="info-data">
+        Usnger88823421 López
+        <button class="edit-btn">✎</button>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Número de teléfono:</span>
+      <div class="info-data">
+        +34128273783
+        <button class="edit-btn">✎</button>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Email:</span>
+      <div class="info-data">
+        soyMatiaskgmail.com
+        <button class="edit-btn">✎</button>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Contraseña:</span>
+      <div class="info-data">
+        **************
+        <button class="edit-btn">✎</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="line-separator"></div>
+
+  <div class="fav-products mt-4">
+    <h2>Productos favoritos</h2>
+  </div>
+
+  <!-- Cambié el contenedor para las cartas -->
+  <div class="fav-products-container">
+      <div class="" *ngFor="let producto of productos">
+        <div class="food-card">
+          <div class="food-card-image">
+            <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+          </div>
+          <div class="food-card-body">
+            <div class="food-card-title">
+              <span>{{ producto.nombre }}</span>
+              <span>{{ producto.precio + ' EUR' }}</span>
+            </div>
+            <div class="food-card-footer">
+              <span class="rating">⭐ {{ producto.puntuacion }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  <div></div>
+
+</div>

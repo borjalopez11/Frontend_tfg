@@ -9,6 +9,7 @@ import { ProteccionDatosComponent } from './componentes/proteccion-datos/protecc
 import { AvisoLegalComponent } from './componentes/aviso-legal/aviso-legal.component';
 import { PoliticaPrivacidadComponent } from './componentes/politica-privacidad/politica-privacidad.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { EspacioUsuarioComponent } from './componentes/espacio-usuario/espacio-usuario.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,10 @@ export const routes: Routes = [
   {
     path: 'prueba',
     component: PruebaComponent
+  },
+  {
+    path: 'espacio-usuario',
+    component: EspacioUsuarioComponent
   },
   {
     path: 'terminos',
