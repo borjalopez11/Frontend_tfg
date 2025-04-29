@@ -1,74 +1,74 @@
-import {RouterModule, Routes} from '@angular/router';
-import {RegistroSesionComponent} from "./componentes/registro-sesion/registro-sesion.component";
-import {CartaComponent} from "./componentes/carta/carta.component";
-import { PruebaComponent } from './componentes/prueba/prueba.component';
-import { LandingPageComponent } from './componentes/INICIO/landing-page/landing-page.component';
-import { FormularioComponent } from './componentes/CONTACTO/formulario/formulario.component';
-import { TerminosComponent } from './componentes/terminos/terminos.component';
-import { ProteccionDatosComponent } from './componentes/proteccion-datos/proteccion-datos.component';
-import { AvisoLegalComponent } from './componentes/aviso-legal/aviso-legal.component';
-import { PoliticaPrivacidadComponent } from './componentes/politica-privacidad/politica-privacidad.component';
-import { CarritoComponent } from './componentes/carrito/carrito.component';
-import { EspacioUsuarioComponent } from './componentes/espacio-usuario/espacio-usuario.component';
+import {Routes} from '@angular/router';
+import {LandingPageComponent} from "./components/landing-page/landing-page.component";
+import {ProductsCartComponent} from "./components/products/products-cart/products-cart.component";
+import {ContactComponent} from "./components/contact/contact.component";
+import {SignInComponent} from "./components/auth/sign-in/sign-in.component";
+import {CartComponent} from "./components/order/cart/cart.component";
+import {UserSpaceComponent} from "./components/user-space/user-space.component";
+import {TermsConditionsComponent} from "./components/legal/terms-conditions/terms-conditions.component";
+import {DataProtectionComponent} from "./components/legal/data-protection/data-protection.component";
+import {LegalNoticeComponent} from "./components/legal/legal-notice/legal-notice.component";
+import {PrivacityPolicyComponent} from "./components/legal/privacity-policy/privacity-policy.component";
+
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'home',
     pathMatch: "full"
   },
   {
-    path: 'inicio',
+    path: 'home',
     component: LandingPageComponent
   },
   {
-    path: 'carta',
-    component: CartaComponent
+    path: 'products-cart',
+    component: ProductsCartComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   },
   {
     path: 'signIn',
-    component: RegistroSesionComponent
+    component: SignInComponent
   },
   {
     path: 'login',
-    loadComponent: () => import('./componentes/inicio-sesion/inicio-sesion.component')
-      .then(m => m.InicioSesionComponent)
+    loadComponent: () => import('./components/auth/login/login.component')
+      .then(m => m.LoginComponent)
   },
   {
-    path: 'contacto',
-    component: FormularioComponent
+    path: 'product-detail',
+    component: ProductsCartComponent
   },
   {
-    path: 'prueba',
-    component: PruebaComponent
+    path: 'user-space',
+    component: UserSpaceComponent
   },
   {
-    path: 'espacio-usuario',
-    component: EspacioUsuarioComponent
+    path: 'terms',
+    component: TermsConditionsComponent
   },
   {
-    path: 'terminos',
-    component: TerminosComponent
+    path: 'data-protection',
+    component: DataProtectionComponent
   },
   {
-    path: 'proteccion-datos',
-    component: ProteccionDatosComponent
+    path: 'legal-notice',
+    component: LegalNoticeComponent
   },
   {
-    path: 'aviso-legal',
-    component: AvisoLegalComponent
-  },
-  {
-    path: 'politica-privacidad',
-    component: PoliticaPrivacidadComponent
-  },
-  {
-    path: 'carrito',
-    component: CarritoComponent
+    path: 'privacity-policy',
+    component: PrivacityPolicyComponent
   },
   {
     path: '**',
-    redirectTo: 'inicio',
+    redirectTo: 'home',
     pathMatch: "full"
   }
 ];

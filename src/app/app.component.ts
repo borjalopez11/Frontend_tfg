@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {NavbarComponent} from "./componentes/navbar/navbar.component";
-import {FooterComponent} from "./componentes/footer/footer.component";
+import {NavbarComponent} from "./components/shared/navbar/navbar.component";
+import {FooterComponent} from "./components/shared/footer/footer.component";
 import {NgIf} from "@angular/common";
 import {filter} from "rxjs";
 

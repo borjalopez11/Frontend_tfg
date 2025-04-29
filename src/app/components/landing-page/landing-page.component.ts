@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Div1Component } from "../../componentes/INICIO/div1/div1.component";
-import { Div2Component } from "../../componentes/INICIO/div2/div2.component";
-import { Div3Component } from "../../componentes/INICIO/div3/div3.component";
-import { Div4Component } from "../../componentes/INICIO/div4/div4.component";
+import {Div1Component} from "./div1/div1.component";
+import {Div2Component} from "./div2/div2.component";
+import {Div3Component} from "./div3/div3.component";
+import {Div4Component} from "./div4/div4.component";
+
 
 @Component({
   selector: 'app-landing-page',
