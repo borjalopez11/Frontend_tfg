@@ -117,3 +117,17 @@ input[type="password"] {
     width: 100%;
   }
 }
+.auth-guest-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.auth-guest-button:hover {
+  background-color: #eeeeee;
+}
