@@ -3,80 +3,32 @@
     <div class="registro">
       <h1 class="auth-title">REGÍSTRATE</h1>
 
-      <form class="form" (ngSubmit)="onSubmit()">
+      <div class="form" [formGroup]="formSignup" >
         <div class="form-column">
-          <label for="name">Nombre:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            [(ngModel)]="name"
-            placeholder="Introduce tu nombre"
-            required
-          />
+          <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nombre">
+          <label for="name"></label>
 
-          <label for="email">Correo electrónico:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            [(ngModel)]="email"
-            placeholder="Introduce tu correo"
-            required
-          />
 
-          <label for="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            [(ngModel)]="password"
-            placeholder="Introduce tu contraseña"
-            required
-          />
+          <input type="email" formControlName="email" class="form-control" id="email" placeholder="Correo electrónico" required>
+
+          <input type="password" formControlName="password" class="form-control" id="password" placeholder="Contraseña" required>
         </div>
 
         <div class="form-column">
-          <label for="lastName">Apellidos:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            [(ngModel)]="lastName"
-            placeholder="Introduce tus apellidos"
-            required
-          />
+          <input type="text" formControlName="secondName" class="form-control" id="secondName" placeholder="Apellidos" required>
 
-          <label for="phoneNumber">Número de teléfono:</label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            [(ngModel)]="phoneNumber"
-            placeholder="Introduce tu número"
-            required
-          />
+          <input type="tel" formControlName="number" class="form-control" id="number" placeholder="Número de teléfono" required>
 
-          <label for="confirmPassword">Confirmar contraseña:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            [(ngModel)]="confirmPassword"
-            placeholder="Confirma tu contraseña"
-            required
-          />
+          <input type="password" formControlName="passwordConfirmation" class="form-control" id="passwordConfirmation" placeholder="Confirmar contraseña" required>
         </div>
-      </form>
+      </div>
 
       <div class="conditions">
-        <label><input type="checkbox" required> Acepto las <a routerLink="">condiciones de uso</a></label><br>
+        <label><input type="checkbox" required> Acepto las <a routerLink="" >condiciones de uso</a></label><br>
         <label><input type="checkbox" required> Acepto la <a href="#">política de privacidad</a></label><br>
       </div>
 
-      <button type="submit" class="submit-btn" [disabled]="isLoading">
-        {{ isLoading ? 'Registrando...' : 'Registrarse' }}
-      </button>
+      <input type="submit" value="Registrarse" class="submit-btn" (click)="onSubmit()">
     </div>
   </div>
 </div>

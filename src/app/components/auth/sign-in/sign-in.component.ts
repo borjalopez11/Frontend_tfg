@@ -1,52 +1,63 @@
-import { Component } from '@angular/core';
-import { Router } from "@angular/router";
-import { AuthService } from "../../../servicios/auth.service";
-import {FormsModule} from "@angular/forms";
+import {Component, inject} from '@angular/core';
+import {RouterLink} from "@angular/router";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {AuthService} from "../../../servicios/auth.service";
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  templateUrl: './sign-in.component.html',
   imports: [
-    FormsModule
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  styleUrls: ['./sign-in.component.css']
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
-  name: string = '';
-  secondName: string = '';
-  email: string = '';
-  number: string = '';
-  password: string = '';
-  passwordConfirmation: string = '';
-  errorMessage: string = '';
-  isLoading: boolean = false;
+  public readonly formBuilder: FormBuilder = inject(FormBuilder);
+  public readonly authService: AuthService = inject(AuthService);
 
-  constructor(private authService: AuthService, private router: Router) {}
+  formSignup: FormGroup = this.formBuilder.group({
+    name: [''],
+    secondName: [''],
+    email: [''],
+    number: [''],
+    password: [''],
+    passwordConfirmation: ['']
+  })
 
-  onSubmit(): void {
-    this.isLoading = true;
-    // Verificar que las contraseñas coincidan
-    if (this.password !== this.passwordConfirmation) {
-      this.errorMessage = 'Las contraseñas no coinciden.';
-      this.isLoading = false;
+  get nombre(): any{
+    return this.formSignup.get('nombre');
+  }
+
+  onSubmit() {
+    if(this.formSignup.invalid){
+      this.formSignup.markAllAsTouched();
       return;
     }
+    console.log(this.formSignup.getRawValue());
 
-    // Llamada al servicio de autenticación para registrar al usuario
-    this.authService.signUp(this.name, this.secondName, this.email, this.number, this.password, this.passwordConfirmation).subscribe({
-      next: (response) => {
-        // Guardar el token JWT en el almacenamiento local
-        this.authService.saveToken(response.jwt);
-        // Redirigir al usuario a la página principal
-        this.router.navigate(['/']);
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error(error);
-        this.errorMessage = error.error.message || 'Error al registrar la cuenta.';
-        this.isLoading = false;
+    this.authService.signIn(this.formSignup.getRawValue()).subscribe(
+      {
+        next: (response) => {
+          console.log(response)
+          console.log("usuario añadido correctamente.");
+        },
+        error: (error) => {
+          console.error(error);
+        }
       }
-    });
+    )
   }
 }
+
+export interface SignInForm {
+  name: string,
+  secondName: string,
+  email: string,
+  number: string,
+  password: number,
+  passwordConfirmation: string
+}
+
