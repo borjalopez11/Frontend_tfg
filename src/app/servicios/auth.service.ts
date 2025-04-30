@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {SignInForm} from "../components/auth/sign-in/sign-in.component";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,10 @@ export class AuthService {
   private apiUrl = 'http://localhost:5001/auth';
 
   constructor(private http: HttpClient) {
+  }
+
+  signIn(signin: SignInForm): Observable<SignInForm>{
+    return this.http.post<SignInForm>(this.apiUrl + "/singup", signin)
   }
 
   login(email: string, password: string): Observable<any> {

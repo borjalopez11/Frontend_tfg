@@ -3,27 +3,25 @@
     <div class="registro">
       <h1 class="auth-title">REGÍSTRATE</h1>
 
-      <div class="form">
+      <div class="form" [formGroup]="formSignup" >
         <div class="form-column">
-          <p>Nombre:</p>
-          <input type="text" placeholder="Nombre" required>
+          <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="Nombre">
+          <label for="nombre">Nombre</label>
+          @if(nombre?.invalid && nombre?.touched){
+            <div class="text-danger">El nombre no puede estar vacio.</div>
+          }
 
-          <p>Correo electrónico:</p>
-          <input type="email" placeholder="Correo electrónico" required>
+          <input type="email" class="form-control" placeholder="Correo electrónico" required>
 
-          <p>Contraseña:</p>
-          <input type="password" placeholder="Contraseña" required>
+          <input type="password" class="form-control" placeholder="Contraseña" required>
         </div>
 
         <div class="form-column">
-          <p>Apellidos:</p>
-          <input type="text" placeholder="Apellidos" required>
+          <input type="text" class="form-control" placeholder="Apellidos" required>
 
-          <p>Número de teléfono:</p>
-          <input type="tel" placeholder="Número de teléfono" required>
+          <input type="tel" class="form-control" placeholder="Número de teléfono" required>
 
-          <p>Confirmar contraseña:</p>
-          <input type="password" placeholder="Confirmar contraseña" required>
+          <input type="password" class="form-control" placeholder="Confirmar contraseña" required>
         </div>
       </div>
 
