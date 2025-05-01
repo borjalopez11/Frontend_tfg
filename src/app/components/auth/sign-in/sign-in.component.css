@@ -131,3 +131,21 @@ input[type="password"] {
 .auth-guest-button:hover {
   background-color: #eeeeee;
 }
+span {
+  color: red;
+  font-size: 0.8rem;
+}
+/* input con error: borde rojo */
+.input-error {
+  border: 2px solid #ff4d4f !important;
+}
+
+/* span reservado: mismo alto siempre */
+.error-msg {
+  min-height: 18px;
+  display: block;
+  font-size: 0.8rem;
+  color: red;
+}
+
+
