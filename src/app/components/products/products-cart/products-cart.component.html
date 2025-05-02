@@ -38,31 +38,36 @@
       </div>
     </div>
 
-    <div class="popup" *ngIf="selectedProduct">
-      <div class="row">
+    <div class="popup" *ngIf="selectedProduct" (click)="closePopup()">
+      <div class="popup-body" (click)="$event.stopPropagation()">
         <div class="col-md-5">
           <img [src]="selectedProduct.image" alt="{{ selectedProduct.name }}" class="popup-image"/>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 popup-info">
           <div class="header">
-            <span class="product-type">{{ selectedProduct.categoria }}</span>
+            <span class="product-type">{{ selectedProduct.foodCategory?.name }}</span>
             <h2>{{ selectedProduct.name }}</h2>
-            <p class="description">{{ selectedProduct.descripcion }}</p>
+            <p class="description">{{ selectedProduct.description }}</p>
           </div>
 
           <hr class="separator">
+
           <div class="allergens">
             <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span>
           </div>
-          <div class="rating">
-            <span>⭐ {{ selectedProduct.rating }}</span>
+
+          <div class="rating-container">
+            <span class="rating">⭐ {{ selectedProduct.rating }}</span>
           </div>
+
           <div class="containerButton">
             <button class="add-to-cart">Añadir al carrito · {{ selectedProduct.price + ' EUR' }}</button>
           </div>
         </div>
+
       </div>
     </div>
+
 
     <div>
     <h2 class="mt-4" id="principales">PRINCIPALES</h2>

@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Product } from "../../../interface/interface";
 import { ProductService } from "../../../services/product.service";
+import { environment } from "../../../../enviroments/enviroment";
+
 
 @Component({
   selector: 'app-products-cart',
@@ -18,6 +20,7 @@ export class ProductsCartComponent implements OnInit {
   postres: Product[] = [];
   bebidas: Product[] = [];
   isLoading = true;
+  backendUrl = environment.backendUrl;
 
   constructor(private productService: ProductService) {}
 
@@ -30,11 +33,18 @@ export class ProductsCartComponent implements OnInit {
     this.isLoading = true;
     this.productService.getProducts().subscribe(
       (data) => {
-        this.products = data;
+        // 🔧 Aquí agregamos el prefijo a cada imagen
+
+        this.products = data.map(product => ({
+          ...product,
+          image : product.image ? this.backendUrl + 'uploads/' + product.image : 'assets/imgNotFound.png',
+        }));
+
         this.entrantes = this.products.filter(p => p.foodCategory.name === 'Secundarios');
         this.principales = this.products.filter(p => p.foodCategory.name === 'Principales');
         this.postres = this.products.filter(p => p.foodCategory.name === 'Postres');
         this.bebidas = this.products.filter(p => p.foodCategory.name === 'Bebidas');
+
         this.isLoading = false;
       },
       (error) => {
@@ -43,6 +53,7 @@ export class ProductsCartComponent implements OnInit {
       }
     );
   }
+
 
   // Producto seleccionado para el pop-up
   selectedProduct: any = null;

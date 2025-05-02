@@ -9,6 +9,7 @@ import {TermsConditionsComponent} from "./components/legal/terms-conditions/term
 import {DataProtectionComponent} from "./components/legal/data-protection/data-protection.component";
 import {LegalNoticeComponent} from "./components/legal/legal-notice/legal-notice.component";
 import {PrivacityPolicyComponent} from "./components/legal/privacity-policy/privacity-policy.component";
+import {ProductDetailComponent} from "./components/products/product-detail/product-detail.component";
 
 
 export const routes: Routes = [
@@ -44,7 +45,7 @@ export const routes: Routes = [
   },
   {
     path: 'product-detail',
-    component: ProductsCartComponent
+    component: ProductDetailComponent
   },
   {
     path: 'user-space',
