@@ -11,8 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
-  
-  productos: Product[] = [
+
+  productos= [
     {
       nombre: 'Fideos wook',
       precio: 8.99,
@@ -74,7 +74,7 @@ export class CartComponent implements OnInit {
   }
 
   // Cambiar la cantidad de un producto
-  cambiarCantidad(producto: Product, cantidad: number) {
+  cambiarCantidad(producto: any, cantidad: number) {
     // Asegurarse de que la cantidad no sea menor que 1
     if (cantidad < 0) {
       producto.cantidad = 0; // Si la cantidad es menor que 1, la fijamos en 1

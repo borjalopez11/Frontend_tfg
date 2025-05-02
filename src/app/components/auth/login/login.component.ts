@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
-import {AuthService} from "../../../servicios/auth.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-login',

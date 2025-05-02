@@ -1,7 +1,14 @@
+export interface FoodCategory {
+  id: number;
+  name: string;
+}
+
 export interface Product {
-    nombre: string;
-    precio: number;
-    cantidad: number;
-    alergenos: string;
-    imagen: string;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  rating: number;
+  foodCategory: FoodCategory;
+  image: string;
 }
