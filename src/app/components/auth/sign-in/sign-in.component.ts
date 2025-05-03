@@ -59,6 +59,10 @@ export class SignInComponent {
       },
       error: (error) => {
         console.error("Error al registrar:", error);
+
+        if (error?.error?.message?.includes('Email already used')) {
+          this.formSignup.get('email')?.setErrors({ emailInUse: true });
+        }
       }
     });
   }

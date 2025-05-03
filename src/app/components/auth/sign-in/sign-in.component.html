@@ -17,7 +17,8 @@
 
           <!-- Email -->
           <label for="email">Email</label>
-          <input type="email" formControlName="email" class="form-control" id="email" placeholder="Correo electrónico" required
+          <input type="email" formControlName="email" class="form-control" id="email" placeholder="Correo electrónico"
+                 required
                  [ngClass]="{'input-error': formSignup.get('email')?.touched && formSignup.get('email')?.invalid}">
           <span class="error-msg">
             <span *ngIf="formSignup.get('email')?.touched && formSignup.get('email')?.hasError('required')">
@@ -26,11 +27,16 @@
             <span *ngIf="formSignup.get('email')?.touched && formSignup.get('email')?.hasError('email')">
               Email format is invalid
             </span>
+            <span *ngIf="formSignup.get('email')?.hasError('emailInUse')">
+  Este correo ya está registrado
+</span>
+
           </span>
 
           <!-- Contraseña -->
           <label for="password">Contraseña</label>
-          <input type="password" formControlName="password" class="form-control" id="password" placeholder="Contraseña" required
+          <input type="password" formControlName="password" class="form-control" id="password" placeholder="Contraseña"
+                 required
                  [ngClass]="{'input-error': formSignup.get('password')?.touched && formSignup.get('password')?.invalid}">
           <span class="error-msg">
             <span *ngIf="formSignup.get('password')?.touched && formSignup.get('password')?.hasError('required')">
@@ -42,7 +48,8 @@
         <div class="form-column">
           <!-- Apellidos -->
           <label for="secondName">Apellidos</label>
-          <input type="text" formControlName="secondName" class="form-control" id="secondName" placeholder="Apellidos" required
+          <input type="text" formControlName="secondName" class="form-control" id="secondName" placeholder="Apellidos"
+                 required
                  [ngClass]="{'input-error': formSignup.get('secondName')?.touched && formSignup.get('secondName')?.invalid}">
           <span class="error-msg">
             <span *ngIf="formSignup.get('secondName')?.touched && formSignup.get('secondName')?.hasError('required')">
@@ -52,13 +59,15 @@
 
           <!-- Número -->
           <label for="number">Número de teléfono</label>
-          <input type="tel" formControlName="number" class="form-control" id="number" placeholder="Número de teléfono" required
+          <input type="tel" formControlName="number" class="form-control" id="number" placeholder="Número de teléfono"
+                 required
                  [ngClass]="{'input-error': formSignup.get('number')?.touched && formSignup.get('number')?.invalid}">
           <span class="error-msg">
             <span *ngIf="formSignup.get('number')?.touched && formSignup.get('number')?.hasError('required')">
               Phone number is required
             </span>
-            <span *ngIf="formSignup.get('number')?.touched && (formSignup.get('number')?.hasError('minlength') || formSignup.get('number')?.hasError('maxlength'))">
+            <span
+              *ngIf="formSignup.get('number')?.touched && (formSignup.get('number')?.hasError('minlength') || formSignup.get('number')?.hasError('maxlength'))">
               Phone number must be 9 digits
             </span>
             <span *ngIf="formSignup.get('number')?.touched && formSignup.get('number')?.hasError('pattern')">
@@ -69,10 +78,12 @@
 
           <!-- Confirmar contraseña -->
           <label for="passwordConfirmation">Confirmar contraseña</label>
-          <input type="password" formControlName="passwordConfirmation" class="form-control" id="passwordConfirmation" placeholder="Confirmar contraseña" required
+          <input type="password" formControlName="passwordConfirmation" class="form-control" id="passwordConfirmation"
+                 placeholder="Confirmar contraseña" required
                  [ngClass]="{'input-error': formSignup.get('passwordConfirmation')?.touched && formSignup.get('passwordConfirmation')?.invalid}">
           <span class="error-msg">
-            <span *ngIf="formSignup.get('passwordConfirmation')?.touched && formSignup.get('passwordConfirmation')?.hasError('required')">
+            <span
+              *ngIf="formSignup.get('passwordConfirmation')?.touched && formSignup.get('passwordConfirmation')?.hasError('required')">
               Password confirmation is required
             </span>
           </span>
@@ -111,21 +122,27 @@
 
           <div *ngIf="showTermsModal">
             <p>
-              Estas Condiciones de Uso regulan el acceso y uso del sitio web <strong>Wok My Noodles</strong> y los servicios ofrecidos a través del mismo. Al registrarte o utilizar cualquier funcionalidad, aceptas estar sujeto a estos términos.
+              Estas Condiciones de Uso regulan el acceso y uso del sitio web <strong>Wok My Noodles</strong> y los
+              servicios ofrecidos a través del mismo. Al registrarte o utilizar cualquier funcionalidad, aceptas estar
+              sujeto a estos términos.
               <br><br><strong>Última actualización: 11/2/2025</strong>
             </p>
 
             <h4>1. Registro de Usuario</h4>
-            <p>Para realizar pedidos, es necesario crear una cuenta. Debes proporcionar información veraz y mantenerla actualizada.</p>
+            <p>Para realizar pedidos, es necesario crear una cuenta. Debes proporcionar información veraz y mantenerla
+              actualizada.</p>
 
             <h4>2. Uso Permitido</h4>
-            <p>El sitio debe utilizarse únicamente con fines personales y legales. Está prohibido el uso del sitio para actividades fraudulentas o maliciosas.</p>
+            <p>El sitio debe utilizarse únicamente con fines personales y legales. Está prohibido el uso del sitio para
+              actividades fraudulentas o maliciosas.</p>
 
             <h4>3. Propiedad Intelectual</h4>
-            <p>Todo el contenido es propiedad de Wok My Noodles o sus licenciantes. No se permite su uso sin autorización.</p>
+            <p>Todo el contenido es propiedad de Wok My Noodles o sus licenciantes. No se permite su uso sin
+              autorización.</p>
 
             <h4>4. Pedidos y Pagos</h4>
-            <p>Todos los pedidos están sujetos a disponibilidad y los precios pueden cambiar. Nos reservamos el derecho de rechazar transacciones.</p>
+            <p>Todos los pedidos están sujetos a disponibilidad y los precios pueden cambiar. Nos reservamos el derecho
+              de rechazar transacciones.</p>
 
             <h4>5. Responsabilidad</h4>
             <p>No nos responsabilizamos por daños indirectos o interrupciones del servicio.</p>
@@ -140,12 +157,14 @@
           <!-- CONTENIDO DE POLÍTICA DE PRIVACIDAD -->
           <div *ngIf="showPrivacyModal">
             <p>
-              En <strong>Wok My Noodles</strong>, nos comprometemos a proteger tu privacidad y garantizar la seguridad de tus datos personales. Esta Política describe cómo recopilamos, usamos y protegemos tu información.
+              En <strong>Wok My Noodles</strong>, nos comprometemos a proteger tu privacidad y garantizar la seguridad
+              de tus datos personales. Esta Política describe cómo recopilamos, usamos y protegemos tu información.
               <br><br><strong>Última actualización: 11/2/2025</strong>
             </p>
 
             <h4>1. Información que Recopilamos</h4>
-            <p>Recopilamos datos como nombre, dirección, correo, teléfono y otra información necesaria para tus pedidos.</p>
+            <p>Recopilamos datos como nombre, dirección, correo, teléfono y otra información necesaria para tus
+              pedidos.</p>
 
             <h4>2. Uso de la Información</h4>
             <ul>
@@ -165,7 +184,8 @@
             <p>No vendemos tus datos. Solo se comparten con servicios necesarios como pagos o envíos.</p>
 
             <h4>6. Derechos del Usuario</h4>
-            <p>Puedes acceder, corregir o eliminar tus datos escribiendo a <strong>wokmynoodles&#64;gmail.com</strong>.</p>
+            <p>Puedes acceder, corregir o eliminar tus datos escribiendo a <strong>wokmynoodles&#64;gmail.com</strong>.
+            </p>
 
             <h4>7. Cambios en la Política</h4>
             <p>Podemos modificar esta política. Las actualizaciones estarán disponibles aquí.</p>
@@ -176,7 +196,6 @@
       </div>
     </div>
   </div>
-
 
 
 </div>
