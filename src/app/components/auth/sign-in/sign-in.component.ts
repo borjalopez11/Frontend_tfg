@@ -9,9 +9,9 @@ import {CommonModule} from "@angular/common";
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
@@ -46,6 +46,7 @@ export class SignInComponent {
       return;
     }
 
+
     this.authService.signIn(this.formSignup.getRawValue()).subscribe({
       next: (response) => {
         console.log("Usuario añadido correctamente:", response);
@@ -61,6 +62,24 @@ export class SignInComponent {
       }
     });
   }
+
+  showTermsModal: boolean = false;
+  showPrivacyModal: boolean = false;
+
+  openTerms() {
+    this.showTermsModal = true;
+  }
+
+  openPrivacy() {
+    this.showPrivacyModal = true;
+  }
+
+  closeModal() {
+    this.showTermsModal = false;
+    this.showPrivacyModal = false;
+  }
+
+
 }
 export interface SignInForm {
   name: string;
@@ -70,3 +89,4 @@ export interface SignInForm {
   password: string;
   passwordConfirmation: string;
 }
+
