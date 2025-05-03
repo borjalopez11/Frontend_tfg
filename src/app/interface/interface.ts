@@ -20,3 +20,8 @@ export interface User {
   email: string;
   number: string;
 }
+export interface AuthResponse {
+  jwt: string;
+  message: string;
+  role: string;
+}

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from "../../../services/auth.service";
 import {CommonModule} from "@angular/common";
@@ -20,6 +20,8 @@ export class SignInComponent {
 
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
 
   public formSignup: FormGroup = this.fb.group({
     name: ['', Validators.required],
@@ -47,6 +49,12 @@ export class SignInComponent {
     this.authService.signIn(this.formSignup.getRawValue()).subscribe({
       next: (response) => {
         console.log("Usuario añadido correctamente:", response);
+
+        if (response.jwt) {
+          this.authService.saveToken(response.jwt);
+        }
+
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error("Error al registrar:", error);

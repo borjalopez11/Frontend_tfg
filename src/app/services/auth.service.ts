@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SignInForm} from "../components/auth/sign-in/sign-in.component";
-import {User} from "../interface/interface";
+import {AuthResponse, User} from "../interface/interface";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,8 @@ export class AuthService {
     return !!localStorage.getItem('token')
   }
 
-  signIn(signin: SignInForm): Observable<SignInForm>{
-    return this.http.post<SignInForm>(this.apiUrl + "/singup", signin)
+  signIn(signin: SignInForm): Observable<AuthResponse>{
+    return this.http.post<AuthResponse>(this.apiUrl + "/singup", signin)
   }
 
   login(email: string, password: string): Observable<any> {
