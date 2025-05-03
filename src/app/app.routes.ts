@@ -10,29 +10,37 @@ import {DataProtectionComponent} from "./components/legal/data-protection/data-p
 import {LegalNoticeComponent} from "./components/legal/legal-notice/legal-notice.component";
 import {PrivacityPolicyComponent} from "./components/legal/privacity-policy/privacity-policy.component";
 import {ProductDetailComponent} from "./components/products/product-detail/product-detail.component";
+import {authGuard} from "./guards/auth.guards";
 
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: "full"
   },
   {
     path: 'home',
-    component: LandingPageComponent
+    component: LandingPageComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'products-cart',
-    component: ProductsCartComponent
+    component: ProductsCartComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'signIn',
@@ -45,11 +53,15 @@ export const routes: Routes = [
   },
   {
     path: 'product-detail',
-    component: ProductDetailComponent
+    component: ProductDetailComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'user-space',
-    component: UserSpaceComponent
+    component: UserSpaceComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'terms',

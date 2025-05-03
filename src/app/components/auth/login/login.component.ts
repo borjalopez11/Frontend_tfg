@@ -29,7 +29,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         this.authService.saveToken(response.jwt);
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
         this.isLoading = false;
       },
       error: (error) => {

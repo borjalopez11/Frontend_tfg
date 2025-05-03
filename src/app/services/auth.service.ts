@@ -13,6 +13,10 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token')
+  }
+
   signIn(signin: SignInForm): Observable<SignInForm>{
     return this.http.post<SignInForm>(this.apiUrl + "/singup", signin)
   }
