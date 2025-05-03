@@ -12,3 +12,11 @@ export interface Product {
   foodCategory: FoodCategory;
   image: string;
 }
+
+export interface User {
+  id: number;
+  name: string;
+  secondName: string;
+  email: string;
+  number: string;
+}

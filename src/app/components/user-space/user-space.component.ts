@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {CommonModule, NgForOf} from "@angular/common";
+import {User} from "../../interface/interface";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-user-space',
@@ -35,4 +37,20 @@ export class UserSpaceComponent {
       categoria: 'entrantes'
     }
   ]
+
+  user?: User;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.getProfile().subscribe({
+      next: (data) => {
+        this.user = data;
+      },
+      error: (err) => {
+        console.error('Error cargando perfil:', err);
+      }
+    });
+  }
+
 }

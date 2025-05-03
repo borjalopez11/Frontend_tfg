@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SignInForm} from "../components/auth/sign-in/sign-in.component";
+import {User} from "../interface/interface";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,17 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
   }
+
+  getProfile(): Observable<User> {
+    const token = this.getToken();
+    return this.http.get<User>('http://localhost:5001/api/users/profile', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token')

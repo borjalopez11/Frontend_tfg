@@ -1,7 +1,7 @@
 <div class="user-container">
   <div class="user-header">
     <img class="user-avatar" src="\assets\img\userImage.jpg" alt="User Avatar">
-    <h1>Buenas User8812424,</h1>
+    <h1>Buenas {{ user?.name }}</h1>
   </div>
 
   <div class="user-info">
@@ -9,7 +9,7 @@
     <div class="info-item">
       <span class="info-label">Nombre:</span>
       <div class="info-data">
-        Usnger88823421 López
+        {{ user?.name }} {{ user?.secondName }}
         <button class="edit-btn">✎</button>
       </div>
     </div>
@@ -17,7 +17,7 @@
     <div class="info-item">
       <span class="info-label">Número de teléfono:</span>
       <div class="info-data">
-        +34128273783
+        {{ user?.number }}
         <button class="edit-btn">✎</button>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="info-item">
       <span class="info-label">Email:</span>
       <div class="info-data">
-        soyMatiaskgmail.com
+        {{ user?.email }}
         <button class="edit-btn">✎</button>
       </div>
     </div>
