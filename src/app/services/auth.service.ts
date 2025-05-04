@@ -22,6 +22,23 @@ export class AuthService {
       }
     });
   }
+  updateProfile(userData: Partial<User>): Observable<any> {
+    const token = this.getToken();
+    return this.http.put('http://localhost:5001/api/users/profile', userData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+  changePassword(data: { oldPassword: string; newPassword: string }): Observable<any> {
+    const token = this.getToken();
+    return this.http.put('http://localhost:5001/api/users/change-password', data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token')
@@ -34,6 +51,10 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, {email, password});
   }
+
+
+
+
 
   saveToken(token: string): void {
     localStorage.setItem('token', token);

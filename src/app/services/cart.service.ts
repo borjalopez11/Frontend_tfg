@@ -7,12 +7,12 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class CartService {
-  private baseUrl = `${environment.backendUrl}api/cart`;
+  private baseUrl = `${environment.backendUrl}api/`;
 
   constructor(private http: HttpClient) {}
 
   getCart(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+    return this.http.get(`${this.baseUrl}cart`);
   }
 
   updateItemQuantity(cartItemId: number, quantity: number) {
@@ -20,13 +20,18 @@ export class CartService {
       cartItemId,
       quantity
     };
-    return this.http.put(`${this.baseUrl}-item/update`, body);
+    return this.http.put(`${this.baseUrl}cart-item/update`, body);
   }
-
 
   removeItem(itemId: number) {
-    return this.http.delete(`${this.baseUrl}-item/${itemId}/remove`);
+    return this.http.delete(`${this.baseUrl}cart-item/${itemId}/remove`);
   }
+
+  createOrder(restaurantId: number) {
+    const body = { restaurantId };
+    return this.http.post<any>(`${this.baseUrl}order`, body);
+  }
+
 
 
 }

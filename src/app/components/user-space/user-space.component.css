@@ -17,8 +17,6 @@
   justify-content: center;
 }
 
-
-
 .user-avatar {
   width: 60px;
   height: 60px;
@@ -42,7 +40,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-
 }
 
 .info-label {
@@ -55,12 +52,36 @@
 .info-data {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 1.1em;
-  margin-bottom: 5px;
   border-bottom: 1px solid #e63946;
   padding-bottom: 5px;
-  justify-content: space-between;
-  padding-right: 20px;
+  margin-bottom: 5px;
+  padding-right: 10px;
+}
+
+.editable-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-data input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.1em;
+  outline: none;
+  width: 100%;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.edit-btn-group {
+  display: flex;
+  gap: 6px;
+  min-width: 50px;
 }
 
 .edit-btn {
@@ -72,163 +93,28 @@
   margin-left: 10px;
 }
 
-.change-password-btn {
-  background-color: #e63946;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 5px;
-  display: block;
+.line-separator {
+  height: 2px;
+  margin-top: 25px;
+  width: 65%;
+  border-radius: 30px;
+  background-color: #c82635;
+}
+
+.fav-products {
   width: 100%;
   margin-top: 20px;
 }
 
-.change-password-btn:hover {
-  background-color: #c82635;
-}
-
-
-.line-separator{
-  height: 2px;
-  margin-top: 25px;
-  width: 65%;
-  padding: 0%;
-  border-radius: 30px;
-  background-color:#c82635;
-}
-
-
-.cart-title-container{
-  background-image: url("/assets/img/backCarta.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 200px;
-  width: 100%;
-}
-
-.titulo-carta {
-  font-size: 2.8rem;
-  font-weight: bold;
-  height: 200px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.categorias {
-  background-color: #1c1c1c;
-  padding: 10px 0;
-}
-
-.categorias .nav-link {
-  color: white !important;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1em;
-  margin: 0 15px;
-  transition: color 0.3s;
-}
-
-.categorias .nav-link:hover {
-  color: #e63946 !important;
-}
-
-.cartContainer {
-  padding: 50px 10px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.food-card {
-  color: black;
-  font-size: 20px;
-  background: white;
-  border: 2px solid red;
-  border-radius: 30px;
-  padding: 8px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease-in-out;
-}
-
-.food-card:hover {
-  transform: scale(1.015);
-}
-
-.food-card-image img {
-  max-width: 100%;
-  height: 200px;
-  object-fit: contain;
-  border-radius: 10px;
-  margin: auto;
-  display: block;
-  max-height: 200px;
-}
-
-.food-card-body {
-  flex-grow: 1;
-  padding: 5px 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.food-card-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  padding: 5px 20px;
-  font-size: 1.2em;
-  margin-bottom: 2px;
-}
-
-.food-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-
-.rating {
-  color: gold;
-  font-size: 0.85em;
-}
-
-.btn-ver-mas {
-  background-color: #e63946;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85em;
-}
-
-.btn-ver-mas:hover {
-  background-color: #c82635;
-}
 .fav-products-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
   padding: 10px 0;
-  overflow: auto;
+  overflow-x: auto;
   scrollbar-color: #e63946 #121212;
   width: 100%;
   white-space: nowrap;
-
-
-
 }
 
 .food-card {
@@ -242,6 +128,7 @@
   width: 250px;
   display: flex;
   flex-direction: column;
+  margin: 0 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease-in-out;
 }
@@ -257,12 +144,11 @@
   border-radius: 10px;
   margin: auto;
   display: block;
-  max-height: 200px;
 }
 
 .food-card-body {
   flex-grow: 1;
-  padding: 5px 5px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -275,15 +161,13 @@
   font-weight: bold;
   padding: 5px 20px;
   font-size: 1.2em;
-  margin-bottom: 2px;
 }
 
 .food-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 4px;
-  margin-bottom: 0;
+  margin: 4px 20px 0 20px;
 }
 
 .rating {
@@ -291,17 +175,81 @@
   font-size: 0.85em;
 }
 
-.btn-ver-mas {
-  background-color: #e63946;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85em;
+.password-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
 }
 
-.btn-ver-mas:hover {
+.popup-content {
+  background-color: #fff;
+  color: black;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.popup-content input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.popup-buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #e63946;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup-buttons button:hover {
   background-color: #c82635;
 }
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+.toast-success {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 3000;
+  font-size: 1rem;
+  animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 20px); }
+}
+
 

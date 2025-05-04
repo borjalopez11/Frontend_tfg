@@ -63,9 +63,6 @@ export class CartComponent implements OnInit {
     });
   }
 
-
-
-
   cambiarCantidad(producto: any, cantidad: number) {
     if (cantidad < 1) return;
 
@@ -78,7 +75,8 @@ export class CartComponent implements OnInit {
       error: (err) => {
         console.error("Error al actualizar cantidad:", err);
       }
-    });
+    }
+    );
   }
 
   calcularTotales() {
@@ -101,4 +99,22 @@ export class CartComponent implements OnInit {
     this.calcularDescuento();
     this.calcularTotales();
   }
+
+  procederAlPago() {
+    const restaurantId = 2;
+
+    this.cartService.createOrder(restaurantId).subscribe({
+      next: (response) => {
+        if (response.payment_url) {
+          window.location.href = response.payment_url;
+        } else {
+          console.error('No se recibió una URL de pago válida');
+        }
+      },
+      error: (err) => {
+        console.error('Error al crear la orden:', err);
+      }
+    });
+  }
+
 }

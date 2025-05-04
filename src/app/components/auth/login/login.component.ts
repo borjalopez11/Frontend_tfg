@@ -46,4 +46,21 @@ export class LoginComponent {
       },
     });
   }
+
+  toastMessage: string = '';
+  showToast: boolean = false;
+
+
+  ngOnInit(): void {
+    if (history.state.emailChanged) {
+      this.mostrarToast('Correo actualizado correctamente. Inicia sesión de nuevo.');
+    }
+  }
+
+  mostrarToast(msg: string) {
+    this.toastMessage = msg;
+    this.showToast = true;
+    setTimeout(() => this.showToast = false, 3000);
+  }
+
 }
