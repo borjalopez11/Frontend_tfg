@@ -61,7 +61,7 @@
           </div>
 
           <div class="containerButton">
-            <button class="add-to-cart">Añadir al carrito · {{ selectedProduct.price + ' EUR' }}</button>
+            <button class="add-to-cart" (click)="handleAddToCart(selectedProduct)">Añadir al carrito · {{ selectedProduct.price + ' EUR' }}</button>
           </div>
         </div>
 

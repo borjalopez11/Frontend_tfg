@@ -52,6 +52,21 @@ export class ProductsCartComponent implements OnInit {
     );
   }
 
+  handleAddToCart(product: any): void {
+    this.productService.addToCart(product.id, 1).subscribe({
+      next: () => {
+        alert('Producto añadido al carrito');
+        this.closePopup();
+      },
+      error: (err) => {
+        console.error('Error al añadir al carrito:', err);
+        alert('Error al añadir al carrito');
+      }
+    });
+  }
+
+
+
 
   selectedProduct: any = null;
 

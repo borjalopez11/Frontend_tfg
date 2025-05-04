@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../interface/interface';
 import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {CartService} from "../../../services/cart.service";
 
 @Component({
   selector: 'app-cart',
@@ -12,48 +13,76 @@ import { FormsModule } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
 
-  productos= [
-    {
-      nombre: 'Fideos wook',
-      precio: 8.99,
-      cantidad: 1,
-      alergenos: 'Sulfitos / Lácteos / Gluten',
-      imagen: 'https://media.istockphoto.com/id/453780395/es/foto/chow-mein-de-pollo.jpg?s=612x612&w=0&k=20&c=SZhR_09oLtHG35Sq8571h6xMze8lJD2tOhlg7O-JZpo=',
-    },
-    {
-      nombre: 'Fideos wook',
-      precio: 8.99,
-      cantidad: 1,
-      alergenos: 'Sulfitos / Lácteos / Gluten',
-      imagen: 'https://media.istockphoto.com/id/453780395/es/foto/chow-mein-de-pollo.jpg?s=612x612&w=0&k=20&c=SZhR_09oLtHG35Sq8571h6xMze8lJD2tOhlg7O-JZpo=',
-    },
-    {
-      nombre: 'Fideos wook',
-      precio: 8.99,
-      cantidad: 1,
-      alergenos: 'Sulfitos / Lácteos / Gluten',
-      imagen: 'https://media.istockphoto.com/id/453780395/es/foto/chow-mein-de-pollo.jpg?s=612x612&w=0&k=20&c=SZhR_09oLtHG35Sq8571h6xMze8lJD2tOhlg7O-JZpo=',
-    },
-    {
-      nombre: 'Fideos wook',
-      precio: 8.99,
-      cantidad: 1,
-      alergenos: 'Sulfitos / Lácteos / Gluten',
-      imagen: 'https://media.istockphoto.com/id/453780395/es/foto/chow-mein-de-pollo.jpg?s=612x612&w=0&k=20&c=SZhR_09oLtHG35Sq8571h6xMze8lJD2tOhlg7O-JZpo=',
-    }
-  ];
-
+  productos: any[] = [];
   descuento: number = 0;
   promoCode: string = '';
   subtotal: number = 0;
   total: number = 0;
 
+  constructor(private cartService: CartService) {}
+
   ngOnInit() {
+    this.loadCart();
+  }
+
+  loadCart() {
+    this.cartService.getCart().subscribe({
+      next: (data) => {
+        if (!data || !data.item) {
+          console.warn("El carrito está vacío o la estructura no es la esperada:", data);
+          this.productos = [];
+          return;
+        }
+
+        this.productos = data.item.map((item: any) => ({
+          id: item.id,
+          nombre: item.food.name,
+          precio: item.totalPrice / item.quantity,
+          cantidad: item.quantity,
+          imagen: item.food.image ? `http://localhost:5001/uploads/${item.food.image}` : 'assets/imgNotFound.png',
+          alergenos: item.food.alergenos || 'No especificado'
+        }));
+
+        this.calcularTotales();
+      },
+      error: (err) => {
+        console.error("Error al cargar el carrito:", err);
+      }
+    });
+  }
+
+  eliminarProducto(itemId: number) {
+    this.cartService.removeItem(itemId).subscribe({
+      next: () => {
+        this.productos = this.productos.filter(p => p.id !== itemId);
+        this.calcularTotales();
+      },
+      error: (err) => {
+        console.error('Error al eliminar el producto del carrito:', err);
+      }
+    });
+  }
+
+
+
+
+  cambiarCantidad(producto: any, cantidad: number) {
+    if (cantidad < 1) return;
+
+    producto.cantidad = cantidad;
+    producto.totalPrice = producto.precio * cantidad;
+
     this.calcularTotales();
+
+    this.cartService.updateItemQuantity(producto.id, cantidad).subscribe({
+      error: (err) => {
+        console.error("Error al actualizar cantidad:", err);
+      }
+    });
   }
 
   calcularTotales() {
-    this.subtotal = this.productos.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0);
+    this.subtotal = this.productos.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
     this.calcularDescuento();
     this.total = parseFloat((this.subtotal - this.descuento).toFixed(2));
   }
@@ -66,15 +95,6 @@ export class CartComponent implements OnInit {
     } else {
       this.descuento = 0;
     }
-  }
-
-  cambiarCantidad(producto: any, cantidad: number) {
-    if (cantidad < 0) {
-      producto.cantidad = 0;
-    } else {
-      producto.cantidad = cantidad;
-    }
-    this.calcularTotales();
   }
 
   aplicarPromo() {

@@ -18,4 +18,22 @@ export class ProductService {
 
     return this.http.get<Product[]>(this.apiUrl, { headers });
   }
+
+  addToCart(foodId: number, quantity: number = 1) {
+    const token = localStorage.getItem('token');
+    return this.http.put(
+      'http://localhost:5001/api/cart/add',
+      { foodId, quantity },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+  }
+
+
+
+
 }

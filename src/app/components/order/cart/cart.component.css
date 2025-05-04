@@ -125,6 +125,18 @@ body {
     background-color: #ff3030;
   }
 
+.btn-quit {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.quit{
+    color: #ff4b4b;
+    margin-right: 5px;
+  }
+
   .summary {
     margin-top: 20px;
   }
