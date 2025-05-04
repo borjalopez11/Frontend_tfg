@@ -19,27 +19,23 @@ export class ProductDetailComponent {
       alergenos: ['Gluten', 'Sulfito', 'Lácteos']
     }
   ];
-  
+
 
   entrantes = this.productos.filter(p => p.categoria === 'entrantes');
   principales = this.productos.filter(p => p.categoria === 'principales');
   postres = this.productos.filter(p => p.categoria === 'postres');
   bebidas = this.productos.filter(p => p.categoria === 'bebidas');
 
-  // Producto seleccionado para el pop-up
   selectedProduct: any = null;
 
-  // Abre el pop-up con el producto seleccionado
   openPopup(product: any) {
     this.selectedProduct = product;
   }
 
-  // Cierra el pop-up
   closePopup() {
     this.selectedProduct = null;
   }
 
-  // Método para hacer scroll hacia las secciones
   scrollTo(id: string): void {
     const element = document.getElementById(id);
     if (element) {

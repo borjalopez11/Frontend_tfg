@@ -11,6 +11,7 @@ import {LegalNoticeComponent} from "./components/legal/legal-notice/legal-notice
 import {PrivacityPolicyComponent} from "./components/legal/privacity-policy/privacity-policy.component";
 import {ProductDetailComponent} from "./components/products/product-detail/product-detail.component";
 import {authGuard} from "./guards/auth.guards";
+import {adminGuard} from "./guards/admin.guards";
 
 
 export const routes: Routes = [
@@ -24,6 +25,13 @@ export const routes: Routes = [
     component: LandingPageComponent,
     canActivate: [authGuard]
   },
+  {
+    path: 'admin',
+    loadComponent: () => import('./components/admin/admin/admin.component')
+      .then(m => m.AdminComponent),
+    canActivate: [adminGuard]
+  },
+
   {
     path: 'products-cart',
     component: ProductsCartComponent,

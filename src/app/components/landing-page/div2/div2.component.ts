@@ -1,12 +1,12 @@
 import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';  // Importa CommonModule para *ngFor
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-div2',
   templateUrl: './div2.component.html',
   styleUrls: ['./div2.component.css'],
   standalone: true,
-  imports: [CommonModule]  // Asegúrate de incluir CommonModule
+  imports: [CommonModule]
 })
 export class Div2Component {
   cards = [

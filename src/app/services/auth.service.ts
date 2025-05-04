@@ -23,8 +23,6 @@ export class AuthService {
     });
   }
 
-
-
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token')
   }
@@ -40,9 +38,16 @@ export class AuthService {
   saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
+  saveRole(role: string): void {
+    localStorage.setItem('role', role);
+  }
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  getRole(): string | null {
+    return localStorage.getItem('role');
   }
 
   logout(): void {

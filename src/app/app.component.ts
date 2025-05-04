@@ -20,11 +20,9 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Escuchar los cambios de la ruta
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      // Verificar si estamos en la página de 'registro' o 'login'
       const currentRoute = this.router.url;
       this.isLoginOrRegister = currentRoute.includes('signIn') || currentRoute.includes('login');
     });

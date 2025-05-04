@@ -28,12 +28,10 @@ export class ProductsCartComponent implements OnInit {
     this.loadProducts();
   }
 
-  // Método para cargar los productos desde el servicio
   private loadProducts(): void {
     this.isLoading = true;
     this.productService.getProducts().subscribe(
       (data) => {
-        // 🔧 Aquí agregamos el prefijo a cada imagen
 
         this.products = data.map(product => ({
           ...product,
@@ -55,20 +53,16 @@ export class ProductsCartComponent implements OnInit {
   }
 
 
-  // Producto seleccionado para el pop-up
   selectedProduct: any = null;
 
-  // Abre el pop-up con el producto seleccionado
   openPopup(product: any) {
     this.selectedProduct = product;
   }
 
-  // Cierra el pop-up
   closePopup() {
     this.selectedProduct = null;
   }
 
-  // Método para hacer scroll hacia las secciones
   scrollTo(id: string): void {
     const element = document.getElementById(id);
     if (element) {

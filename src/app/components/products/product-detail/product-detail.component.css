@@ -1,17 +1,16 @@
-/* Fondo oscuro del pop-up */
 .popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     color: black;
-    overflow: hidden; /* Evita el scroll en el fondo */
+    overflow: hidden;
   }
 
     .header{
@@ -23,48 +22,45 @@
       background-color: white;
       border-radius: 35px;
       border: 3px solid #d62839;
-      max-height: 90vh; /* Limita la altura */
+      max-height: 90vh;
       max-width: 900px;
-      overflow-y: auto; /* Permite scroll vertical si el contenido excede el alto */
+      overflow-y: auto;
       display: flex;
       flex-direction: row;
     }
 
     .col-md-7 {
-      max-height: 80vh; /* Limita la altura de la columna de descripción */
-      overflow-y: auto; /* Si el contenido de la columna excede el alto, se permite hacer scroll */
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
 
-    /* Estilo del contenido del pop-up */
     .popup-content {
       background-color: white;
       padding: 20px;
-      border-radius: 20px; /* Bordes redondeados */
-      width: 250px; /* Aumenta el ancho del pop-up */
+      border-radius: 20px;
+      width: 250px;
       max-width: 250px;
       text-align: left;
       display: flex;
-      flex-direction: row; /* Flexbox para disposición de imagen y contenido */
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+      flex-direction: row;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
 
-    /* Cuerpo del pop-up */
     .popup-body {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start; /* Alinea la imagen y el contenido hacia la izquierda */
-      align-items: center; /* Alinea los elementos de manera vertical */
-      width: 100%; /* Asegura que el contenido ocupe todo el ancho */
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
     }
 
 
     .col-md-5{
       display: flex;
-      justify-content: center; /* Centra horizontalmente */
+      justify-content: center;
       align-items: center;
     }
-    /* Imagen del producto */
     .popup-image {
       width: 300px;
       max-height: 300px;
@@ -74,48 +70,40 @@
 
     }
 
-    /* Contenido del producto */
     .popup-info {
       flex-grow: 1;
     }
 
-    /* Tipo de producto (ej. Entrantes) */
     .product-type {
       color: gray;
       font-size: 1.1em;
-      text-transform: uppercase; /* Asegura que el tipo de producto esté en mayúsculas */
+      text-transform: uppercase;
     }
 
-    /* Nombre del producto */
     h2 {
-      font-size: 3em; /* Aumenta el tamaño del nombre del producto */
+      font-size: 3em;
       font-weight: bold;
       margin-bottom: 20px;
       text-transform: uppercase;
     }
 
-    /* Descripción del producto */
     .description {
       margin-bottom: 20px;
       font-size: 1.1em;
       line-height: 1.5;
-      white-space: normal; /* Permite que el texto haga salto de línea */
-      word-break: break-word; /* Rompe palabras largas */
-      overflow-wrap: break-word; /* Rompe las palabras para que no se desborden */
-      max-width: 100%; /* Asegura que el ancho no se extienda más allá del contenedor */
-      height: auto; /* Deja que la altura crezca si es necesario */
-      overflow: auto; /* Activa el scroll si el texto se alarga más de lo permitido */
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      height: auto;
+      overflow: auto;
     }
 
-
-
-    /* Línea separadora */
-    .separator {
+  .separator {
       margin: 20px 0;
       border-top: 1px solid #ccc;
     }
 
-    /* Alérgenos */
     .allergens {
       font-size: 1.1em;
       margin-bottom: 20px;
@@ -126,16 +114,14 @@
     }
 
     .allergens span::after {
-      content: " | "; /* Separa los alérgenos con una barra */
+      content: " | ";
     }
 
-    /* Valoración del producto */
     .rating {
       font-size: 1.2em;
       color: gold;
     }
 
-    /* Estilo para el botón de añadir al carrito */
     .add-to-cart {
       margin-top: 20px;
       background-color: #e63946;
@@ -148,7 +134,6 @@
       font-size: 1.1em;
     }
 
-    /* Efecto hover para el botón */
     .add-to-cart:hover {
       background-color: #d62839;
     }
@@ -157,7 +142,6 @@
       justify-content: flex-end;
     }
 
-    /* Estilo para el botón de cerrar pop-up */
     .popup-close-btn {
       background-color: transparent;
       border: none;
@@ -166,17 +150,16 @@
       color: #e63946;
     }
 
-    /* Responsivo para pantallas pequeñas */
     @media (max-width: 960px) {
       .popup-content {
-        width: 90%; /* Asegura que el pop-up ocupe el 90% del ancho en pantallas pequeñas */
+        width: 90%;
       }
       .popup-image {
         width: 100%;
-        height: 200px; /* Ajusta la altura de la imagen en pantallas pequeñas */
+        height: 200px;
       }
 
       h2 {
-        font-size: 1.5em; /* Ajusta el tamaño del nombre del producto */
+        font-size: 1.5em;
       }
     }

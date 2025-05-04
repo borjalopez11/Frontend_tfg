@@ -1,7 +1,6 @@
-/* Contenedor principal */
 .containera {
   width: 100%;
-  min-height: 100vh; /* ✅ mejor que height fija */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,14 +9,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  padding: 20px; /* ✅ añade un poco de espacio interno */
+  padding: 20px;
   box-sizing: border-box;
 }
 
-
-
-
-/* Estilo para el contenedor de registro */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -27,10 +22,9 @@
   flex-grow: 1;
 }
 
-/* Formulario de registro */
 .registro {
   backdrop-filter: blur(86px);
-  background-color: inherit; /* un poco de fondo semitransparente */
+  background-color: inherit;
   padding: 30px 20px;
   border-radius: 30px;
   width: 100%;
@@ -44,36 +38,34 @@
 }
 
 
-/* Estilo para las columnas */
 .form {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 10px; /* Reducir el espacio entre las columnas */
+  gap: 10px;
 }
 
 .form-column {
-  width: 48%; /* Reducir el ancho de cada columna */
+  width: 48%;
   display: flex;
   flex-direction: column;
 }
 
-/* Reducir márgenes y padding en los inputs */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"] {
   width: 100%;
-  padding: 8px; /* Reducir padding */
-  margin: 5px 0 15px 0; /* Espacio reducido entre <p> e <input>, y mayor espacio entre inputs */
+  padding: 8px;
+  margin: 5px 0 15px 0;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
 }
 
-/* Estilo para los <p> (etiquetas) */
+
 .form-column p {
-  margin-bottom: 5px; /* Reducir el espacio entre el <p> y el <input> */
+  margin-bottom: 5px;
 }
 
 .auth-register-text {
@@ -86,13 +78,13 @@ input[type="password"] {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea todo a la izquierda */
+  align-items: flex-start;
 }
 
 .conditions label {
   display: flex;
   align-items: center;
-  gap: 5px; /* Espacio entre el checkbox y el texto */
+  gap: 5px;
 }
 
 .submit-btn {
@@ -143,7 +135,6 @@ input[type="password"] {
   -ms-overflow-style: none; /* IE 10+ */
 }
 
-/* Oculta scrollbar en Chrome, Edge, Safari */
 .popup-body::-webkit-scrollbar {
   display: none;
 }
@@ -174,7 +165,6 @@ input[type="password"] {
 
 
 
-/* Asegurar que en pantallas pequeñas se apilen */
 @media (max-width: 768px) {
   .form {
     flex-direction: column;
@@ -212,12 +202,10 @@ span {
   color: red;
   font-size: 0.8rem;
 }
-/* input con error: borde rojo */
 .input-error {
   border: 2px solid #ff4d4f !important;
 }
 
-/* span reservado: mismo alto siempre */
 .error-msg {
   min-height: 18px;
   display: block;

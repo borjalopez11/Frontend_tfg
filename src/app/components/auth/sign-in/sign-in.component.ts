@@ -33,7 +33,7 @@ export class SignInComponent {
         Validators.required,
         Validators.minLength(9),
         Validators.maxLength(9),
-        Validators.pattern(/^[0-9]{9}$/) // ✅ solo 9 dígitos numéricos exactos
+        Validators.pattern(/^[0-9]{9}$/)
       ]
     ],
     password: ['', Validators.required],

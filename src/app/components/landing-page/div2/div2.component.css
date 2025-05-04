@@ -8,15 +8,15 @@
   perspective: 1000px;
   overflow: hidden;
   height: 40rem;
-  width: 100%;  /* Aseguramos que el carrusel ocupe el 100% del contenedor */
-  transition: background-image 0.5s ease;  /* Suavizar el cambio del gradiente */
+  width: 100%;
+  transition: background-image 0.5s ease;
 }
 
 .textoDestacados {
   color: white;
   text-align: center;
   position: absolute;
-  top: 20px;  /* Mover el texto hacia abajo para que no quede tapado */
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 55px;
@@ -94,57 +94,52 @@
   z-index: 1;
 }
 
-/* Responsiveness */
 
-/* Para pantallas más pequeñas (por debajo de 768px) */
 @media (max-width: 768px) {
   .card-carousel {
-    height: 30rem;  /* Reducir el tamaño del carrusel */
+    height: 30rem;
     background-image: radial-gradient(ellipse 400px 200px at 50% 55%, red, transparent);
   }
 
   .my-card {
-    height: 18rem;  /* Ajustar el tamaño de las tarjetas */
-    width: 30rem;  /* Hacer las tarjetas más pequeñas */
+    height: 18rem;
+    width: 30rem;
   }
 
   .my-card.prev, .my-card.next {
-    transform: scale(0.7) translateY(-0.5rem) translateX(10rem);  /* Ajustar la posición de las tarjetas previas y siguientes */
+    transform: scale(0.7) translateY(-0.5rem) translateX(10rem);
   }
 
   .textoDestacados {
-    font-size: 40px;  /* Hacer el texto un poco más pequeño */
-    top: 30px;  /* Mover el texto hacia abajo */
+    font-size: 40px;
+    top: 30px;
   }
 
-  /* Agregar una clase para hacer el gradiente más pequeño en pantallas más pequeñas */
   .card-carousel.smaller-gradient {
     background-image: radial-gradient(ellipse 400px 200px at 50% 50%, red, transparent);
   }
 }
 
-/* Para pantallas muy pequeñas (por debajo de 480px) */
 @media (max-width: 480px) {
   .card-carousel {
-    height: 20rem;  /* Reducir aún más el tamaño del carrusel */
+    height: 20rem;
     background-image: radial-gradient(ellipse 300px 150px at 50% 55%, red, transparent);
   }
 
   .my-card {
-    height: 12rem;  /* Hacer las tarjetas aún más pequeñas */
-    width: 20rem;  /* Hacer las tarjetas más estrechas */
+    height: 12rem;
+    width: 20rem;
   }
 
   .my-card.prev, .my-card.next {
-    transform: scale(0.6) translateY(-0.3rem) translateX(7rem);  /* Ajustar las posiciones */
+    transform: scale(0.6) translateY(-0.3rem) translateX(7rem);
   }
 
   .textoDestacados {
-    font-size: 30px;  /* Hacer el texto más pequeño en pantallas pequeñas */
-    top: 40px;  /* Mover el texto aún más abajo */
+    font-size: 30px;
+    top: 40px;
   }
 
-  /* Hacer el gradiente aún más pequeño */
   .card-carousel.smaller-gradient {
     background-image: radial-gradient(ellipse 300px 150px at 50% 50%, red, transparent);
   }

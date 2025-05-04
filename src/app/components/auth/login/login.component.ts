@@ -29,8 +29,15 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         this.authService.saveToken(response.jwt);
+        this.authService.saveRole(response.role)
         this.router.navigate(['/home']);
         this.isLoading = false;
+
+        if (response.role === 'ROLE_RESTAURANT_OWNER'){
+          this.router.navigate(['/admin']);
+        }else {
+          this.router.navigate(['/home']);
+        }
       },
       error: (error) => {
         console.error(error);

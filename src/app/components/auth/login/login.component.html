@@ -49,13 +49,11 @@
 
 
 
-        <!-- Spinner opcional visual -->
         <div *ngIf="isLoading" class="auth-spinner">
           <div class="spinner"></div>
         </div>
 
 
-        <!-- Mostrar error si lo hay -->
         <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
       </form>
     </div>

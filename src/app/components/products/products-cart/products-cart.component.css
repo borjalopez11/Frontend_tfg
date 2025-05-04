@@ -232,7 +232,6 @@ h2 {
   color: gold;
 }
 
-/* Estilo para el botón de añadir al carrito */
 .add-to-cart {
   margin-top: 20px;
   background-color: #e63946;
@@ -245,7 +244,6 @@ h2 {
   font-size: 1.1em;
 }
 
-/* Efecto hover para el botón */
 .add-to-cart:hover {
   background-color: #d62839;
 }
@@ -266,8 +264,8 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 20px; /* Espacio desde la imagen */
-  flex: 1; /* Ocupa el espacio restante */
+  padding-left: 20px;
+  flex: 1;
 }
 
 .rating-container {
@@ -278,7 +276,6 @@ h2 {
 
 
 
-/* Estilo para el botón de cerrar pop-up */
 .popup-close-btn {
   background-color: transparent;
   border: none;
@@ -287,10 +284,9 @@ h2 {
   color: #e63946;
 }
 
-/* Responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
   .row-pop {
-    flex-direction: column; /* En pantallas pequeñas, cambia la disposición a columna */
+    flex-direction: column;
     width: 90%;
   }
 

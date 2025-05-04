@@ -1,4 +1,3 @@
-/* Estilos para pantallas grandes (escritorios) */
 .recompensas {
   margin-top: 100px;
   padding: 50px 150px;
@@ -29,14 +28,12 @@ button:hover {
   transform: scale(1.1);
 }
 
-/* Ajustes para la imagen de la moneda */
 .moneda {
-  width: 633px; /* Tamaño original */
-  max-width: 100%; /* Escala según el contenedor */
-  height: auto; /* Mantiene la proporción */
+  width: 633px;
+  max-width: 100%;
+  height: auto;
 }
 
-/* Ajustes para pantallas medianas (tabletas) */
 @media (max-width: 991px) {
   .recompensas {
     padding: 40px 80px;
@@ -55,11 +52,10 @@ button:hover {
   }
 
   .moneda {
-    width: 450px; /* Ajuste para tabletas */
+    width: 450px;
   }
 }
 
-/* Ajustes para pantallas pequeñas (móviles) */
 @media (max-width: 767px) {
   .recompensas {
     margin-top: 50px;
@@ -79,6 +75,6 @@ button:hover {
   }
 
   .moneda {
-    width: 300px; /* Ajuste para móviles */
+    width: 300px;
   }
 }

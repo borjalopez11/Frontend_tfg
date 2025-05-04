@@ -1,53 +1,50 @@
-/* Estilo para el contenedor de los términos y condiciones */
 .data-protection {
     background-color: #000;
     color: #fff;
     padding: 2rem;
     border-radius: 0.5rem;
   }
-  
+
   .data-protection h2,
   .data-protection h4 {
     font-weight: bold;
-    color: #e63946; /* Rojo para los títulos */
+    color: #e63946;
   }
-  
+
   .data-protection p {
     font-size: 1.1em;
     line-height: 1.6;
     color: #fff;
   }
-  
+
   .data-protection .row {
     border-radius: 15px;
     padding: 20px;
     color: black;
   }
-  
+
   .data-protection .row h4 {
     margin-top: 20px;
   }
-  
+
   .data-protection .row p {
     margin-bottom: 15px;
   }
-  
-  /* Estilos para la responsividad */
+
   @media (max-width: 768px) {
     .data-protection {
       padding: 1rem;
     }
-    
+
     .data-protection h2 {
       font-size: 1.5em;
     }
-  
+
     .data-protection p {
       font-size: 1em;
     }
-    
+
     .data-protection .row {
       padding: 10px;
     }
   }
-  
