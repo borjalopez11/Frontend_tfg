@@ -226,6 +226,24 @@
   background-color: #c82635;
 }
 
+.edit-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-pencil {
+  color: #ffffff;
+}
+
+.icon-check {
+  color: #28a745;
+}
+
+.icon-cross {
+  color: #dc3545;
+}
+
+
 .error {
   color: red;
   margin-top: 10px;

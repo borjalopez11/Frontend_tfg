@@ -12,12 +12,24 @@
       <div class="info-data">
         <ng-container *ngIf="!editando.name; else editarNombre">
           {{ user?.name }}
-          <button class="edit-btn" (click)="activarEdicion('name')">✏️</button>
+          <button class="edit-btn" (click)="activarEdicion('name')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L5.854 13.854l-5 2 2-5L12.146.146z"/>
+            </svg>
+          </button>
         </ng-container>
         <ng-template #editarNombre>
           <input [(ngModel)]="tempValues.name" type="text" />
-          <button class="edit-btn" (click)="guardarEdicion('name')">✔️</button>
-          <button class="edit-btn" (click)="cancelarEdicion('name')">❌</button>
+          <button class="edit-btn" (click)="guardarEdicion('name')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#28a745" viewBox="0 0 16 16">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+            </svg>
+          </button>
+          <button class="edit-btn" (click)="cancelarEdicion('name')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dc3545" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </button>
         </ng-template>
       </div>
     </div>
@@ -27,12 +39,24 @@
       <div class="info-data">
         <ng-container *ngIf="!editando.secondName; else editarApellido">
           {{ user?.secondName }}
-          <button class="edit-btn" (click)="activarEdicion('secondName')">✏️</button>
+          <button class="edit-btn" (click)="activarEdicion('secondName')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L5.854 13.854l-5 2 2-5L12.146.146z"/>
+            </svg>
+          </button>
         </ng-container>
         <ng-template #editarApellido>
           <input [(ngModel)]="tempValues.secondName" type="text" />
-          <button class="edit-btn" (click)="guardarEdicion('secondName')">✔️</button>
-          <button class="edit-btn" (click)="cancelarEdicion('secondName')">❌</button>
+          <button class="edit-btn" (click)="guardarEdicion('secondName')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#28a745" viewBox="0 0 16 16">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+            </svg>
+          </button>
+          <button class="edit-btn" (click)="cancelarEdicion('secondName')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dc3545" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </button>
         </ng-template>
       </div>
     </div>
@@ -42,12 +66,24 @@
       <div class="info-data">
         <ng-container *ngIf="!editando.email; else editarEmail">
           {{ user?.email }}
-          <button class="edit-btn" (click)="activarEdicion('email')">✏️</button>
+          <button class="edit-btn" (click)="activarEdicion('email')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L5.854 13.854l-5 2 2-5L12.146.146z"/>
+            </svg>
+          </button>
         </ng-container>
         <ng-template #editarEmail>
           <input [(ngModel)]="tempValues.email" type="text" />
-          <button class="edit-btn" (click)="guardarEdicion('email')">✔️</button>
-          <button class="edit-btn" (click)="cancelarEdicion('email')">❌</button>
+          <button class="edit-btn" (click)="guardarEdicion('email')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#28a745" viewBox="0 0 16 16">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+            </svg>
+          </button>
+          <button class="edit-btn" (click)="cancelarEdicion('email')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dc3545" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </button>
         </ng-template>
       </div>
     </div>
@@ -57,12 +93,24 @@
       <div class="info-data">
         <ng-container *ngIf="!editando.number; else editarNumero">
           {{ user?.number }}
-          <button class="edit-btn" (click)="activarEdicion('number')">✏️</button>
+          <button class="edit-btn" (click)="activarEdicion('number')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L5.854 13.854l-5 2 2-5L12.146.146z"/>
+            </svg>
+          </button>
         </ng-container>
         <ng-template #editarNumero>
           <input [(ngModel)]="tempValues.number" type="text" />
-          <button class="edit-btn" (click)="guardarEdicion('number')">✔️</button>
-          <button class="edit-btn" (click)="cancelarEdicion('number')">❌</button>
+          <button class="edit-btn" (click)="guardarEdicion('number')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#28a745" viewBox="0 0 16 16">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+            </svg>
+          </button>
+          <button class="edit-btn" (click)="cancelarEdicion('number')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dc3545" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </button>
         </ng-template>
       </div>
     </div>
@@ -71,7 +119,11 @@
       <span class="info-label">Contraseña:</span>
       <div class="info-data">
         **************
-        <button class="edit-btn" (click)="abrirPopup()">✏️</button>
+        <button class="edit-btn" (click)="abrirPopup()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L5.854 13.854l-5 2 2-5L12.146.146z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -83,7 +135,7 @@
   </div>
 
   <div class="fav-products-container">
-    <div class="" *ngFor="let producto of productos">
+    <div *ngFor="let producto of productos">
       <div class="food-card">
         <div class="food-card-image">
           <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
@@ -117,5 +169,4 @@
   <div class="toast-success" *ngIf="mostrarToast">
     {{ mensajeToast }}
   </div>
-
 </div>
