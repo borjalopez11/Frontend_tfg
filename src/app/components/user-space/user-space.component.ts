@@ -160,6 +160,11 @@ export class UserSpaceComponent implements OnInit {
     });
   }
 
+  cerrarSesion(): void {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  }
+
 
 
 }
