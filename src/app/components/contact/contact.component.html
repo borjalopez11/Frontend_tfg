@@ -1,81 +1,89 @@
 <div class="container my-5" style="background-color: #000; color: #fff; padding: 2rem; border-radius: 0.5rem;">
   <div class="row justify-content-center">
     <div class="col-md-8">
-
-
-      <h2 class="mb-3">¿Estás interesado en hablar con nosotros?</h2>
+      <h2 class="mb-3">¿Tienes algo que contarnos?</h2>
       <p>
-        Somos <strong>Wok My Noodles</strong>, un proyecto que busca acercarte a sabores auténticos, fusionando tradición y creatividad en cada plato que servimos. Nuestro objetivo es ofrecerte una experiencia única que despierte tus sentidos y te conecte con lo mejor de la cocina.
-        <br><br>
-        Imaginamos que quizás tienes alguna duda, deseas compartir algo que nos ayude a mejorar, o simplemente quieres comentarnos cualquier cosa. Sea lo que sea, estamos encantados de escucharte.
-        <br><br>
-        Puedes ponerte en contacto con nosotros, a través del número:
-        <br><br>
-        <strong>+34 611 423 689</strong>
+        En <strong>Wok My Noodles</strong> creemos que la comunicación con nuestros clientes es clave para mejorar cada día.
+        Ya sea que tengas una sugerencia, quieras felicitarnos por una buena experiencia o plantear alguna duda o incidencia,
+        estamos aquí para escucharte.
       </p>
-      <br>
+      <p>
+        Nuestro equipo de atención al cliente está disponible para ayudarte en todo lo que necesites.
+        Puedes llamarnos directamente al <strong>+34 611 423 689</strong> o rellenar el formulario de contacto que verás a continuación.
+        Nos comprometemos a responderte en un plazo de 24 a 48 horas laborales.
+      </p>
+      <p>
+        ¿Quieres reservar una mesa, consultar sobre alérgenos o simplemente hacernos llegar un comentario?
+        Este formulario es el canal adecuado. También puedes usarlo para proponer colaboraciones, ideas o preguntar por oportunidades laborales.
+      </p>
+
+      <hr class="my-4">
 
       <h4 class="mb-3">Formulario de contacto</h4>
       <p>
-        Los campos marcados con un asterisco <strong>(*)</strong> son obligatorios.
-        <br><br>
-        Antes de completar este formulario, le recomendamos leer detenidamente nuestra Política de Protección de Datos Personales, disponible al final del documento.
+        Los campos marcados con un asterisco <strong>(*)</strong> son obligatorios. Antes de enviar tu mensaje,
+        asegúrate de leer nuestra política de privacidad.
       </p>
 
-
-
-
-      <form>
+      <!-- FORMULARIO -->
+      <form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="apellido" class="form-label">Apellido</label>
-          <input type="text" class="form-control" id="apellido" name="apellido" required>
+          <label for="nombre" class="form-label">Nombre *</label>
+          <input type="text" class="form-control" id="nombre" name="name" [(ngModel)]="form.name" required>
         </div>
 
         <div class="mb-3">
           <label for="direccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" id="direccion" name="direccion">
+          <input type="text" class="form-control" id="direccion" name="address" [(ngModel)]="form.address">
         </div>
 
         <div class="mb-3">
-          <label for="email" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" id="email" name="email" required>
+          <label for="email" class="form-label">Correo electrónico *</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required>
         </div>
 
         <div class="mb-3">
-          <label for="infoRestaurante" class="form-label">Información del Restaurante</label>
-          <input type="text" class="form-control" id="infoRestaurante" name="infoRestaurante">
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="fechaVisita" class="form-label">Fecha de la visita</label>
-            <input type="date" class="form-control" id="fechaVisita" name="fechaVisita">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="horaVisita" class="form-label">Hora de la visita</label>
-            <input type="time" class="form-control" id="horaVisita" name="horaVisita">
-          </div>
+          <label for="infoRestaurante" class="form-label">Nombre del Restaurante</label>
+          <input type="text" class="form-control" id="infoRestaurante" name="restaurantName" [(ngModel)]="form.restaurantName">
         </div>
 
         <div class="mb-3">
           <label for="comentario" class="form-label">Comentario</label>
-          <textarea class="form-control" id="comentario" name="comentario" rows="4"></textarea>
+          <textarea class="form-control" id="comentario" name="comment" rows="4" [(ngModel)]="form.comment"></textarea>
         </div>
 
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="privacyPolicy" required>
+          <input type="checkbox" class="form-check-input" id="privacyPolicy" [(ngModel)]="aceptaCondiciones" name="condiciones" required>
           <label class="form-check-label" for="privacyPolicy">
-            Acepto la <a href="#" target="_blank" style="color: #fff; text-decoration: underline;">Política de Privacidad de Atención al Cliente</a>
+            Acepto la <a href="#" (click)="abrirCondiciones($event)" style="color: #fff; text-decoration: underline;">Política de Privacidad</a>
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+
+        <!-- Popup de condiciones -->
+        <div class="popup" *ngIf="mostrarCondiciones" (click)="cerrarCondiciones()">
+          <div class="popup-body" (click)="$event.stopPropagation()">
+            <button class="popup-close-btn" (click)="cerrarCondiciones()">✖</button>
+            <div class="popup-info">
+              <h2>Política de Privacidad</h2>
+              <p class="description">
+                En <strong>Wok My Noodles</strong> valoramos profundamente tu privacidad y transparencia. La información que compartas con nosotros a través de este formulario será utilizada exclusivamente para ponernos en contacto contigo, gestionar tu consulta o sugerencia, y mejorar la calidad de nuestro servicio.<br><br>
+                No compartiremos tus datos con terceros sin tu consentimiento, y estarán protegidos conforme al Reglamento General de Protección de Datos (RGPD). Si deseas más información, puedes escribirnos a: <strong>contacto&#64;wokmynoodles.com</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Enviar</button>
       </form>
+
+      <div *ngIf="showToast" class="toast-container" [ngClass]="{'toast-success': toastSuccess, 'toast-error': !toastSuccess}">
+        {{ toastMessage }}
+      </div>
+
+
+
     </div>
   </div>
 </div>

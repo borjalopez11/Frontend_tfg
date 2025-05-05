@@ -6,7 +6,7 @@
         <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="cart-item-image">
         <div class="cart-item-details">
           <p class="cart-item-name">{{ producto.nombre }}</p>
-          <p class="cart-item-allergens">{{ producto.alergenos }}</p>
+          <p class="cart-item-allergens">{{ producto.descripcion }}</p>
         </div>
 
         <button (click)="eliminarProducto(producto.id)" class="btn-quit">

@@ -37,10 +37,10 @@ export class CartComponent implements OnInit {
         this.productos = data.item.map((item: any) => ({
           id: item.id,
           nombre: item.food.name,
+          descripcion: item.food.description,
           precio: item.totalPrice / item.quantity,
           cantidad: item.quantity,
           imagen: item.food.image ? `http://localhost:5001/uploads/${item.food.image}` : 'assets/imgNotFound.png',
-          alergenos: item.food.alergenos || 'No especificado'
         }));
 
         this.calcularTotales();
