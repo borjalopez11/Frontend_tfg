@@ -81,11 +81,11 @@ export class CartComponent implements OnInit {
 
   calcularTotales() {
     this.subtotal = this.productos.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-    this.calcularDescuento();
+    //this.calcularDescuento();
     this.total = parseFloat((this.subtotal - this.descuento).toFixed(2));
   }
 
-  calcularDescuento() {
+  /*calcularDescuento() {
     if (this.promoCode === 'DESCUENTO10') {
       this.descuento = parseFloat((this.subtotal * 0.10).toFixed(2));
     } else if (this.promoCode === 'DESCUENTO5') {
@@ -98,7 +98,7 @@ export class CartComponent implements OnInit {
   aplicarPromo() {
     this.calcularDescuento();
     this.calcularTotales();
-  }
+  }*/
 
   procederAlPago() {
     const restaurantId = 2;
