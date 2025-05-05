@@ -40,32 +40,37 @@ export class SignInComponent {
     passwordConfirmation: ['', Validators.required]
   });
 
+
+  termsAccepted = false;
+  privacyAccepted = false;
   onSubmit(): void {
     if (this.formSignup.invalid) {
       this.formSignup.markAllAsTouched();
       return;
     }
 
+    if (!this.termsAccepted || !this.privacyAccepted) {
+      this.mostrarToast('Debes aceptar las condiciones y la política de privacidad', false);
+      return;
+    }
 
     this.authService.signIn(this.formSignup.getRawValue()).subscribe({
       next: (response) => {
-        console.log("Usuario añadido correctamente:", response);
-
         if (response.jwt) {
           this.authService.saveToken(response.jwt);
         }
-
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        console.error("Error al registrar:", error);
-
         if (error?.error?.message?.includes('Email already used')) {
           this.formSignup.get('email')?.setErrors({ emailInUse: true });
         }
+        this.mostrarToast('Error al registrar. Intenta de nuevo', false);
       }
     });
   }
+
+
 
   showTermsModal: boolean = false;
   showPrivacyModal: boolean = false;
@@ -82,6 +87,19 @@ export class SignInComponent {
     this.showTermsModal = false;
     this.showPrivacyModal = false;
   }
+
+  toastMessage = '';
+  showToast = false;
+  toastSuccess = true;
+
+  mostrarToast(mensaje: string, success: boolean = true) {
+    this.toastMessage = mensaje;
+    this.toastSuccess = success;
+    this.showToast = true;
+    setTimeout(() => this.showToast = false, 3000);
+  }
+
+
 
 
 }
