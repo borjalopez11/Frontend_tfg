@@ -37,6 +37,14 @@ button:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
+.vertical-text {
+  writing-mode: vertical-rl;
+  color: #e63946;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
 
 @media (max-width: 768px) {
   .vertical-text {
@@ -54,4 +62,12 @@ button:hover {
   .row {
     margin: 0;
   }
+  .vertical-text {
+    display: none;
+  }
 }
+
+
+
+
+
