@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {FormsModule} from "@angular/forms";
-import {CommonModule, NgClass} from "@angular/common";
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from "@angular/forms";
+import { CommonModule, NgClass } from "@angular/common";
 
 @Component({
   selector: 'app-contact',
@@ -23,31 +23,36 @@ export class ContactComponent {
     comment: ''
   };
 
+  termsAccepted = false;
+  toastMessage = '';
+  showToast = false;
+  toastSuccess = true;
+  mostrarCondiciones = false;
+
   constructor(private http: HttpClient) {}
 
-  enviarFormulario() {
-    if (!this.aceptaCondiciones) {
+  enviarFormulario(formulario: any) {
+    if (!this.termsAccepted) {
       this.mostrarToast('Debes aceptar la política de privacidad para continuar', false);
       return;
     }
 
-    const body = {
-      name: this.form.name,
-      address: this.form.address,
-      email: this.form.email,
-      comment: this.form.comment,
-      restaurantName: this.form.restaurantName
-    };
-
     const token = localStorage.getItem('token');
+    if (!token) {
+      this.mostrarToast('No se encontró token de autenticación', false);
+      return;
+    }
 
-    this.http.post<MessageResponse>('http://localhost:5001/api/users/contact-form', body, {
+    this.http.post<MessageResponse>('http://localhost:5001/api/users/contact-form', this.form, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).subscribe({
       next: (response) => {
         this.mostrarToast(response.message || 'Formulario enviado correctamente', true);
+        this.form = { name: '', address: '', email: '', restaurantName: '', comment: '' };
+        this.termsAccepted = false;
+        formulario.resetForm();
       },
       error: (err) => {
         console.error('Error al enviar el formulario: ', err);
@@ -56,12 +61,6 @@ export class ContactComponent {
     });
   }
 
-
-  aceptaCondiciones = false;
-  toastMessage = '';
-  showToast = false;
-  toastSuccess = true;
-  mostrarCondiciones = false;
 
   abrirCondiciones(event: Event) {
     event.preventDefault();
@@ -79,7 +78,7 @@ export class ContactComponent {
     setTimeout(() => this.showToast = false, 3000);
   }
 }
+
 interface MessageResponse {
   message: string;
 }
-

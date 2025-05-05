@@ -25,64 +25,63 @@
         asegúrate de leer nuestra política de privacidad.
       </p>
 
-      <!-- FORMULARIO -->
-      <form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre *</label>
-          <input type="text" class="form-control" id="nombre" name="name" [(ngModel)]="form.name" required>
-        </div>
+
+      <form (ngSubmit)="enviarFormulario(formulario)" #formulario="ngForm" novalidate>
 
         <div class="mb-3">
-          <label for="direccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" id="direccion" name="address" [(ngModel)]="form.address">
+          <label for="nombre" class="form-label">Nombre *</label>
+          <input type="text" class="form-control" id="nombre" name="name" [(ngModel)]="form.name" required #nameRef="ngModel" [class.input-error]="nameRef.invalid && nameRef.touched">
+          <span class="error-msg" *ngIf="nameRef.invalid && nameRef.touched">El nombre es obligatorio.</span>
         </div>
 
         <div class="mb-3">
           <label for="email" class="form-label">Correo electrónico *</label>
-          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required email #emailRef="ngModel" [class.input-error]="emailRef.invalid && emailRef.touched">
+          <span class="error-msg" *ngIf="emailRef.errors?.['required'] && emailRef.touched">El correo es obligatorio.</span>
+          <span class="error-msg" *ngIf="emailRef.errors?.['email'] && emailRef.touched">El correo no es válido.</span>
         </div>
 
         <div class="mb-3">
-          <label for="infoRestaurante" class="form-label">Nombre del Restaurante</label>
-          <input type="text" class="form-control" id="infoRestaurante" name="restaurantName" [(ngModel)]="form.restaurantName">
+          <label for="infoRestaurante" class="form-label">Nombre del Restaurante *</label>
+          <input type="text" class="form-control" id="infoRestaurante" name="restaurantName" [(ngModel)]="form.restaurantName" required #restRef="ngModel" [class.input-error]="restRef.invalid && restRef.touched">
+          <span class="error-msg" *ngIf="restRef.invalid && restRef.touched">Debes escribir el nombre del restaurante.</span>
         </div>
 
         <div class="mb-3">
-          <label for="comentario" class="form-label">Comentario</label>
-          <textarea class="form-control" id="comentario" name="comment" rows="4" [(ngModel)]="form.comment"></textarea>
+          <label for="comentario" class="form-label">Comentario *</label>
+          <textarea class="form-control" id="comentario" name="comment" rows="4" [(ngModel)]="form.comment" required #commentRef="ngModel" [class.input-error]="commentRef.invalid && commentRef.touched"></textarea>
+          <span class="error-msg" *ngIf="commentRef.invalid && commentRef.touched">Este campo no puede estar vacío.</span>
         </div>
 
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="privacyPolicy" [(ngModel)]="aceptaCondiciones" name="condiciones" required>
+          <input type="checkbox" class="form-check-input" id="privacyPolicy" [(ngModel)]="termsAccepted" name="termsAccepted" required>
           <label class="form-check-label" for="privacyPolicy">
             Acepto la <a href="#" (click)="abrirCondiciones($event)" style="color: #fff; text-decoration: underline;">Política de Privacidad</a>
           </label>
+
         </div>
-
-
-        <!-- Popup de condiciones -->
-        <div class="popup" *ngIf="mostrarCondiciones" (click)="cerrarCondiciones()">
-          <div class="popup-body" (click)="$event.stopPropagation()">
-            <button class="popup-close-btn" (click)="cerrarCondiciones()">✖</button>
-            <div class="popup-info">
-              <h2>Política de Privacidad</h2>
-              <p class="description">
-                En <strong>Wok My Noodles</strong> valoramos profundamente tu privacidad y transparencia. La información que compartas con nosotros a través de este formulario será utilizada exclusivamente para ponernos en contacto contigo, gestionar tu consulta o sugerencia, y mejorar la calidad de nuestro servicio.<br><br>
-                No compartiremos tus datos con terceros sin tu consentimiento, y estarán protegidos conforme al Reglamento General de Protección de Datos (RGPD). Si deseas más información, puedes escribirnos a: <strong>contacto&#64;wokmynoodles.com</strong>.
-              </p>
-            </div>
-          </div>
-        </div>
-
 
         <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Enviar</button>
+
+        <div *ngIf="showToast" class="toast-container" [ngClass]="{'toast-success': toastSuccess, 'toast-error': !toastSuccess}">
+          {{ toastMessage }}
+        </div>
+
       </form>
 
-      <div *ngIf="showToast" class="toast-container" [ngClass]="{'toast-success': toastSuccess, 'toast-error': !toastSuccess}">
-        {{ toastMessage }}
+      <div class="popup" *ngIf="mostrarCondiciones">
+        <div class="popup-body">
+          <button class="popup-close-btn" (click)="cerrarCondiciones()">✖</button>
+          <div class="popup-info">
+            <h2>Política de Privacidad</h2>
+            <p class="description">
+              En <strong>Wok My Noodles</strong> valoramos tu privacidad. Toda la información proporcionada a través de este formulario se recopila exclusivamente para atender tu solicitud y no será compartida con terceros sin tu consentimiento explícito.<br><br>
+              Nos comprometemos a proteger tus datos personales en cumplimiento con el Reglamento General de Protección de Datos (RGPD). Tienes derecho a acceder, rectificar y eliminar tus datos en cualquier momento. Para ejercer estos derechos, contáctanos en <strong>privacidad&#64;wokmynoodles.com</strong>.<br><br>
+              Al aceptar esta política, estás dando tu consentimiento para que procesemos tus datos de acuerdo a lo mencionado anteriormente.
+            </p>
+          </div>
+        </div>
       </div>
-
-
 
     </div>
   </div>
