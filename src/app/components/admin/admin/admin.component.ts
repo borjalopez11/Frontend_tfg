@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {AdminNavbarComponent} from "../admin-navbar/admin-navbar.component";
 
 @Component({
   selector: 'app-admin',
@@ -7,6 +9,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    AdminNavbarComponent,
 
   ],
   templateUrl: './admin.component.html',

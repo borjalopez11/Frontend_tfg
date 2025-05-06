@@ -12,6 +12,7 @@ import {PrivacityPolicyComponent} from "./components/legal/privacity-policy/priv
 import {ProductDetailComponent} from "./components/products/product-detail/product-detail.component";
 import {authGuard} from "./guards/auth.guards";
 import {adminGuard} from "./guards/admin.guards";
+import {AdminComponent} from "./components/admin/admin/admin.component";
 
 
 export const routes: Routes = [
@@ -25,13 +26,6 @@ export const routes: Routes = [
     component: LandingPageComponent,
     canActivate: [authGuard]
   },
-  {
-    path: 'admin',
-    loadComponent: () => import('./components/admin/admin/admin.component')
-      .then(m => m.AdminComponent),
-    canActivate: [adminGuard]
-  },
-
   {
     path: 'products-cart',
     component: ProductsCartComponent,
@@ -86,6 +80,33 @@ export const routes: Routes = [
   {
     path: 'privacity-policy',
     component: PrivacityPolicyComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [adminGuard],
+    children: [
+      {
+        path: 'admin-products',
+        loadComponent: () => import('./components/admin//admin-products/admin-products.component')
+          .then(m => m.AdminProductsComponent)
+      },
+      {
+        path: 'admin-users',
+        loadComponent: () => import('./components/admin/admin-users/admin-users.component')
+          .then(m => m.AdminUsersComponent)
+      },
+      {
+        path: 'admin-forms',
+        loadComponent: () => import('./components/admin/admin-forms/admin-forms.component')
+          .then(m => m.AdminFormsComponent)
+      },
+      {
+        path: '',
+        redirectTo: 'admin-products',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: '**',

@@ -1,5 +1,9 @@
 <div>
-  <app-navbar *ngIf="!isLoginOrRegister"></app-navbar>
+  <app-admin-navbar *ngIf="isRestaurantOwner && !isLoginOrRegister"></app-admin-navbar>
+
+  <app-navbar *ngIf="!isRestaurantOwner && !isLoginOrRegister"></app-navbar>
+
   <router-outlet></router-outlet>
-  <app-footer *ngIf="!isLoginOrRegister"></app-footer>
+
+  <app-footer *ngIf="!isLoginOrRegister && !isAdminRoute"></app-footer>
 </div>

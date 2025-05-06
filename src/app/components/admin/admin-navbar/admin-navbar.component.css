@@ -1,0 +1,26 @@
+.container-fluid {
+  background-color: #D32F2F;
+}
+
+a {
+  color: white !important;
+}
+
+h2 {
+  margin: 0 0 0 10px;
+  color: white !important;
+}
+
+.btn {
+  color: white;
+  background-color: #D32F2F;
+  border: none;
+}
+
+.btn:hover {
+  color: black;
+}
+
+.active {
+  color: black !important;
+}
