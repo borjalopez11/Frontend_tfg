@@ -20,6 +20,8 @@ export class AppComponent {
   isLoginOrRegister: boolean = false;
   isAdminRoute: boolean = false;
   isRestaurantOwner: boolean = false;
+  isUserSpaceRoute: boolean = false;
+
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -28,7 +30,7 @@ export class AppComponent {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       const currentRoute = this.router.url;
-
+      this.isUserSpaceRoute = currentRoute.startsWith('/user-space');
       this.isLoginOrRegister = currentRoute.includes('signIn') || currentRoute.includes('login');
       this.isAdminRoute = currentRoute.startsWith('/admin');
       this.isRestaurantOwner = this.authService.getRole() === 'ROLE_RESTAURANT_OWNER';
