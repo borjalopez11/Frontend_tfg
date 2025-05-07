@@ -1,0 +1,87 @@
+/* Contenedor de las tablas */
+.admin-users-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #424242;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Estilo general de las tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  /* Estilo de las cabeceras de las tablas */
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #313131;
+  }
+  
+  th {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    text-transform: uppercase;
+  }
+  
+  /* Resaltar la columna de fecha */
+  th.date-column {
+    background-color: #FF8C00; /* Naranja vibrante */
+    color: white;
+  }
+  
+  /* Flechas que indican el orden ascendente/descendente */
+  th span {
+    position: absolute;
+    right: 10px;
+    font-size: 1.2em;
+  }
+  
+  /* Efecto hover en la fila */
+  tr:hover {
+    background-color: #8a8a8a;
+  }
+  
+  /* Diferenciar usuarios admin de customers */
+  tr.admin-row {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  tr.user-row {
+    background-color: #e0e0e0;
+    color: #555;
+  }
+  
+  /* Cambios visuales en los botones de editar */
+  .edit-btn {
+    background: none;
+    border: none;
+    color: #FF8C00;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 10px; /* Espacio entre el dato y el botón */
+  }
+  
+  .edit-btn:hover {
+    color: #FF4500; /* Naranja más oscuro cuando el cursor pasa por encima */
+  }
+  .date-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  .date-column svg {
+    vertical-align: middle;
+    display: inline-block;
+  }
+  
+  
