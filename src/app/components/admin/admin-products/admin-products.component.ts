@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
-import {CommonModule, NgForOf} from "@angular/common";
+import { CommonModule, NgForOf } from "@angular/common";
 import { AuthService } from "../../../services/auth.service";
 
 @Component({
   selector: 'app-admin-products',
   standalone: true,
-  imports: [
-    FormsModule,
-    NgForOf,
-    CommonModule
-  ],
+  imports: [FormsModule, NgForOf, CommonModule],
   templateUrl: './admin-products.component.html',
   styleUrl: './admin-products.component.css'
 })
 export class AdminProductsComponent implements OnInit {
-
   restaurantId = 1;
 
   newIngredientCategory = { name: '' };
@@ -24,11 +19,10 @@ export class AdminProductsComponent implements OnInit {
   newIngredient = { name: '', categoryId: '', restaurantId: this.restaurantId };
 
   ingredientCategoryList: any[] = [];
+  mainCategories: any[] = [];
+
   selectedIngredientCategory: any = null;
   selectedIngredientCategoryId: string = '';
-
-
-  mainCategories: any[] = [];
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -39,7 +33,7 @@ export class AdminProductsComponent implements OnInit {
 
   getAuthHeaders(): HttpHeaders {
     const token = this.authService.getToken();
-    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 
   cargarCategoriasIngredientes() {
@@ -53,7 +47,6 @@ export class AdminProductsComponent implements OnInit {
       }
     });
   }
-
 
   cargarCategoriasPrincipales() {
     this.http.get(`http://localhost:5001/api/admin/category?restaurantId=${this.restaurantId}`, {
@@ -112,7 +105,6 @@ export class AdminProductsComponent implements OnInit {
 
   onSelectCategoria(id: string) {
     this.selectedIngredientCategoryId = id;
-    this.selectedIngredientCategory = this.ingredientCategoryList.find(c => c.id === +id);
+    this.selectedIngredientCategory = this.ingredientCategoryList.find(cat => cat.id === +id);
   }
-
 }

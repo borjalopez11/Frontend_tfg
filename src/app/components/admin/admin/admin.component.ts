@@ -20,4 +20,10 @@ import {AdminNavbarComponent} from "../admin-navbar/admin-navbar.component";
 })
 export class AdminComponent {
 
+  productosExpanded = false;
+
+  toggleProductos() {
+    this.productosExpanded = !this.productosExpanded;
+  }
+
 }

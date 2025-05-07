@@ -1,0 +1,43 @@
+<div class="container-fluid mt-4 d-flex justify-content-center">
+  <div class="admin-form-wrapper w-100" style="max-width: 700px;">
+    <h2 class="section-title text-center">Gestión de Categorías</h2>
+
+    <!-- Crear nueva categoría -->
+    <section class="mb-4">
+      <h5 class="section-title">Crear Categoría</h5>
+      <form class="row g-2" (ngSubmit)="crearCategoria()">
+        <div class="col-9">
+          <input [(ngModel)]="newCategory.name" name="catName" class="form-control"
+                 placeholder="Ej: Principales, Entrantes..." required />
+        </div>
+        <div class="col-3">
+          <button type="submit" class="btn btn-danger w-100">Crear</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Buscador -->
+    <section class="mb-4">
+      <label class="form-label text-white">Buscar categoría:</label>
+      <input type="text" class="form-control" placeholder="Buscar por nombre..."
+             [(ngModel)]="filtro" name="filtro">
+    </section>
+
+    <!-- Tabla de categorías -->
+    <section class="mb-5">
+      <h5 class="section-title">Categorías existentes</h5>
+      <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped mt-3 small">
+          <thead class="table-danger">
+          <tr><th>Nombre</th></tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cat of categoriasFiltradas()">
+            <td>{{ cat.name }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

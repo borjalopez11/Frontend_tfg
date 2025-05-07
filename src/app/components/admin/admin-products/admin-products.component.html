@@ -1,6 +1,6 @@
 <div class="container-fluid mt-4 d-flex justify-content-center">
   <div class="admin-form-wrapper w-100" style="max-width: 700px;">
-    <h2 class="text-center mb-4">Gestión de Productos</h2>
+    <h2 class="section-title text-center">Gestión de Productos</h2>
 
     <section class="mb-4">
       <h5 class="section-title">Crear Categoría Principal (tipo de producto)</h5>
@@ -35,7 +35,8 @@
       <h5 class="section-title">Crear Categoría de Ingredientes</h5>
       <form class="row g-2" (ngSubmit)="crearCategoriaIngredientes()">
         <div class="col-9">
-          <input [(ngModel)]="newIngredientCategory.name" name="ingredCat" class="form-control" placeholder="Ej: Carnes, Salsas..." required />
+          <input [(ngModel)]="newIngredientCategory.name" name="ingredCat" class="form-control"
+                 placeholder="Ej: Carnes, Salsas..." required />
         </div>
         <div class="col-3">
           <button type="submit" class="btn btn-danger w-100">Crear</button>

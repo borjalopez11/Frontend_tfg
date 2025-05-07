@@ -96,6 +96,22 @@ export const routes: Routes = [
           .then(m => m.AdminFormsComponent)
       },
       {
+        path: 'admin-categories-ingredients',
+        loadComponent: () => import('./components/admin/admin-categories-ingredients/admin-categories-ingredients.component')
+          .then(m => m.AdminCategoriesIngredientsComponent)
+      },
+      {
+        path: 'admin-categories',
+        loadComponent: () => import('./components/admin/admin-categories/admin-categories.component')
+          .then(m => m.AdminCategoriesComponent)
+      },
+      {
+        path: 'admin-ingredients',
+        loadComponent: () => import('./components/admin/admin-ingredients/admin-ingredients.component')
+          .then(m => m.AdminIngredientsComponent)
+      },
+
+      {
         path: '',
         redirectTo: 'admin-products',
         pathMatch: 'full'

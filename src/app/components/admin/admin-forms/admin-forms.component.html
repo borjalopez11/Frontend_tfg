@@ -1,27 +1,26 @@
 <div class="admin-forms-container">
-    <h2 class="text-center mb-4 text-white">Formularios Recibidos</h2>
+  <h2 class="section-title">Formularios Recibidos</h2>
 
-    <div class="filters mb-3 d-flex justify-content-between align-items-center gap-3 flex-wrap">
-      <input [(ngModel)]="searchName" type="text" class="form-control" placeholder="Buscar por nombre..." />
-      <input [(ngModel)]="startDate" type="date" class="form-control" />
-      <input [(ngModel)]="endDate" type="date" class="form-control" />
-    </div>
-  
-    <table class="table table-dark table-bordered table-striped">
-      <thead class="table-secondary">
-        <tr>
-          <th>Usuario</th>
-          <th>Comentario</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let form of filteredForms">
-          <td>{{ form.user.name }}</td>
-          <td>{{ form.comentario }}</td>
-          <td>{{ formatDate(form.createdAt) }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="filters">
+    <input [(ngModel)]="searchName" type="text" placeholder="Buscar por nombre..." />
+    <input [(ngModel)]="startDate" type="date" />
+    <input [(ngModel)]="endDate" type="date" />
   </div>
-  
+
+  <table>
+    <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Comentario</th>
+      <th class="date-column">Fecha</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let form of filteredForms">
+      <td>{{ form.user.name }}</td>
+      <td>{{ form.comentario }}</td>
+      <td>{{ formatDate(form.createdAt) }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,87 +1,88 @@
-/* Contenedor de las tablas */
 .admin-users-container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #424242;
-    padding: 20px;
-    border-radius: 8px;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #D32F2F;
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  background-color: #121212;
+  color: white;
+  border: 1px solid #444;
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+thead {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+tbody tr:hover {
+  background-color: #333;
+}
+
+.admin-row {
+  background-color: #2b2b2b;
+}
+
+.user-row {
+  background-color: #3a3a3a;
+}
+
+.date-column {
+  background-color: #D32F2F;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  color: #FF8C00;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.edit-btn:hover {
+  color: #FF4500;
+}
+
+@media (max-width: 768px) {
+  .admin-users-container {
+    padding: 1rem;
   }
-  
-  /* Estilo general de las tablas */
+
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    font-size: 0.9rem;
   }
-  
-  /* Estilo de las cabeceras de las tablas */
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #313131;
-  }
-  
-  th {
-    background-color: #333;
-    color: white;
-    cursor: pointer;
-    position: relative;
-    text-transform: uppercase;
-  }
-  
-  /* Resaltar la columna de fecha */
-  th.date-column {
-    background-color: #FF8C00; /* Naranja vibrante */
-    color: white;
-  }
-  
-  /* Flechas que indican el orden ascendente/descendente */
-  th span {
-    position: absolute;
-    right: 10px;
-    font-size: 1.2em;
-  }
-  
-  /* Efecto hover en la fila */
-  tr:hover {
-    background-color: #8a8a8a;
-  }
-  
-  /* Diferenciar usuarios admin de customers */
-  tr.admin-row {
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  
-  tr.user-row {
-    background-color: #e0e0e0;
-    color: #555;
-  }
-  
-  /* Cambios visuales en los botones de editar */
-  .edit-btn {
-    background: none;
-    border: none;
-    color: #FF8C00;
-    cursor: pointer;
-    font-size: 1.2em;
-    margin-left: 10px; /* Espacio entre el dato y el botón */
-  }
-  
-  .edit-btn:hover {
-    color: #FF4500; /* Naranja más oscuro cuando el cursor pasa por encima */
-  }
-  .date-column {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-  }
-  
-  .date-column svg {
-    vertical-align: middle;
-    display: inline-block;
-  }
-  
-  
+}
