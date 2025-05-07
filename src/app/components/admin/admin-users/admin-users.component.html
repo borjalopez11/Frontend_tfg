@@ -1,1 +1,69 @@
-<p>admin-users works!</p>
+<div class="admin-users-container">
+    <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Buscar usuario..." [(ngModel)]="searchTerm" />
+      </div>
+      
+    <h2>Usuarios Administradores</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Rol</th>
+          <th class="date-column" (click)="toggleAdminSortOrder()">
+            Fecha de Creación
+            <span *ngIf="adminSortDirection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+              </svg>
+            </span>
+            <span *ngIf="!adminSortDirection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+            </span>
+          </th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of sortedAdmins" class="admin-row">
+          <td>{{ user.name }}</td>
+          <td>{{ getRoleText(user.role) }}</td>
+          <td>{{ formatDate(user.createdAt) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <hr />
+  
+    <h2>Usuarios Comunes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Rol</th>
+          <th class="date-column" (click)="toggleUserSortOrder()">
+            Fecha de Creación
+            <span *ngIf="userSortDirection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+              </svg></span>
+              <span *ngIf="!userSortDirection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of sortedUsers" class="user-row">
+          <td>{{ user.name }}</td>
+          <td>{{ getRoleText(user.role) }}</td>
+          <td>{{ formatDate(user.createdAt) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
