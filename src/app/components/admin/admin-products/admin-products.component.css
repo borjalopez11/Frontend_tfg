@@ -1,0 +1,30 @@
+.admin-form-wrapper {
+  background-color: #1e1e1e;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+  font-weight: 600;
+  color: #D32F2F;
+  margin-bottom: 10px;
+}
+
+form input, form select {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .admin-form-wrapper {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+}

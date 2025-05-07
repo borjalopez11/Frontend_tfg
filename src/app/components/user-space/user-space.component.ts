@@ -21,7 +21,7 @@ export class UserSpaceComponent implements OnInit {
   mensajeToast = '';
 
 
-  productos = [
+  /*productos = [
     {
       nombre: 'Alitas',
       precio: 4.80,
@@ -43,7 +43,7 @@ export class UserSpaceComponent implements OnInit {
       imagen: 'https://media.istockphoto.com/id/1407895827/es/foto/sopa-de-ramen-con-vista-superior-de-pato-fideos-y-huevo-en-una-mesa-de-piedra-oscura.jpg?s=612x612&w=0&k=20&c=C08AsfWLXqFB2_yzvtapP4G7CH5fRrm-Zi-T2tL6cx4=',
       categoria: 'entrantes'
     }
-  ];
+  ];*/
 
   user?: User;
 
@@ -117,8 +117,6 @@ export class UserSpaceComponent implements OnInit {
       }
     });
   }
-
-
 
   mostrarPopupContrasena = false;
   passwordData = {
