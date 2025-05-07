@@ -2,9 +2,10 @@
   <h2 class="section-title">Formularios Recibidos</h2>
 
   <div class="filters">
-    <input [(ngModel)]="searchName" type="text" placeholder="Buscar por nombre..." />
-    <input [(ngModel)]="startDate" type="date" />
-    <input [(ngModel)]="endDate" type="date" />
+    <input [(ngModel)]="searchName" type="text" class="filter-input" placeholder="Buscar por nombre..." (ngModelChange)="applyFilters()" />
+    <input [(ngModel)]="startDate" type="date" class="filter-input" (change)="applyFilters()" />
+    <input [(ngModel)]="endDate" type="date" class="filter-input" (change)="applyFilters()" />
+
   </div>
 
   <table>
@@ -17,8 +18,8 @@
     </thead>
     <tbody>
     <tr *ngFor="let form of filteredForms">
-      <td>{{ form.user.name }}</td>
-      <td>{{ form.comentario }}</td>
+      <td>{{ form.user?.name || 'Anónimo' }}</td>
+      <td>{{ form.comentario || 'Sin comentario' }}</td>
       <td>{{ formatDate(form.createdAt) }}</td>
     </tr>
     </tbody>

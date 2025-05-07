@@ -22,10 +22,18 @@
   padding: 1rem;
   border-radius: 8px;
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 1.5rem;
+  justify-content: space-between;
 }
+
+.filter-input {
+  flex: 1 1 30%;
+  min-width: 200px;
+}
+
+
 
 input[type="text"],
 input[type="date"] {
