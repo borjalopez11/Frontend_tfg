@@ -13,6 +13,8 @@ import {ProductDetailComponent} from "./components/products/product-detail/produ
 // import {authGuard} from "./guards/auth.guards"; // Comentar el guard para deshabilitar la protección
 // import {adminGuard} from "./guards/admin.guards"; // Comentar el guard para deshabilitar la protección
 import {AdminComponent} from "./components/admin/admin/admin.component";
+import {authGuard} from "./guards/auth.guards";
+import {adminGuard} from "./guards/admin.guards";
 
 export const routes: Routes = [
   {
@@ -22,23 +24,23 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: AdminComponent, // Desactivado el guard para esta ruta
-    // canActivate: [authGuard] // Comentar el guard
+    component: LandingPageComponent, // Desactivado el guard para esta ruta
+    canActivate: [authGuard] // Comentar el guard
   },
   {
     path: 'products-cart',
     component: ProductsCartComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard] // Comentar el guard
   },
   {
     path: 'contact',
     component: ContactComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard] // Comentar el guard
   },
   {
     path: 'cart',
     component: CartComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard] // Comentar el guard
   },
   {
     path: 'signIn',
@@ -52,12 +54,12 @@ export const routes: Routes = [
   {
     path: 'product-detail',
     component: ProductDetailComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard] // Comentar el guard
   },
   {
     path: 'user-space',
     component: UserSpaceComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard] // Comentar el guard
   },
   {
     path: 'terms',
@@ -78,7 +80,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    // canActivate: [adminGuard], // Comentar el guard
+    canActivate: [adminGuard], // Comentar el guard
     children: [
       {
         path: 'admin-products',
