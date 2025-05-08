@@ -29,6 +29,26 @@
           <button type="button" class="btn btn-secondary w-100" (click)="addIngredient()">Añadir</button>
         </div>
       </div>
+      <label>Agregar Alérgeno:</label>
+      <div class="row g-2">
+        <div class="col-md-9 col-12">
+          <select class="form-select" [(ngModel)]="selectedAllergenId">
+            <option [ngValue]="''" disabled selected>Selecciona un alérgeno</option>
+            <option *ngFor="let al of availableAllergens()" [value]="al.id">{{ al.name }}</option>
+          </select>
+        </div>
+        <div class="col-md-3 col-12">
+          <button type="button" class="btn btn-secondary w-100" (click)="addAllergen()">Añadir</button>
+        </div>
+      </div>
+
+      <div class="selected-ingredients mt-2">
+  <span *ngFor="let id of newProductAllergenIds" class="ingredient-pill">
+    {{ getAllergenName(id) }}
+    <button type="button" (click)="removeAllergen(id)">✖</button>
+  </span>
+      </div>
+
 
       <div class="selected-ingredients mt-2">
         <span *ngFor="let id of newProduct.ingredientIds" class="ingredient-pill">

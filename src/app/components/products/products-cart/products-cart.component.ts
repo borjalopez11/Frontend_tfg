@@ -39,7 +39,7 @@ export class ProductsCartComponent implements OnInit {
         }));
 
         console.log(this.products);
-        this.entrantes = this.products.filter(p => p.foodCategory.name === 'Secundarios');
+        this.entrantes = this.products.filter(p => p.foodCategory.name === 'Entrantes');
         this.principales = this.products.filter(p => p.foodCategory.name === 'Principales');
         this.postres = this.products.filter(p => p.foodCategory.name === 'Postres');
         this.bebidas = this.products.filter(p => p.foodCategory.name === 'Bebidas');

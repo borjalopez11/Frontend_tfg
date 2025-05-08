@@ -11,15 +11,17 @@
       <li class="nav-item">
         <a class="nav-link" href="#principales" (click)="$event.preventDefault(); scrollTo('principales')">PRINCIPALES</a>
       </li>
-      <li class="nav-item"><a class="nav-link" href="#postres">POSTRES</a></li>
-      <li class="nav-item"><a class="nav-link" href="#bebidas">BEBIDAS</a></li>
+      <li class="nav-item"  >
+        <a class="nav-link" href="#postres"(click)="$event.preventDefault(); scrollTo('postres')">POSTRES</a></li>
+      <li class="nav-item"  >
+        <a class="nav-link" href="#bebidas"(click)="$event.preventDefault(); scrollTo('bebidas')">BEBIDAS</a></li>
     </ul>
   </nav>
 
   <div class="cartContainer text-center">
     <h2 class="mt-4" id="entrantes">ENTRANTES</h2>
     <div class="row">
-      <div class="col-md-4" *ngFor="let producto of products">
+      <div class="col-md-4" *ngFor="let producto of entrantes">
         <div class="food-card">
           <div class="food-card-image">
             <img [src]="producto.image" alt="{{ producto.name }}" />
@@ -52,10 +54,6 @@
 
           <hr class="separator">
 
-          <div class="allergens">
-            <span><strong>ALÉRGENOS:</strong> {{ selectedProduct.alergenos }}</span>
-          </div>
-
           <div class="rating-container">
             <span class="rating">⭐ {{ selectedProduct.rating }}</span>
           </div>
@@ -72,7 +70,7 @@
     <div>
     <h2 class="mt-4" id="principales">PRINCIPALES</h2>
     <div class="row">
-      <div class="col-md-4" *ngFor="let producto of entrantes">
+      <div class="col-md-4" *ngFor="let producto of principales">
         <div class="food-card">
           <div class="food-card-image">
             <img [src]="producto.image" alt="{{ producto.name }}" />
@@ -91,4 +89,50 @@
       </div>
     </div>
   </div>
+
+    <div>
+      <h2 class="mt-4" id="postres">POSTRES</h2>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let producto of postres">
+          <div class="food-card">
+            <div class="food-card-image">
+              <img [src]="producto.image" alt="{{ producto.name }}" />
+            </div>
+            <div class="food-card-body">
+              <div class="food-card-title">
+                <span>{{ producto.name }}</span>
+                <span>{{ producto.price + ' EUR' }}</span>
+              </div>
+              <div class="food-card-footer">
+                <span class="rating">⭐ {{ producto.rating }}</span>
+                <button class="btn-ver-mas" (click)="openPopup(producto)">Ver más +</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mt-4" id="bebidas">BEBIDAS</h2>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let producto of bebidas">
+          <div class="food-card">
+            <div class="food-card-image">
+              <img [src]="producto.image" alt="{{ producto.name }}" />
+            </div>
+            <div class="food-card-body">
+              <div class="food-card-title">
+                <span>{{ producto.name }}</span>
+                <span>{{ producto.price + ' EUR' }}</span>
+              </div>
+              <div class="food-card-footer">
+                <span class="rating">⭐ {{ producto.rating }}</span>
+                <button class="btn-ver-mas" (click)="openPopup(producto)">Ver más +</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>

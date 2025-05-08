@@ -35,6 +35,7 @@ export class AdminProductsComponent implements OnInit {
     this.loadProducts();
     this.loadCategories();
     this.loadIngredients();
+    this.loadAllergens();
   }
 
   getAuthHeaders(): HttpHeaders {
@@ -95,7 +96,8 @@ export class AdminProductsComponent implements OnInit {
       ingredients: this.newProduct.ingredientIds.map(id => {
         const ingredient = this.ingredients.find(i => i.id === +id);
         return { id: ingredient.id, name: ingredient.name };
-      })
+      }),
+      allergens: this.newProductAllergenIds.map(id => ({ id }))
     };
 
     this.http.post('http://localhost:5001/api/admin/food', body, {
@@ -151,4 +153,34 @@ export class AdminProductsComponent implements OnInit {
   removeIngredient(id: number) {
     this.newProduct.ingredientIds = this.newProduct.ingredientIds.filter(i => i !== id);
   }
+
+  allergens: any[] = [];
+  selectedAllergenId: number | '' = '';
+  newProductAllergenIds: number[] = [];
+
+  loadAllergens() {
+    this.http.get<any[]>('http://localhost:5001/api/admin/allergen/all', {
+      headers: this.getAuthHeaders()
+    }).subscribe(data => this.allergens = data);
+  }
+
+  availableAllergens() {
+    return this.allergens.filter(al => !this.newProductAllergenIds.includes(al.id));
+  }
+
+  getAllergenName(id: number): string {
+    return this.allergens.find(a => a.id === id)?.name || '';
+  }
+
+  addAllergen() {
+    if (this.selectedAllergenId && !this.newProductAllergenIds.includes(+this.selectedAllergenId)) {
+      this.newProductAllergenIds.push(+this.selectedAllergenId);
+      this.selectedAllergenId = '';
+    }
+  }
+
+  removeAllergen(id: number) {
+    this.newProductAllergenIds = this.newProductAllergenIds.filter(a => a !== id);
+  }
+
 }
