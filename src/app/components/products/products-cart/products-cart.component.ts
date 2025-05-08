@@ -38,6 +38,7 @@ export class ProductsCartComponent implements OnInit {
           image : product.image ? this.backendUrl + 'uploads/' + product.image : 'assets/imgNotFound.png',
         }));
 
+        console.log(this.products);
         this.entrantes = this.products.filter(p => p.foodCategory.name === 'Secundarios');
         this.principales = this.products.filter(p => p.foodCategory.name === 'Principales');
         this.postres = this.products.filter(p => p.foodCategory.name === 'Postres');

@@ -7,7 +7,7 @@ import {Product} from "../interface/interface";
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:5001/api/food/restaurant/2'; // Endpoint
+  private apiUrl = 'http://localhost:5001/api/food/restaurant/1'; // Endpoint
 
   constructor(private http: HttpClient) { }
 

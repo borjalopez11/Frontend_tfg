@@ -14,21 +14,27 @@ import { AuthService } from "../../../services/auth.service";
 export class AdminProductsComponent implements OnInit {
   restaurantId = 1;
 
-  newIngredientCategory = { name: '' };
-  newMainCategory = { name: '' };
-  newIngredient = { name: '', categoryId: '', restaurantId: this.restaurantId };
+  products: any[] = [];
+  categories: any[] = [];
+  ingredients: any[] = [];
 
-  ingredientCategoryList: any[] = [];
-  mainCategories: any[] = [];
+  newProduct = {
+    name: '',
+    description: '',
+    price: 0,
+    rating: 0.0,
+    categoryId: '',
+    ingredientIds: [] as number[]
+  };
 
-  selectedIngredientCategory: any = null;
-  selectedIngredientCategoryId: string = '';
+  productImageBase64: string | null = null;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.cargarCategoriasIngredientes();
-    this.cargarCategoriasPrincipales();
+    this.loadProducts();
+    this.loadCategories();
+    this.loadIngredients();
   }
 
   getAuthHeaders(): HttpHeaders {
@@ -36,75 +42,113 @@ export class AdminProductsComponent implements OnInit {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 
-  cargarCategoriasIngredientes() {
-    this.http.get(`http://localhost:5001/api/admin/ingredients/restaurant/${this.restaurantId}/category`, {
-      headers: this.getAuthHeaders()
-    }).subscribe((data: any) => {
-      this.ingredientCategoryList = data;
-      if (data.length > 0) {
-        this.selectedIngredientCategoryId = data[0].id.toString();
-        this.selectedIngredientCategory = data[0];
-      }
-    });
+  loadProducts() {
+    this.http.get<any[]>(`http://localhost:5001/api/food/restaurant/${this.restaurantId}`, {
+      headers: this.getAuthHeaders(),
+    }).subscribe(data => this.products = data);
   }
 
-  cargarCategoriasPrincipales() {
-    this.http.get(`http://localhost:5001/api/admin/category?restaurantId=${this.restaurantId}`, {
-      headers: this.getAuthHeaders()
-    }).subscribe((data: any) => {
-      this.mainCategories = data;
-    });
+  loadCategories() {
+    this.http.get<any[]>(`http://localhost:5001/api/category/restaurant`, {
+      headers: this.getAuthHeaders(),
+    }).subscribe(data => this.categories = data);
   }
 
-  crearCategoriaIngredientes() {
-    this.http.post('http://localhost:5001/api/admin/ingredients/category', {
-      name: this.newIngredientCategory.name,
-      restaurantId: this.restaurantId
-    }, {
-      headers: this.getAuthHeaders()
+  loadIngredients() {
+    this.http.get<any[]>(`http://localhost:5001/api/admin/ingredients/restaurant/${this.restaurantId}`, {
+      headers: this.getAuthHeaders(),
+    }).subscribe(data => this.ingredients = data);
+  }
+
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.productImageBase64 = (reader.result as string).split(',')[1];
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  crearProducto() {
+    if (!this.productImageBase64) {
+      alert('Por favor selecciona una imagen.');
+      return;
+    }
+
+    if (this.newProduct.rating < 0 || this.newProduct.rating > 5) {
+      alert('La puntuación debe estar entre 0.0 y 5.0');
+      return;
+    }
+
+    const body = {
+      name: this.newProduct.name,
+      description: this.newProduct.description,
+      price: this.newProduct.price,
+      rating: this.newProduct.rating,
+      category: { id: this.newProduct.categoryId },
+      restaurantId: this.restaurantId,
+      seasonal: false,
+      image: this.productImageBase64,
+      ingredients: this.newProduct.ingredientIds.map(id => {
+        const ingredient = this.ingredients.find(i => i.id === +id);
+        return { id: ingredient.id, name: ingredient.name };
+      })
+    };
+
+    this.http.post('http://localhost:5001/api/admin/food', body, {
+      headers: this.getAuthHeaders(),
     }).subscribe({
       next: () => {
-        this.newIngredientCategory.name = '';
-        this.cargarCategoriasIngredientes();
+        this.newProduct = { name: '', description: '', price: 0, rating: 0.0, categoryId: '', ingredientIds: [] };
+        this.productImageBase64 = null;
+        this.loadProducts();
       },
-      error: () => alert('Error al crear categoría de ingredientes')
+      error: () => alert('Error al crear producto')
     });
   }
 
-  crearCategoriaPrincipal() {
-    this.http.post('http://localhost:5001/api/admin/category', {
-      name: this.newMainCategory.name,
-      restaurant: this.restaurantId
-    }, {
-      headers: this.getAuthHeaders()
-    }).subscribe({
-      next: () => {
-        this.newMainCategory.name = '';
-        this.cargarCategoriasPrincipales();
-      },
-      error: () => alert('Error al crear categoría principal')
+  eliminarProducto(id: number) {
+    this.http.delete(`http://localhost:5001/api/admin/food/${id}`, {
+      headers: this.getAuthHeaders(),
+    }).subscribe(() => this.loadProducts());
+  }
+
+  filterName: string = '';
+  filterCategoryId: string = '';
+
+  getCategoryName(id: number | string): string {
+    return this.categories.find(c => c.id === +id)?.name || '';
+  }
+
+  getIngredientName(id: number): string {
+    return this.ingredients.find(i => i.id === id)?.name || '';
+  }
+
+  getFilteredProducts() {
+    return this.products.filter(p => {
+      const matchesName = p.name.toLowerCase().includes(this.filterName.toLowerCase());
+      const matchesCategory = this.filterCategoryId ? p.foodCategory?.id === +this.filterCategoryId : true;
+      return matchesName && matchesCategory;
     });
   }
 
-  crearIngrediente() {
-    this.http.post('http://localhost:5001/api/admin/ingredients', {
-      name: this.newIngredient.name,
-      categoryId: this.newIngredient.categoryId,
-      restaurantId: this.restaurantId
-    }, {
-      headers: this.getAuthHeaders()
-    }).subscribe({
-      next: () => {
-        this.newIngredient.name = '';
-        this.newIngredient.categoryId = '';
-        this.cargarCategoriasIngredientes();
-      },
-      error: () => alert('Error al crear ingrediente')
-    });
+  selectedIngredientId: number | '' = '';
+
+  availableIngredients() {
+    return this.ingredients.filter(ing => !this.newProduct.ingredientIds.includes(ing.id));
   }
 
-  onSelectCategoria(id: string) {
-    this.selectedIngredientCategoryId = id;
-    this.selectedIngredientCategory = this.ingredientCategoryList.find(cat => cat.id === +id);
+  addIngredient() {
+    if (this.selectedIngredientId && !this.newProduct.ingredientIds.includes(+this.selectedIngredientId)) {
+      this.newProduct.ingredientIds.push(+this.selectedIngredientId);
+      this.selectedIngredientId = '';
+    }
+  }
+
+  removeIngredient(id: number) {
+    this.newProduct.ingredientIds = this.newProduct.ingredientIds.filter(i => i !== id);
   }
 }

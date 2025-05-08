@@ -1,0 +1,51 @@
+<div class="container-fluid mt-4 d-flex justify-content-center">
+  <div class="admin-form-wrapper w-100" style="max-width: 700px;">
+    <h2 class="section-title text-center">Gestión de Alérgenos</h2>
+
+    <section class="mb-4">
+      <h5 class="section-title">Crear Alérgeno</h5>
+      <form class="row g-2" (ngSubmit)="crearAlergeno()">
+        <div class="col-5">
+          <input [(ngModel)]="newAllergen.name" name="name" class="form-control"
+                 placeholder="Nombre del alérgeno" required />
+        </div>
+        <div class="col-4">
+          <input [(ngModel)]="newAllergen.description" name="description" class="form-control"
+                 placeholder="Descripción" required />
+        </div>
+        <div class="col-3">
+          <button type="submit" class="btn btn-danger w-100">Crear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="mb-4">
+      <label class="form-label text-white">Buscar alérgeno:</label>
+      <input type="text" class="form-control" placeholder="Buscar por nombre..." [(ngModel)]="filtro" name="filtro" />
+    </section>
+
+    <section class="mb-5">
+      <h5 class="section-title">Alérgenos existentes</h5>
+      <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped mt-3 small">
+          <thead class="table-danger">
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let al of alergenoFiltrado()">
+            <td>{{ al.name }}</td>
+            <td>{{ al.description }}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="eliminarAlergeno(al.id)">Eliminar</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

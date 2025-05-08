@@ -10,9 +10,9 @@ import {DataProtectionComponent} from "./components/legal/data-protection/data-p
 import {LegalNoticeComponent} from "./components/legal/legal-notice/legal-notice.component";
 import {PrivacityPolicyComponent} from "./components/legal/privacity-policy/privacity-policy.component";
 import {ProductDetailComponent} from "./components/products/product-detail/product-detail.component";
-// import {authGuard} from "./guards/auth.guards"; // Comentar el guard para deshabilitar la protección
-// import {adminGuard} from "./guards/admin.guards"; // Comentar el guard para deshabilitar la protección
 import {AdminComponent} from "./components/admin/admin/admin.component";
+import {authGuard} from "./guards/auth.guards";
+import {adminGuard} from "./guards/admin.guards";
 
 export const routes: Routes = [
   {
@@ -22,23 +22,23 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: AdminComponent, // Desactivado el guard para esta ruta
-    // canActivate: [authGuard] // Comentar el guard
+    component: LandingPageComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'products-cart',
     component: ProductsCartComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard]
   },
   {
     path: 'contact',
     component: ContactComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard]
   },
   {
     path: 'cart',
     component: CartComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard]
   },
   {
     path: 'signIn',
@@ -52,12 +52,12 @@ export const routes: Routes = [
   {
     path: 'product-detail',
     component: ProductDetailComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard]
   },
   {
     path: 'user-space',
     component: UserSpaceComponent,
-    // canActivate: [authGuard] // Comentar el guard
+    canActivate: [authGuard]
   },
   {
     path: 'terms',
@@ -78,7 +78,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    // canActivate: [adminGuard], // Comentar el guard
+    canActivate: [adminGuard],
     children: [
       {
         path: 'admin-products',
@@ -109,6 +109,11 @@ export const routes: Routes = [
         path: 'admin-ingredients',
         loadComponent: () => import('./components/admin/admin-ingredients/admin-ingredients.component')
           .then(m => m.AdminIngredientsComponent)
+      },
+      {
+        path: 'admin-allergens',
+        loadComponent: () => import('./components/admin/admin-allergens/admin-allergens.component')
+          .then(m => m.AdminAllergensComponent)
       },
 
       {
