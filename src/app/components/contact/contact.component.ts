@@ -56,7 +56,8 @@ export class ContactComponent {
       },
       error: (err) => {
         console.error('Error al enviar el formulario: ', err);
-        this.mostrarToast('Error al enviar el formulario', false);
+        const error = err.error?.message
+        this.mostrarToast(error, false,);
       }
     });
   }
