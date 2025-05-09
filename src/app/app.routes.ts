@@ -13,6 +13,7 @@ import {ProductDetailComponent} from "./components/products/product-detail/produ
 import {AdminComponent} from "./components/admin/admin/admin.component";
 import {authGuard} from "./guards/auth.guards";
 import {adminGuard} from "./guards/admin.guards";
+import {PaymentSuccessComponent} from "./components/payment/payment-success/payment-success.component";
 
 export const routes: Routes = [
   {
@@ -40,6 +41,12 @@ export const routes: Routes = [
     component: CartComponent,
     canActivate: [authGuard]
   },
+  {
+    path: 'payment-success/:orderId',
+    component: PaymentSuccessComponent,
+    canActivate: [authGuard]
+  }
+  ,
   {
     path: 'signIn',
     component: SignInComponent
