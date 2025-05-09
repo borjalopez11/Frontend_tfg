@@ -101,12 +101,19 @@ export class CartComponent implements OnInit {
   }*/
 
   procederAlPago() {
-    const restaurantId = 2;
+    const restaurantId = 1;
 
     this.cartService.createOrder(restaurantId).subscribe({
       next: (response) => {
         if (response.payment_url) {
-          window.location.href = response.payment_url;
+
+          this.productos = [];
+          this.total = 0;
+          this.subtotal = 0;
+
+          setTimeout(() => {
+            window.location.href = response.payment_url;
+          }, 200);
         } else {
           console.error('No se recibió una URL de pago válida');
         }

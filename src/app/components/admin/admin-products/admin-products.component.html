@@ -15,7 +15,7 @@
       </select>
 
       <label for="imageInput">Imagen del producto:</label>
-      <input type="file" id="imageInput" (change)="onImageSelected($event)" accept="image/*" class="form-control mb-2" />
+      <input type="file" id="imageInput" #imageInput (change)="onImageSelected($event)" accept="image/*" class="form-control mb-2" />
 
       <label>Agregar Ingrediente:</label>
       <div class="row g-2">

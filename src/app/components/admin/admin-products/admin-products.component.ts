@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { CommonModule, NgForOf } from "@angular/common";
@@ -12,11 +12,13 @@ import { AuthService } from "../../../services/auth.service";
   styleUrl: './admin-products.component.css'
 })
 export class AdminProductsComponent implements OnInit {
-  restaurantId = 1;
 
+  restaurantId = 1;
   products: any[] = [];
   categories: any[] = [];
   ingredients: any[] = [];
+
+  @ViewChild('imageInput') imageInputRef!: ElementRef<HTMLInputElement>;
 
   newProduct = {
     name: '',
@@ -67,7 +69,7 @@ export class AdminProductsComponent implements OnInit {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.productImageBase64 = (reader.result as string).split(',')[1];
+        this.productImageBase64 = reader.result as string;
       };
       reader.readAsDataURL(file);
     }
@@ -106,6 +108,10 @@ export class AdminProductsComponent implements OnInit {
       next: () => {
         this.newProduct = { name: '', description: '', price: 0, rating: 0.0, categoryId: '', ingredientIds: [] };
         this.productImageBase64 = null;
+        this.newProductAllergenIds = [];
+        this.selectedIngredientId = '';
+        this.selectedAllergenId = '';
+        this.imageInputRef.nativeElement.value = '';
         this.loadProducts();
       },
       error: () => alert('Error al crear producto')

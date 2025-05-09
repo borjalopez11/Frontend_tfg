@@ -23,7 +23,14 @@ export class AppComponent {
   isUserSpaceRoute: boolean = false;
 
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+
 
   ngOnInit(): void {
     this.router.events.pipe(
