@@ -14,6 +14,7 @@ import {AdminComponent} from "./components/admin/admin/admin.component";
 import {authGuard} from "./guards/auth.guards";
 import {adminGuard} from "./guards/admin.guards";
 import {PaymentSuccessComponent} from "./components/payment/payment-success/payment-success.component";
+import {PaymentFailComponent} from "./components/payment-fail/payment-fail.component";
 
 export const routes: Routes = [
   {
@@ -45,8 +46,12 @@ export const routes: Routes = [
     path: 'payment-success/:orderId',
     component: PaymentSuccessComponent,
     canActivate: [authGuard]
-  }
-  ,
+  },
+  {
+    path: 'payment-fail',
+    component: PaymentFailComponent,
+    canActivate: [authGuard]
+  },
   {
     path: 'signIn',
     component: SignInComponent
