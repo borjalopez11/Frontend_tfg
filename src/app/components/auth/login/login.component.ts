@@ -36,7 +36,7 @@ export class LoginComponent {
         if (response.role === 'ROLE_RESTAURANT_OWNER'){
           this.router.navigate(['/admin']);
         }else {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/products-cart']);
         }
       },
       error: (error) => {

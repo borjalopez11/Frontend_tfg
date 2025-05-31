@@ -1,181 +1,223 @@
 html {
-    scroll-behavior: smooth;
-  }
-  .cart-title-container{
-    background-image: url("/assets/img/backCarta.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 200px;
-    width: 100%;
-  }
+  scroll-behavior: smooth;
+}
 
-  .titulo-carta {
-    font-size: 2.8rem;
-    font-weight: bold;
-    height: 200px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0 20px;
-  }
-
-  .categorias {
-    background-color: #1c1c1c;
-    padding: 10px 0;
-  }
-
-  .categorias .nav-link {
-    color: white !important;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1em;
-    margin: 0 15px;
-    transition: color 0.3s;
-  }
-
-  .categorias .nav-link:hover {
-    color: #e63946 !important;
-  }
-
-  .cartContainer {
-    padding: 50px 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .food-card {
-    color: black;
-    font-size: 20px;
-    background: white;
-    border: 2px solid red;
-    border-radius: 30px;
-    padding: 8px;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .food-card:hover {
-    transform: scale(1.015);
-  }
-
-  .food-card-image img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin: auto;
-    display: block;
-    max-height: 200px;
-  }
-
-  .food-card-body {
-    flex-grow: 1;
-    padding: 5px 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .food-card-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    padding: 5px 20px;
-    font-size: 1.2em;
-    margin-bottom: 2px;
-  }
-
-  .food-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 4px;
-    margin-bottom: 0;
-  }
-
-  .rating {
-    color: gold;
-    font-size: 0.85em;
-  }
-
-  .btn-ver-mas {
-    background-color: #e63946;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.85em;
-  }
-
-  .btn-ver-mas:hover {
-    background-color: #c82635;
-  }
-
-  /* Estilos para el pop-up */
-/* Fondo oscuro del pop-up */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   color: black;
-  overflow: hidden; /* Evita el scroll en el fondo */
+  overflow: hidden;
 }
 
-.header{
-  text-align: center;
-  margin-top: 10px;
-
-}
-/* Estilo para el contenedor de la fila del pop-up */
-.row-pop {
+.popup-body-mesa {
   background-color: white;
   border-radius: 35px;
   border: 3px solid #d62839;
-  max-height: 90vh; /* Limita la altura */
-  max-width: 900px;
-  overflow-y: auto; /* Permite scroll vertical si el contenido excede el alto */
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
 }
 
-/* Imagen del producto */
-.popup-image {
-  width: 300px;
-  max-height: 300px;
-  border-radius: var(--border-radius-primary);
-  object-fit: cover;
-  margin-bottom: 18px;
+.popup-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-/* Ajustes para la columna que contiene la imagen */
-.col-md-5-pop {
+.popup-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.popup-input:focus {
+  border-color: #e63946;
+  box-shadow: 0 0 5px rgba(230, 57, 70, 0.6);
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9em;
+}
+
+.popup-confirm-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #e63946;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.popup-confirm-btn:hover {
+  background-color: #c82635;
+}
+
+.cart-title-container {
+  background-image: url("/assets/img/backCarta.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 100%;
+}
+
+.titulo-carta {
+  font-size: 2.8rem;
+  font-weight: bold;
+  height: 200px;
+  color: white;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.categorias {
+  background-color: #1c1c1c;
+  padding: 10px 0;
+}
+
+.categorias .nav-link {
+  color: white !important;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+.categorias .nav-link:hover {
+  color: #e63946 !important;
+}
+
+.cartContainer {
+  padding: 50px 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.food-card {
+  color: black;
+  font-size: 20px;
+  background: white;
+  border: 2px solid red;
+  border-radius: 30px;
+  padding: 8px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.food-card:hover {
+  transform: scale(1.015);
+}
+
+.food-card-image img {
+  max-width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: auto;
+  display: block;
+}
+
+.food-card-body {
+  flex-grow: 1;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.food-card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 5px 20px;
+  font-size: 1.2em;
+  margin-bottom: 2px;
+}
+
+.food-card-footer {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-/* Estilo para la columna que contiene la descripción */
-.col-md-7 {
-  max-height: 80vh; /* Limita la altura de la columna de descripción */
-  overflow-y: auto; /* Si el contenido de la columna excede el alto, se permite hacer scroll */
+.rating {
+  color: gold;
+  font-size: 0.85em;
 }
 
-/* Cabecera del pop-up (Tipo de producto y nombre) */
+.btn-ver-mas {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.btn-ver-mas:hover {
+  background-color: #c82635;
+}
+
+.popup-body {
+  background-color: white;
+  border-radius: 35px;
+  border: 3px solid #d62839;
+  padding: 30px;
+  max-height: 90vh;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  overflow: auto;
+}
+
+.popup-image {
+  width: 300px;
+  max-height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.popup-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  flex: 1;
+}
+
 .header {
   text-align: center;
   margin-top: 10px;
@@ -184,11 +226,11 @@ html {
 .product-type {
   color: gray;
   font-size: 1.1em;
-  text-transform: uppercase; /* Asegura que el tipo de producto esté en mayúsculas */
+  text-transform: uppercase;
 }
 
 h2 {
-  font-size: 3em; /* Aumenta el tamaño del nombre del producto */
+  font-size: 3em;
   font-weight: bold;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -198,38 +240,21 @@ h2 {
   margin-bottom: 20px;
   font-size: 1.1em;
   line-height: 1.5;
-  white-space: normal; /* Permite que el texto haga salto de línea */
-  word-break: break-word; /* Rompe palabras largas */
-  overflow-wrap: break-word; /* Rompe las palabras para que no se desborden */
-  max-width: 100%; /* Asegura que el ancho no se extienda más allá del contenedor */
-  height: auto; /* Deja que la altura crezca si es necesario */
-  overflow: auto; /* Activa el scroll si el texto se alarga más de lo permitido */
+  white-space: normal;
+  word-break: break-word;
+  overflow: auto;
+  max-width: 100%;
 }
 
-/* Línea separadora */
 .separator {
   margin: 20px 0;
   border-top: 1px solid #ccc;
 }
 
-/* Alérgenos */
-.allergens {
-  font-size: 1.1em;
-  margin-bottom: 20px;
-}
-
-.allergens span {
-  display: block;
-}
-
-.allergens span::after {
-  content: " | "; /* Separa los alérgenos con una barra */
-}
-
-/* Valoración del producto */
-.rating {
-  font-size: 1.2em;
-  color: gold;
+.rating-container {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .add-to-cart {
@@ -247,45 +272,31 @@ h2 {
 .add-to-cart:hover {
   background-color: #d62839;
 }
-.popup-body {
-  background-color: white;
-  border-radius: 35px;
-  border: 3px solid #d62839;
-  padding: 30px;
-  max-height: 90vh;
-  max-width: 1100px;
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  overflow: auto;
+.toast-success {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 3000;
+  font-size: 1rem;
+  animation: fadeInOut 3s ease-in-out forwards;
 }
 
-.popup-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-left: 20px;
-  flex: 1;
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translate(-50%, 20px); }
+  10%  { opacity: 1; transform: translate(-50%, 0); }
+  90%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 20px); }
 }
 
-.rating-container {
-  text-align: left;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-
-
-.popup-close-btn {
-  background-color: transparent;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: #e63946;
-}
 
 @media (max-width: 768px) {
-  .row-pop {
+  .popup-body {
     flex-direction: column;
     width: 90%;
   }
