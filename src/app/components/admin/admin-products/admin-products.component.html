@@ -1,15 +1,23 @@
 <div class="admin-products-layout">
-  <div class="product-creation-preview">
+  <div class="mb-3 d-flex gap-3">
+    <button (click)="modoFormulario = 'crear'">Crear Producto</button>
+    <button (click)="modoFormulario = 'editar'">Editar Producto</button>
+  </div>
+
+  <div *ngIf="modoFormulario === 'crear'" class="product-creation-preview">
     <div class="creation-form">
       <h3>Crear nuevo producto</h3>
+      <label>Nombre:</label>
+      <input [(ngModel)]="newProduct.name" placeholder="Nombre del producto" />
+      <label>Descripción:</label>
+      <textarea [(ngModel)]="newProduct.description" placeholder="Descripción" rows="3"></textarea>
+      <label>Precio:</label>
+      <input type="number" [(ngModel)]="newProduct.price" placeholder="Precio (€)" />
+      <label>Rating:</label>
+      <input type="number" [(ngModel)]="newProduct.rating" step="0.1" min="0" max="5" placeholder="Rating (0.0 - 5.0)" />
 
-      <input [(ngModel)]="newProduct.name" name="name" placeholder="Nombre del producto" required />
-      <textarea [(ngModel)]="newProduct.description" name="description" placeholder="Descripción" rows="3"></textarea>
-      <input type="number" [(ngModel)]="newProduct.price" name="price" placeholder="Precio (€)" />
-      <input type="number" [(ngModel)]="newProduct.rating" name="rating" step="0.1" min="0" max="5" placeholder="Rating (0.0 - 5.0)" />
-
-
-      <select [(ngModel)]="newProduct.categoryId" name="categoryId" required>
+      <label>Categoría:</label>
+      <select [(ngModel)]="newProduct.categoryId">
         <option value="">Seleccionar categoría</option>
         <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
       </select>
@@ -29,6 +37,7 @@
           <button type="button" class="btn btn-secondary w-100" (click)="addIngredient()">Añadir</button>
         </div>
       </div>
+
       <label>Agregar Alérgeno:</label>
       <div class="row g-2">
         <div class="col-md-9 col-12">
@@ -42,21 +51,6 @@
         </div>
       </div>
 
-      <div class="selected-ingredients mt-2">
-  <span *ngFor="let id of newProductAllergenIds" class="ingredient-pill">
-    {{ getAllergenName(id) }}
-    <button type="button" (click)="removeAllergen(id)">✖</button>
-  </span>
-      </div>
-
-
-      <div class="selected-ingredients mt-2">
-        <span *ngFor="let id of newProduct.ingredientIds" class="ingredient-pill">
-          {{ getIngredientName(id) }}
-          <button type="button" (click)="removeIngredient(id)">✖</button>
-        </span>
-      </div>
-
       <button (click)="crearProducto()">Crear producto</button>
     </div>
 
@@ -66,14 +60,82 @@
       <p><strong>Descripción:</strong> {{ newProduct.description }}</p>
       <p><strong>Precio:</strong> {{ newProduct.price }} €</p>
       <p><strong>Categoría:</strong> {{ getCategoryName(newProduct.categoryId) }}</p>
-      <p><strong>Ingredientes:</strong>
-        <span *ngFor="let id of newProduct.ingredientIds">
-          {{ getIngredientName(id) }}{{ id !== newProduct.ingredientIds[newProduct.ingredientIds.length - 1] ? ', ' : '' }}
+      <p><strong>Ingredientes:</strong></p>
+      <div class="selected-ingredients mt-2">
+        <span *ngFor="let id of newProduct.ingredientIds" class="ingredient-pill">
+          {{ getIngredientName(id) }}
+          <button type="button" (click)="removeIngredient(id)">✖</button>
         </span>
-      </p>
+      </div>
+      <p><strong>Alérgenos:</strong></p>
+      <div class="selected-ingredients mt-2">
+        <span *ngFor="let id of newProductAllergenIds" class="ingredient-pill">
+          {{ getAllergenName(id) }}
+          <button type="button" (click)="removeAllergen(id)">✖</button>
+        </span>
+      </div>
       <div *ngIf="productImageBase64">
         <p><strong>Imagen cargada:</strong></p>
         <img [src]="productImageBase64" alt="Previsualización" style="max-width: 150px; border-radius: 8px;" />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="modoFormulario === 'editar'" class="product-creation-preview">
+    <div class="creation-form">
+      <h3>Editar producto</h3>
+      <label>Seleccionar producto:</label>
+      <select [(ngModel)]="selectedEditProductId" (change)="cargarProductoAEditar()">
+        <option value="">Seleccionar producto</option>
+        <option *ngFor="let p of products" [ngValue]="p.id">{{ p.name }}</option>
+      </select>
+
+      <ng-container *ngIf="editingProduct">
+        <label>Nombre:</label>
+        <input [(ngModel)]="editingProduct.name" placeholder="Nombre del producto" />
+        <label>Descripción:</label>
+        <textarea [(ngModel)]="editingProduct.description" placeholder="Descripción" rows="3"></textarea>
+        <label>Precio:</label>
+        <input type="number" [(ngModel)]="editingProduct.price" placeholder="Precio (€)" />
+        <label>Rating:</label>
+        <input type="number" [(ngModel)]="editingProduct.rating" step="0.1" min="0" max="5" placeholder="Rating (0.0 - 5.0)" />
+
+        <label>Categoría:</label>
+        <select [(ngModel)]="editingProduct.categoryId">
+          <option *ngFor="let cat of categories" [ngValue]="cat.id">{{ cat.name }}</option>
+        </select>
+
+        <label for="editImageInput">Imagen del producto:</label>
+        <input type="file" id="editImageInput" (change)="onImageSelected($event)" accept="image/*" class="form-control mb-2" />
+
+        <button class="btn btn-primary mt-2" (click)="guardarEdicion()">Guardar cambios</button>
+        <button class="btn btn-secondary mt-2 ms-2" (click)="cancelarEdicion()">Cancelar</button>
+      </ng-container>
+    </div>
+
+    <div class="preview" *ngIf="editingProduct">
+      <h4>Previsualización</h4>
+      <p><strong>Nombre:</strong> {{ editingProduct.name }}</p>
+      <p><strong>Descripción:</strong> {{ editingProduct.description }}</p>
+      <p><strong>Precio:</strong> {{ editingProduct.price }} €</p>
+      <p><strong>Categoría:</strong> {{ getCategoryName(editingProduct.categoryId) }}</p>
+      <p><strong>Ingredientes:</strong></p>
+      <div class="selected-ingredients mt-2">
+        <span *ngFor="let id of editingProduct.ingredientIds" class="ingredient-pill">
+          {{ getIngredientName(id) }}
+          <button type="button" (click)="removeEditingIngredient(id)">✖</button>
+        </span>
+      </div>
+      <p><strong>Alérgenos:</strong></p>
+      <div class="selected-ingredients mt-2">
+        <span *ngFor="let al of editingProduct.allergens" class="ingredient-pill">
+          {{ getAllergenName(al.id) }}
+          <button type="button" (click)="removeEditingAllergen(al.id)">✖</button>
+        </span>
+      </div>
+      <div *ngIf="editingProduct.image">
+        <p><strong>Imagen actual:</strong></p>
+        <img [src]="editingProduct.image" alt="Imagen" style="max-width: 150px; border-radius: 8px;" />
       </div>
     </div>
   </div>

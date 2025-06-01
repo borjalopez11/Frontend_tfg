@@ -17,6 +17,9 @@
   flex: 1;
   min-width: 300px;
 }
+.admin-products-layout > .mb-3 button {
+  min-width: 160px;
+}
 
 input, textarea, select {
   display: block;

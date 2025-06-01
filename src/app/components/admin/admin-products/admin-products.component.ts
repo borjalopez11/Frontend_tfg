@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { CommonModule, NgForOf } from "@angular/common";
@@ -17,6 +17,11 @@ export class AdminProductsComponent implements OnInit {
   products: any[] = [];
   categories: any[] = [];
   ingredients: any[] = [];
+  allergens: any[] = [];
+
+  modoFormulario: 'crear' | 'editar' | '' = '';
+  editingProduct: any = null;
+  selectedEditProductId: number | null = null;
 
   @ViewChild('imageInput') imageInputRef!: ElementRef<HTMLInputElement>;
 
@@ -30,6 +35,12 @@ export class AdminProductsComponent implements OnInit {
   };
 
   productImageBase64: string | null = null;
+  newProductAllergenIds: number[] = [];
+  selectedIngredientId: number | '' = '';
+  selectedAllergenId: number | '' = '';
+
+  filterName: string = '';
+  filterCategoryId: string = '';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -48,7 +59,12 @@ export class AdminProductsComponent implements OnInit {
   loadProducts() {
     this.http.get<any[]>(`http://localhost:5001/api/food/restaurant/${this.restaurantId}`, {
       headers: this.getAuthHeaders(),
-    }).subscribe(data => this.products = data);
+    }).subscribe(data => {
+      this.products = data.map(product => ({
+        ...product,
+        image: product.image ? `http://localhost:5001/uploads/${product.image}` : 'assets/imgNotFound.png',
+      }));
+    });
   }
 
   loadCategories() {
@@ -63,17 +79,29 @@ export class AdminProductsComponent implements OnInit {
     }).subscribe(data => this.ingredients = data);
   }
 
+  loadAllergens() {
+    this.http.get<any[]>('http://localhost:5001/api/admin/allergen/all', {
+      headers: this.getAuthHeaders()
+    }).subscribe(data => this.allergens = data);
+  }
+  
   onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.productImageBase64 = reader.result as string;
+        const base64 = reader.result as string;
+        if (this.modoFormulario === 'crear') {
+          this.productImageBase64 = base64;
+        } else if (this.modoFormulario === 'editar' && this.editingProduct) {
+          this.editingProduct.image = base64;
+        }
       };
       reader.readAsDataURL(file);
     }
   }
+
 
   crearProducto() {
     if (!this.productImageBase64) {
@@ -124,9 +152,6 @@ export class AdminProductsComponent implements OnInit {
     }).subscribe(() => this.loadProducts());
   }
 
-  filterName: string = '';
-  filterCategoryId: string = '';
-
   getCategoryName(id: number | string): string {
     return this.categories.find(c => c.id === +id)?.name || '';
   }
@@ -135,18 +160,16 @@ export class AdminProductsComponent implements OnInit {
     return this.ingredients.find(i => i.id === id)?.name || '';
   }
 
-  getFilteredProducts() {
-    return this.products.filter(p => {
-      const matchesName = p.name.toLowerCase().includes(this.filterName.toLowerCase());
-      const matchesCategory = this.filterCategoryId ? p.foodCategory?.id === +this.filterCategoryId : true;
-      return matchesName && matchesCategory;
-    });
+  getAllergenName(id: number): string {
+    return this.allergens.find(a => a.id === id)?.name || '';
   }
-
-  selectedIngredientId: number | '' = '';
 
   availableIngredients() {
     return this.ingredients.filter(ing => !this.newProduct.ingredientIds.includes(ing.id));
+  }
+
+  availableAllergens() {
+    return this.allergens.filter(al => !this.newProductAllergenIds.includes(al.id));
   }
 
   addIngredient() {
@@ -160,23 +183,16 @@ export class AdminProductsComponent implements OnInit {
     this.newProduct.ingredientIds = this.newProduct.ingredientIds.filter(i => i !== id);
   }
 
-  allergens: any[] = [];
-  selectedAllergenId: number | '' = '';
-  newProductAllergenIds: number[] = [];
-
-  loadAllergens() {
-    this.http.get<any[]>('http://localhost:5001/api/admin/allergen/all', {
-      headers: this.getAuthHeaders()
-    }).subscribe(data => this.allergens = data);
+  removeEditingIngredient(id: number): void {
+    this.editingProduct.ingredientIds = this.editingProduct.ingredientIds.filter((i: number) => i !== id);
   }
 
-  availableAllergens() {
-    return this.allergens.filter(al => !this.newProductAllergenIds.includes(al.id));
+  removeEditingAllergen(id: number): void {
+    this.editingProduct.allergens = this.editingProduct.allergens.filter((a: { id: number }) => a.id !== id);
   }
 
-  getAllergenName(id: number): string {
-    return this.allergens.find(a => a.id === id)?.name || '';
-  }
+
+
 
   addAllergen() {
     if (this.selectedAllergenId && !this.newProductAllergenIds.includes(+this.selectedAllergenId)) {
@@ -189,4 +205,54 @@ export class AdminProductsComponent implements OnInit {
     this.newProductAllergenIds = this.newProductAllergenIds.filter(a => a !== id);
   }
 
+  getFilteredProducts() {
+    return this.products.filter(p => {
+      const matchesName = p.name.toLowerCase().includes(this.filterName.toLowerCase());
+      const matchesCategory = this.filterCategoryId ? p.foodCategory?.id === +this.filterCategoryId : true;
+      return matchesName && matchesCategory;
+    });
+  }
+
+  cargarProductoAEditar() {
+    const producto = this.products.find(p => p.id === this.selectedEditProductId);
+    if (producto) {
+      this.editingProduct = {
+        ...producto,
+        categoryId: producto.foodCategory?.id || '',
+        image: producto.image
+      };
+    }
+  }
+
+
+  cancelarEdicion() {
+    this.editingProduct = null;
+    this.selectedEditProductId = null;
+    this.modoFormulario = '';
+  }
+
+  guardarEdicion() {
+    const body = {
+      name: this.editingProduct.name,
+      description: this.editingProduct.description,
+      price: this.editingProduct.price,
+      rating: this.editingProduct.rating,
+      foodCategory: { id: this.editingProduct.categoryId },
+      image: this.editingProduct.image,
+      restaurantId: this.restaurantId,
+      restaurantName: null
+    };
+
+    this.http.put(`http://localhost:5001/api/admin/food/${this.editingProduct.id}`, body, {
+      headers: this.getAuthHeaders(),
+    }).subscribe({
+      next: () => {
+        this.editingProduct = null;
+        this.selectedEditProductId = null;
+        this.loadProducts();
+        this.modoFormulario = '';
+      },
+      error: () => alert('Error al editar producto'),
+    });
+  }
 }
