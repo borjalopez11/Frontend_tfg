@@ -93,6 +93,11 @@ export const routes: Routes = [
     canActivate: [adminGuard],
     children: [
       {
+        path: 'admin-orders',
+        loadComponent: () => import('./components/admin/admin-orders/admin-orders.component')
+          .then(m => m.AdminOrdersComponent)
+      },
+      {
         path: 'admin-products',
         loadComponent: () => import('./components/admin/admin-products/admin-products.component')
           .then(m => m.AdminProductsComponent)
