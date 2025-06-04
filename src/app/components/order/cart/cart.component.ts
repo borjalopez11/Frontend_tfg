@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../interface/interface';
-import { CommonModule, NgForOf } from '@angular/common';
+import {CommonModule, NgForOf, NgIf} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {CartService} from "../../../services/cart.service";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [FormsModule, NgForOf],
+  imports: [FormsModule, NgForOf, NgIf],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -18,11 +18,15 @@ export class CartComponent implements OnInit {
   promoCode: string = '';
   subtotal: number = 0;
   total: number = 0;
+  mesaNumero: number | null = null;
+
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.loadCart();
+    const mesa = localStorage.getItem('mesaNumero');
+    this.mesaNumero = mesa ? +mesa : null;
   }
 
   loadCart() {
@@ -102,19 +106,24 @@ export class CartComponent implements OnInit {
 
   procederAlPago() {
     const restaurantId = 1;
+    const mesaNumero = localStorage.getItem('mesaNumero');
 
-    this.cartService.createOrder(restaurantId).subscribe({
+    if (!mesaNumero) {
+      console.error('No hay número de mesa en localStorage');
+      return;
+    }
+
+    const payload = {
+      restaurantId: restaurantId,
+      tableNumber: +mesaNumero
+    };
+
+    this.cartService.createOrderWithMesa(payload).subscribe({
       next: (response) => {
         if (response.payment_url) {
-
-          this.productos = [];
-          this.total = 0;
-          this.subtotal = 0;
-
-          setTimeout(() => {
-            window.location.href = response.payment_url;
-          }, 200);
-        } else {
+          window.location.href = response.payment_url; // Solo redirige
+        }
+        else {
           console.error('No se recibió una URL de pago válida');
         }
       },

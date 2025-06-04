@@ -1,53 +1,39 @@
-.legal-notice {
-  background-color: #000;
-  color: #fff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  text-align: center;
-}
-
-.legal-notice h2,
-.legal-notice h4 {
-  font-weight: bold;
-  color: #e63946;
-}
-
-.legal-notice p {
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: #fff;
-}
-
-.error-container {
+.payment-fail-container {
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.back-button {
-  margin-top: 1.5rem;
-  padding: 10px 20px;
-  border: none;
-  background-color: #e63946;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
+.fail-icon {
+  font-size: 4rem;
+  color: white;
+  opacity: 0;
+  animation: fadeInFail 0.8s ease forwards;
+}
+
+.payment-fail-message {
+  margin-top: 20px;
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 1em;
+  color: white;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: slideInFailText 0.6s ease forwards;
+  animation-delay: 0.8s;
 }
 
-@media (max-width: 768px) {
-  .legal-notice {
-    padding: 1rem;
-  }
+@keyframes fadeInFail {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
 
-  .legal-notice h2 {
-    font-size: 1.5em;
-  }
-
-  .legal-notice p {
-    font-size: 1em;
+@keyframes slideInFailText {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

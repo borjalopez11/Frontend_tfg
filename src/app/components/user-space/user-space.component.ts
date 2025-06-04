@@ -159,8 +159,7 @@ export class UserSpaceComponent implements OnInit {
   }
 
   cerrarSesion(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.clear();
     window.location.href = '/login';
   }
 

@@ -1,22 +1,39 @@
-body {
+.payment-success-container {
   background-color: black;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  overflow: hidden;
 }
 
-.toast-container {
-  position: relative;
+.check-icon {
+  font-size: 4rem;
+  color: white;
+  opacity: 0;
+  animation: fadeInCheck 0.8s ease forwards;
 }
 
-.toast {
-  display: block; /* Mostrar directamente */
-  opacity: 1;
-  animation: fadein 0.5s;
+.payment-success-message {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: slideInText 0.6s ease forwards;
+  animation-delay: 0.8s;
 }
 
-@keyframes fadein {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInCheck {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInText {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

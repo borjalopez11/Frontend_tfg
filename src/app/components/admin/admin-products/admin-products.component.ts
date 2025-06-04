@@ -84,7 +84,7 @@ export class AdminProductsComponent implements OnInit {
       headers: this.getAuthHeaders()
     }).subscribe(data => this.allergens = data);
   }
-  
+
   onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -191,6 +191,29 @@ export class AdminProductsComponent implements OnInit {
     this.editingProduct.allergens = this.editingProduct.allergens.filter((a: { id: number }) => a.id !== id);
   }
 
+  addEditingIngredient() {
+    if (
+      this.selectedIngredientId &&
+      !this.editingProduct.ingredientIds.includes(+this.selectedIngredientId)
+    ) {
+      this.editingProduct.ingredientIds.push(+this.selectedIngredientId);
+      this.selectedIngredientId = '';
+    }
+  }
+
+  addEditingAllergen() {
+    if (
+      this.selectedAllergenId &&
+      !this.editingProduct.allergens.some((a: any) => a.id === +this.selectedAllergenId)
+    ) {
+      const allergen = this.allergens.find(a => a.id === +this.selectedAllergenId);
+      if (allergen) {
+        this.editingProduct.allergens.push({ id: allergen.id, name: allergen.name });
+        this.selectedAllergenId = '';
+      }
+    }
+  }
+
 
 
 
@@ -214,15 +237,28 @@ export class AdminProductsComponent implements OnInit {
   }
 
   cargarProductoAEditar() {
-    const producto = this.products.find(p => p.id === this.selectedEditProductId);
-    if (producto) {
-      this.editingProduct = {
-        ...producto,
-        categoryId: producto.foodCategory?.id || '',
-        image: producto.image
-      };
-    }
+    if (!this.selectedEditProductId) return;
+
+    this.http.get<any>(`http://localhost:5001/api/food/${this.selectedEditProductId}`, {
+      headers: this.getAuthHeaders()
+    }).subscribe({
+      next: data => {
+        this.editingProduct = {
+          ...data,
+          categoryId: data.foodCategory?.id || '',
+          ingredientIds: data.ingredients?.map((i: any) => i.id) || [],
+          allergens: data.allergens || [],
+          image: data.image ? `http://localhost:5001/uploads/${data.image}` : 'assets/imgNotFound.png'
+        };
+      },
+      error: err => {
+        console.error('Error al cargar el producto completo:', err);
+        alert('No se pudo cargar el producto');
+      }
+    });
   }
+
+
 
 
   cancelarEdicion() {
@@ -232,15 +268,26 @@ export class AdminProductsComponent implements OnInit {
   }
 
   guardarEdicion() {
+    const imagenOriginal = this.editingProduct.image;
+    let imagenFinal: string;
+
+    if (imagenOriginal?.startsWith('data:image')) {
+      imagenFinal = imagenOriginal;
+    } else {
+      imagenFinal = imagenOriginal?.split('/').pop() ?? null;
+    }
+
     const body = {
+      id: this.editingProduct.id,
       name: this.editingProduct.name,
       description: this.editingProduct.description,
       price: this.editingProduct.price,
       rating: this.editingProduct.rating,
       foodCategory: { id: this.editingProduct.categoryId },
-      image: this.editingProduct.image,
+      image: imagenFinal,
       restaurantId: this.restaurantId,
-      restaurantName: null
+      ingredients: this.editingProduct.ingredientIds.map((id: number) => ({ id })),
+      allergens: this.editingProduct.allergens.map((a: { id: number }) => ({ id: a.id }))
     };
 
     this.http.put(`http://localhost:5001/api/admin/food/${this.editingProduct.id}`, body, {
@@ -252,7 +299,10 @@ export class AdminProductsComponent implements OnInit {
         this.loadProducts();
         this.modoFormulario = '';
       },
-      error: () => alert('Error al editar producto'),
+      error: (err) => {
+        console.error('Error al editar producto', err);
+        alert('Error al editar producto');
+      },
     });
   }
 }

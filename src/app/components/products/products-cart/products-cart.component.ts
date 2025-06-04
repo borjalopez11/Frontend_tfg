@@ -34,8 +34,14 @@ export class ProductsCartComponent implements OnInit {
   constructor(private productService: ProductService,  private http: HttpClient) {}
 
   ngOnInit(): void {
+    const mesaGuardada = localStorage.getItem('mesaNumero');
+    if (mesaGuardada) {
+      this.mesaNumero = +mesaGuardada;
+      this.mesaAsignada = true;
+    }
     this.loadProducts();
   }
+
 
   private loadProducts(): void {
     this.isLoading = true;
@@ -124,6 +130,7 @@ export class ProductsCartComponent implements OnInit {
         this.http.put(assignUrl, {}, headers).subscribe({
           next: () => {
             this.mesaAsignada = true;
+            localStorage.setItem('mesaNumero', this.mesaNumero!.toString());
             this.errorMensajeMesa = '';
             this.mensajeToast = 'Mesa asignada correctamente';
             this.mostrarToast = true;

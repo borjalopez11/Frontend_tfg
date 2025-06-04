@@ -108,6 +108,32 @@
         <label for="editImageInput">Imagen del producto:</label>
         <input type="file" id="editImageInput" (change)="onImageSelected($event)" accept="image/*" class="form-control mb-2" />
 
+        <label>Agregar Ingrediente:</label>
+        <div class="row g-2">
+          <div class="col-md-9 col-12">
+            <select class="form-select" [(ngModel)]="selectedIngredientId">
+              <option [ngValue]="''" disabled selected>Selecciona un ingrediente</option>
+              <option *ngFor="let ing of ingredients" [value]="ing.id">{{ ing.name }}</option>
+            </select>
+          </div>
+          <div class="col-md-3 col-12">
+            <button type="button" class="btn btn-secondary w-100" (click)="addEditingIngredient()">Añadir</button>
+          </div>
+        </div>
+
+        <label>Agregar Alérgeno:</label>
+        <div class="row g-2">
+          <div class="col-md-9 col-12">
+            <select class="form-select" [(ngModel)]="selectedAllergenId">
+              <option [ngValue]="''" disabled selected>Selecciona un alérgeno</option>
+              <option *ngFor="let al of allergens" [value]="al.id">{{ al.name }}</option>
+            </select>
+          </div>
+          <div class="col-md-3 col-12">
+            <button type="button" class="btn btn-secondary w-100" (click)="addEditingAllergen()">Añadir</button>
+          </div>
+        </div>
+
         <button class="btn btn-primary mt-2" (click)="guardarEdicion()">Guardar cambios</button>
         <button class="btn btn-secondary mt-2 ms-2" (click)="cancelarEdicion()">Cancelar</button>
       </ng-container>

@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {timeout} from "rxjs";
+import {CartService} from "../../../services/cart.service";
 
 @Component({
   selector: 'app-payment-success',
@@ -10,10 +11,13 @@ import {timeout} from "rxjs";
   styleUrl: './payment-success.component.css'
 })
 export class PaymentSuccessComponent {
-  private readonly router: Router = inject(Router);
+  constructor(private cartService: CartService, private router: Router) {
+    this.clearCartAndRedirect();
+  }
 
+  clearCartAndRedirect(): void {
+    this.cartService.clearCart().subscribe();
 
-  constructor() {
     setTimeout(() => {
       this.router.navigateByUrl("/home");
     }, 3000);

@@ -27,10 +27,16 @@ export class CartService {
     return this.http.delete(`${this.baseUrl}cart-item/${itemId}/remove`);
   }
 
-  createOrder(restaurantId: number) {
-    const body = { restaurantId };
-    return this.http.post<any>(`${this.baseUrl}order`, body);
+  createOrderWithMesa(payload: { restaurantId: number, tableNumber: number }) {
+    return this.http.post<any>('http://localhost:5001/tables/order', payload);
   }
+
+  clearCart() {
+    return this.http.put('http://localhost:5001/api/cart/clear', {});
+  }
+
+
+
 
 
 

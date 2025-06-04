@@ -47,6 +47,11 @@
           <p>Total:</p>
           <p class="total">{{ total }} EUR</p>
         </div>
+        <div class="summary-item" *ngIf="mesaNumero">
+          <p>Mesa asignada:</p>
+          <p class="total">{{ mesaNumero }}</p>
+        </div>
+
       </div>
 
       <div class="checkout-btn-wrapper">
