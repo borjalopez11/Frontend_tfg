@@ -1,0 +1,83 @@
+//COLORES
+$color-primary-red: #D32F2F;
+$color-primary-light-dark: #333333;
+$color-background-dark: rgba(0, 0, 0, 0.8);
+$color-text-dark: #222;
+$color-text-light: #fff;
+$color-border: #ccc;
+
+
+
+//MODALES DEL CONTENIDO ILEGAL
+.legal-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: $color-primary-light-dark;
+  overflow: hidden;
+}
+
+.legal-modal-body {
+  background-color: white;
+  border-radius: 8px;
+  padding:  30px 0;
+  max-height: 90vh;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.legal-modal-body::-webkit-scrollbar {
+  display: none;
+}
+.legal-modal-header h2{
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+
+
+.legal-modal-info {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  padding: 0 30px;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.legal-modal-info h4 {
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.legal-modal-info p,
+.legal-modal-info ul {
+  text-align: justify;
+  margin: 0 0 15px 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.legal--modal-info-btn{
+  width: 25%;
+  background-color: $color-primary-red ;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+

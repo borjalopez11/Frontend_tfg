@@ -3,10 +3,64 @@
     <h2 class="section-title text-center">Órdenes del Restaurante</h2>
 
     <section *ngIf="orders.length > 0" class="mb-4">
-      <table class="table table-dark table-bordered table-striped mt-3 small">
+      <h3 class="text-white mt-4">Órdenes pendientes</h3>
+      <table *ngIf="pendingOrders.length > 0" class="table table-dark table-bordered table-striped mt-2 small">
         <thead class="table-danger">
         <tr>
           <th>ID Orden</th>
+          <th>Estado</th>
+          <th>Mesa</th>
+          <th>Total Productos</th>
+          <th>Total €</th>
+          <th>Productos</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let orden of pendingOrders">
+          <td>{{ orden.id }}</td>
+          <td>{{ orden.orderStatus }}</td>
+          <td>{{ orden.tableNumber?.tableNumber }}</td>
+          <td>{{ orden.totalItem }}</td>
+          <td>{{ orden.totalPrice }} €</td>
+          <td>
+            <ul class="m-0 p-0" style="list-style: none;">
+              <li *ngFor="let item of orden.items">
+                {{ item.quantity }} × {{ item.food.name }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button
+              *ngIf="orden.orderStatus === 'PAGADO'"
+              class="btn btn-warning btn-sm"
+              (click)="updateOrderStatus(orden.id, 'PREPARACION')"
+            >
+              Poner en preparación
+            </button>
+
+            <button
+              *ngIf="orden.orderStatus === 'PREPARACION'"
+              class="btn btn-success btn-sm"
+              (click)="updateOrderStatus(orden.id, 'SERVIDO')"
+            >
+              Marcar como servido
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <section *ngIf="pendingOrders.length === 0" class="text-white mt-3">
+        No hay órdenes pendientes.
+      </section>
+
+      <h3 class="text-white mt-5">Órdenes finalizadas</h3>
+      <table *ngIf="completedOrders.length > 0" class="table table-dark table-bordered table-striped mt-2 small">
+        <thead class="table-secondary">
+        <tr>
+          <th>ID Orden</th>
+          <th>Estado</th>
           <th>Mesa</th>
           <th>Total Productos</th>
           <th>Total €</th>
@@ -14,8 +68,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let orden of orders">
+        <tr *ngFor="let orden of completedOrders">
           <td>{{ orden.id }}</td>
+          <td>{{ orden.orderStatus }}</td>
           <td>{{ orden.tableNumber?.tableNumber }}</td>
           <td>{{ orden.totalItem }}</td>
           <td>{{ orden.totalPrice }} €</td>
@@ -29,6 +84,10 @@
         </tr>
         </tbody>
       </table>
+
+      <section *ngIf="completedOrders.length === 0" class="text-white mt-3">
+        No hay órdenes finalizadas.
+      </section>
     </section>
 
     <section *ngIf="orders.length === 0" class="text-center text-white mt-5">

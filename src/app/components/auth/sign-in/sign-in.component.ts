@@ -3,6 +3,8 @@ import {Router, RouterLink} from "@angular/router";
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from "../../../services/auth.service";
 import {CommonModule} from "@angular/common";
+import {ModalTermsConditionsComponent} from "../../legal/modal-terms-conditions/modal-terms-conditions.component";
+import {ModalPrivacityPolicyComponent} from "../../legal/modal-privacity-policy/modal-privacity-policy.component";
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +13,9 @@ import {CommonModule} from "@angular/common";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    ModalTermsConditionsComponent,
+    ModalPrivacityPolicyComponent
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
@@ -21,6 +25,9 @@ export class SignInComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+
+
+
 
 
   public formSignup: FormGroup = this.fb.group({

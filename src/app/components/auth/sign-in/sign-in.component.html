@@ -112,87 +112,11 @@
   </div>
 
 
-  <div class="popup" *ngIf="showTermsModal || showPrivacyModal" (click)="closeModal()">
-    <div class="popup-body" (click)="$event.stopPropagation()">
-      <div class="popup-info">
-        <div class="header">
-          <h2 *ngIf="showTermsModal">Condiciones de uso</h2>
-          <h2 *ngIf="showPrivacyModal">Política de privacidad</h2>
 
-          <div *ngIf="showTermsModal">
-            <p>
-              Estas Condiciones de Uso regulan el acceso y uso del sitio web <strong>Wok My Noodles</strong> y los
-              servicios ofrecidos a través del mismo. Al registrarte o utilizar cualquier funcionalidad, aceptas estar
-              sujeto a estos términos.
-              <br><br><strong>Última actualización: 11/2/2025</strong>
-            </p>
+  <app-modal-terms-conditions *ngIf="showTermsModal" (closed)="showTermsModal = false"></app-modal-terms-conditions>
+  <app-modal-privacity-policy *ngIf="showPrivacyModal" (closed)="showPrivacyModal = false"></app-modal-privacity-policy>
 
-            <h4>1. Registro de Usuario</h4>
-            <p>Para realizar pedidos, es necesario crear una cuenta. Debes proporcionar información veraz y mantenerla
-              actualizada.</p>
 
-            <h4>2. Uso Permitido</h4>
-            <p>El sitio debe utilizarse únicamente con fines personales y legales. Está prohibido el uso del sitio para
-              actividades fraudulentas o maliciosas.</p>
-
-            <h4>3. Propiedad Intelectual</h4>
-            <p>Todo el contenido es propiedad de Wok My Noodles o sus licenciantes. No se permite su uso sin
-              autorización.</p>
-
-            <h4>4. Pedidos y Pagos</h4>
-            <p>Todos los pedidos están sujetos a disponibilidad y los precios pueden cambiar. Nos reservamos el derecho
-              de rechazar transacciones.</p>
-
-            <h4>5. Responsabilidad</h4>
-            <p>No nos responsabilizamos por daños indirectos o interrupciones del servicio.</p>
-
-            <h4>6. Modificaciones</h4>
-            <p>Estas condiciones pueden modificarse y serán efectivas al publicarse en esta sección.</p>
-
-            <h4>7. Contacto</h4>
-            <p>Para consultas: <strong>wokmynoodles&#64;gmail.com</strong></p>
-          </div>
-
-          <div *ngIf="showPrivacyModal">
-            <p>
-              En <strong>Wok My Noodles</strong>, nos comprometemos a proteger tu privacidad y garantizar la seguridad
-              de tus datos personales. Esta Política describe cómo recopilamos, usamos y protegemos tu información.
-              <br><br><strong>Última actualización: 11/2/2025</strong>
-            </p>
-
-            <h4>1. Información que Recopilamos</h4>
-            <p>Recopilamos datos como nombre, dirección, correo, teléfono y otra información necesaria para tus
-              pedidos.</p>
-
-            <h4>2. Uso de la Información</h4>
-            <ul>
-              <li>Procesar tus pedidos.</li>
-              <li>Mejorar tu experiencia en el sitio.</li>
-              <li>Enviar promociones y actualizaciones.</li>
-              <li>Ofrecer soporte al cliente.</li>
-            </ul>
-
-            <h4>3. Protección de Datos</h4>
-            <p>Usamos medidas de seguridad, aunque ninguna transmisión por Internet es 100% segura.</p>
-
-            <h4>4. Uso de Cookies</h4>
-            <p>Utilizamos cookies para personalizar la navegación. Puedes desactivarlas desde tu navegador.</p>
-
-            <h4>5. Compartir Información</h4>
-            <p>No vendemos tus datos. Solo se comparten con servicios necesarios como pagos o envíos.</p>
-
-            <h4>6. Derechos del Usuario</h4>
-            <p>Puedes acceder, corregir o eliminar tus datos escribiendo a <strong>wokmynoodles&#64;gmail.com</strong>.
-            </p>
-
-            <h4>7. Cambios en la Política</h4>
-            <p>Podemos modificar esta política. Las actualizaciones estarán disponibles aquí.</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 </div>

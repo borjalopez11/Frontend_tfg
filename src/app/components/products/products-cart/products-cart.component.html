@@ -1,9 +1,11 @@
-<div class="popup" *ngIf="!mesaAsignada" (click)="cerrarPopupMesa()">
-  <div class="popup-body-mesa" (click)="$event.stopPropagation()">
+<div class="popup" *ngIf="mostrarPopupMesa" (click)="cerrarPopupMesa()">
+<div class="popup-body-mesa" (click)="$event.stopPropagation()">
     <h2 class="popup-title">INTRODUCE TU NÚMERO DE MESA</h2>
     <input type="number" [(ngModel)]="mesaNumero" placeholder="Número de mesa" class="popup-input" />
     <span *ngIf="errorMensajeMesa" class="error-text">{{ errorMensajeMesa }}</span>
     <button class="popup-confirm-btn" (click)="asignarMesa()">Confirmar</button>
+    <a class="omitir-link" (click)="omitirMesa()">Omitir</a>
+
   </div>
 </div>
 

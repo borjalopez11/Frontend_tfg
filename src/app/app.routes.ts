@@ -98,6 +98,11 @@ export const routes: Routes = [
           .then(m => m.AdminOrdersComponent)
       },
       {
+        path: 'admin-tables',
+        loadComponent: () => import('./components/admin/admin-tables/admin-tables.component')
+          .then(m => m.AdminTablesComponent)
+      },
+      {
         path: 'admin-products',
         loadComponent: () => import('./components/admin/admin-products/admin-products.component')
           .then(m => m.AdminProductsComponent)

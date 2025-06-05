@@ -256,6 +256,21 @@ h2 {
   width: 100%;
   margin-bottom: 10px;
 }
+.omitir-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #ff4d4d;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.omitir-link:hover {
+  color: #ff1a1a;
+}
+
 
 .add-to-cart {
   margin-top: 20px;

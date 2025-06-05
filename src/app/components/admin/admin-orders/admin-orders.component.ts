@@ -16,6 +16,9 @@ import {CommonModule, NgForOf, NgIf} from "@angular/common";
 })
 export class AdminOrdersComponent {
   orders: any[] = [];
+  pendingOrders: any[] = [];
+  completedOrders: any[] = [];
+
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -33,12 +36,28 @@ export class AdminOrdersComponent {
       headers: this.getAuthHeaders()
     }).subscribe({
       next: (data) => {
-        this.orders = (data.orders || []).reverse();
+        const orders = (data.orders || []).reverse();
+        this.orders = orders;
+        this.pendingOrders = orders.filter(
+          (o: any) => o.orderStatus === 'PAGADO' || o.orderStatus === 'PREPARACION'
+        );
+        this.completedOrders = orders.filter(
+          (o: any) => o.orderStatus === 'SERVIDO'
+        );
       },
       error: () => {
         console.error('Error al cargar las órdenes');
       }
     });
   }
+
+  updateOrderStatus(orderId: number, status: string): void {
+    const url = `http://localhost:5001/api/admin/order/${orderId}/${status}`;
+    this.http.put(url, {}, { headers: this.getAuthHeaders() }).subscribe({
+      next: () => this.loadOrders(),
+      error: () => console.error('Error al actualizar el estado de la orden')
+    });
+  }
+
 
 }

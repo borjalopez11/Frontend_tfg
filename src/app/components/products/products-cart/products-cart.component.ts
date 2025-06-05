@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Product } from "../../../interface/interface";
-import { ProductService } from "../../../services/product.service";
-import { environment } from "../../../../enviroments/enviroment";
+import {CommonModule} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Product} from "../../../interface/interface";
+import {ProductService} from "../../../services/product.service";
+import {environment} from "../../../../enviroments/enviroment";
 import {FormsModule} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 
@@ -25,20 +25,30 @@ export class ProductsCartComponent implements OnInit {
   backendUrl = environment.backendUrl;
   mesaNumero: number | null = null;
   mesaAsignada: boolean = false;
+  mesaOmitida: boolean = false;
+  mostrarPopupMesa: boolean = false;
   errorMensajeMesa: string = '';
   mostrarToast = false;
   mensajeToast = '';
 
 
-
-  constructor(private productService: ProductService,  private http: HttpClient) {}
+  constructor(private productService: ProductService, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     const mesaGuardada = localStorage.getItem('mesaNumero');
+    const omitida = localStorage.getItem('mesaOmitida');
+
+    this.mesaAsignada = !!mesaGuardada;
+    this.mesaOmitida = !!omitida;
+
+    this.mostrarPopupMesa = !this.mesaAsignada && !this.mesaOmitida;
+
     if (mesaGuardada) {
       this.mesaNumero = +mesaGuardada;
-      this.mesaAsignada = true;
     }
+    this.mostrarPopupMesa = !this.mesaAsignada;
+
     this.loadProducts();
   }
 
@@ -50,7 +60,7 @@ export class ProductsCartComponent implements OnInit {
 
         this.products = data.map(product => ({
           ...product,
-          image : product.image ? this.backendUrl + 'uploads/' + product.image : 'assets/imgNotFound.png',
+          image: product.image ? this.backendUrl + 'uploads/' + product.image : 'assets/imgNotFound.png',
         }));
 
         console.log(this.products);
@@ -69,6 +79,12 @@ export class ProductsCartComponent implements OnInit {
   }
 
   handleAddToCart(product: any): void {
+    if (!this.mesaAsignada) {
+      this.closePopup();
+      this.mostrarPopupMesa = true;
+      return;
+    }
+
     this.productService.addToCart(product.id, 1).subscribe({
       next: () => {
         this.closePopup();
@@ -85,6 +101,8 @@ export class ProductsCartComponent implements OnInit {
     });
   }
 
+
+
   selectedProduct: any = null;
 
   openPopup(product: any) {
@@ -98,12 +116,12 @@ export class ProductsCartComponent implements OnInit {
   scrollTo(id: string): void {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
   }
 
   asignarMesa(): void {
-    this.errorMensajeMesa = ''; // limpiar mensaje anterior
+    this.errorMensajeMesa = '';
 
     if (!this.mesaNumero) {
       this.errorMensajeMesa = 'Por favor introduce un número de mesa válido';
@@ -122,35 +140,38 @@ export class ProductsCartComponent implements OnInit {
       }
     };
 
-    const activateUrl = `http://localhost:5001/tables/${this.mesaNumero}/activate`;
     const assignUrl = `http://localhost:5001/tables/${this.mesaNumero}/assign`;
 
-    this.http.put(activateUrl, {}, headers).subscribe({
+    this.http.put(assignUrl, {}, headers).subscribe({
       next: () => {
-        this.http.put(assignUrl, {}, headers).subscribe({
-          next: () => {
-            this.mesaAsignada = true;
-            localStorage.setItem('mesaNumero', this.mesaNumero!.toString());
-            this.errorMensajeMesa = '';
-            this.mensajeToast = 'Mesa asignada correctamente';
-            this.mostrarToast = true;
-            setTimeout(() => this.mostrarToast = false, 3000);
+        this.mesaAsignada = true;
+        this.mesaOmitida = false;
+        this.mostrarPopupMesa = false;
+        localStorage.setItem('mesaNumero', this.mesaNumero!.toString());
+        this.errorMensajeMesa = '';
+        this.mensajeToast = 'Mesa asignada correctamente';
+        this.mostrarToast = true;
+        setTimeout(() => this.mostrarToast = false, 3000);
 
-          },
-          error: (err) => {
-            console.error('Error al asignar la mesa', err);
-            this.errorMensajeMesa = err.error?.message || 'Error al asignar la mesa';
-          }
-        });
       },
       error: (err) => {
-        console.error('Error al activar la mesa', err);
-        this.errorMensajeMesa = err.error?.message || 'Error al activar la mesa';
+        console.error('Error al asignar la mesa', err);
+        this.errorMensajeMesa = err.error?.message || 'Error al asignar la mesa';
       }
     });
   }
 
-  cerrarPopupMesa(): void {
-    if (!this.mesaAsignada) return;
+  omitirMesa(): void {
+    this.mostrarPopupMesa = false;
+  }
+
+
+  cerrarPopupMesa()
+    :
+    void {
+    if (!
+      this.mesaAsignada
+    )
+      return;
   }
 }
